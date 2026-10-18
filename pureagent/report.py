@@ -35,8 +35,10 @@ def _count(value) -> int:
 def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], coverage: Mapping) -> dict:
     """Return ``{run_status, scope, confirmed_errors}`` without mutating inputs.
 
-    Candidate: id, investigator, why, recommendation; optional title/refdes/refs/
-    severity are retained for confirmed errors. Review: candidate_id, reviewer,
+    Candidate: id, investigator, why; optional recommendation/title/refdes/refs/
+    severity are retained for confirmed errors. A confirmed problem does not
+    require a known remedy. Supplied advice is not independently validated by
+    this presentation function. Review: candidate_id, reviewer,
     verdict, raw_connection_evidence, and at least one applicable requirement
     reference: datasheet_evidence or requirement_evidence. The latter can refer
     to supplied interface requirements or another verified source when a
@@ -87,7 +89,7 @@ def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], cove
             continue
         if investigator.strip().casefold() == reviewer.strip().casefold():
             continue
-        if not _text(candidate.get("why")) or not _text(candidate.get("recommendation")):
+        if not _text(candidate.get("why")):
             continue
         if not _evidence(review.get("raw_connection_evidence")):
             continue
@@ -102,8 +104,9 @@ def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], cove
         error.update(
             why=candidate["why"],
             raw_connection_evidence=deepcopy(review["raw_connection_evidence"]),
-            recommendation=candidate["recommendation"],
         )
+        if _text(candidate.get("recommendation")):
+            error["recommendation"] = candidate["recommendation"]
         for key in requirement_fields:
             error[key] = deepcopy(review[key])
         confirmed.append(error)

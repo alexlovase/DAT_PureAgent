@@ -1,0 +1,83 @@
+{
+  "phase": "before",
+  "baseline_commit": "7a743e0cab5dedf31230a0c2bc316aa191a0e23d",
+  "scope": "Synthetic arithmetic and deterministic re-presentation of historical findings; no new LLM or electrical review.",
+  "production_git_blobs": {
+    "pureagent/calculations.py": "68d99154caecd8e39422c88edf21547f27533546",
+    "pureagent/report.py": "129e8cd103d64b3431887b655ce32285c242bc81"
+  },
+  "conditional_arithmetic": {
+    "current": {
+      "id": "scenario_current",
+      "inputs": {
+        "v": {
+          "value": 5,
+          "unit": "V",
+          "source": "Synthetic scenario definition"
+        },
+        "r": {
+          "value": 1000,
+          "unit": "ohm",
+          "source": "Synthetic scenario definition"
+        }
+      },
+      "expression": "v / r",
+      "result_unit": "A",
+      "assumptions": [
+        "Synthetic scenario S: an enabled ideal 5 V source across a 1000 ohm resistor."
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "Scenario S is hypothetical; no actual board source state is established."
+      },
+      "result": null,
+      "usable": false,
+      "status": "conditional",
+      "trial_result": 0.005,
+      "reason": "Conditional operating mode; trial result must not be propagated"
+    },
+    "power": {
+      "id": "scenario_power",
+      "inputs": {
+        "i": {
+          "value": 0.005,
+          "unit": "A",
+          "source": "scenario_current trial result under the same synthetic scenario S"
+        },
+        "r": {
+          "value": 1000,
+          "unit": "ohm",
+          "source": "Same synthetic scenario resistor"
+        }
+      },
+      "expression": "i * i * r",
+      "result_unit": "W",
+      "assumptions": [
+        "Synthetic scenario S: an enabled ideal 5 V source across a 1000 ohm resistor."
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "The caller explicitly retains scenario S; no unconditional working point is asserted."
+      },
+      "result": null,
+      "usable": false,
+      "status": "conditional",
+      "trial_result": 0.025,
+      "reason": "Conditional operating mode; trial result must not be propagated"
+    },
+    "conditions_carried_by": "The probe caller explicitly, not an automatic dependency engine."
+  },
+  "remediation_prerequisite": {
+    "only_change": "Remove recommendation from in-memory candidate copies; all reviews and requirements unchanged.",
+    "original_confirmed_count": 1,
+    "without_recommendation_confirmed_count": 0,
+    "without_recommendation_ids": [],
+    "missing_advice_fabricated": false
+  },
+  "completion_declaration": {
+    "supplied_count": "1/1",
+    "supplied_full_board": true,
+    "returned_status": "completed_review",
+    "meaning": "Acceptance of caller metadata, not independent proof of electrical coverage."
+  }
+}

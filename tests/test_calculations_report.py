@@ -166,7 +166,7 @@ class ReportTests(unittest.TestCase):
 
     def test_self_review_and_incomplete_evidence_cannot_promote(self):
         for change in ("same_actor", "missing_investigator", "missing_reviewer",
-                       "raw_connection_evidence", "datasheet_evidence", "why", "recommendation"):
+                       "raw_connection_evidence", "datasheet_evidence", "why"):
             with self.subTest(change=change):
                 candidate, review, coverage = report_records()
                 if change == "same_actor":
@@ -175,13 +175,24 @@ class ReportTests(unittest.TestCase):
                     del candidate["investigator"]
                 elif change == "missing_reviewer":
                     del review["reviewer"]
-                elif change in {"why", "recommendation"}:
+                elif change == "why":
                     candidate[change] = " "
                 else:
                     review[change] = [None, "", {}]
                 report = build_report([candidate], [review], coverage)
                 self.assertEqual(report["confirmed_errors"], [])
                 self.assertEqual(report["run_status"], "partial_review")
+
+    def test_confirmed_problem_survives_unknown_remedy_without_fabricated_advice(self):
+        candidate, review, coverage = report_records()
+        with_advice = build_report([candidate], [review], coverage)["confirmed_errors"][0]
+        del candidate["recommendation"]
+        without_advice = build_report([candidate], [review], coverage)["confirmed_errors"][0]
+        self.assertEqual(without_advice, {key: value for key, value in with_advice.items()
+                                        if key != "recommendation"})
+        self.assertNotIn("recommendation", without_advice)
+        candidate["recommendation"] = " "
+        self.assertEqual(build_report([candidate], [review], coverage)["confirmed_errors"][0], without_advice)
 
     def test_applicable_requirement_can_replace_datasheet_without_weakening_review(self):
         candidate, review, coverage = report_records()

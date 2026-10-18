@@ -5,8 +5,10 @@ module checks neither dimensions nor datasheet truth and does not prove a mode.
 Only a caller-declared ``valid`` calculation can return a usable result.
 ``usable`` describes the arithmetic under that declaration, not independent
 verification of physical parameters, numeric literals, or a real working point.
-``conditional`` results are labeled trial_result; invalid/unknown modes and
-missing or non-finite inputs produce no numeric value.
+``conditional`` results are labeled trial_result and can support further analysis
+under the same explicit assumptions. The caller must carry those conditions;
+this module does not track dependencies or promote a trial to an actual working
+point. Invalid/unknown modes and missing or non-finite inputs produce no value.
 """
 
 from __future__ import annotations
@@ -160,7 +162,8 @@ def evaluate(record: Mapping) -> dict:
         return output
     if mode == "conditional":
         output.update(trial_result=value, status="conditional",
-                      reason="Conditional operating mode; trial result must not be propagated")
+                      reason="Conditional result; further analysis may reuse it with the same explicit conditions. "
+                             "The caller must retain those conditions; this is not an established working point.")
     else:
         output.update(result=value, usable=True, status="evaluated")
     return output
