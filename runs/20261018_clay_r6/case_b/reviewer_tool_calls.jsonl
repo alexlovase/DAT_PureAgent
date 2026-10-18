@@ -1,0 +1,17 @@
+{"call": 1, "tool": "component", "args": {"ref": "U6", "detail": true}, "ok": true, "elapsed_ms": 0.101}
+{"call": 2, "tool": "pin", "args": {"ref": "U6", "number": "10", "detail": true}, "ok": true, "elapsed_ms": 0.019}
+{"call": 3, "tool": "pin", "args": {"ref": "U6", "number": "7", "detail": true}, "ok": true, "elapsed_ms": 0.009}
+{"call": 4, "tool": "net", "args": {"query": "UVLO", "detail": true}, "ok": true, "elapsed_ms": 0.015}
+{"call": 5, "tool": "net", "args": {"query": "N00478", "detail": true}, "ok": true, "elapsed_ms": 0.009}
+{"call": 6, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 519.912}
+{"call": 7, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 14}, "ok": true, "elapsed_ms": 3.174}
+{"call": 8, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 13}, "ok": true, "elapsed_ms": 1.685}
+{"call": 9, "tool": "source", "args": {"filename": "pstxprt.dat", "start_line": 1240, "end_line": 1248}, "ok": true, "elapsed_ms": 0.172}
+{"call": 10, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 1487, "end_line": 1530}, "ok": true, "elapsed_ms": 0.097}
+{"call": 11, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2267, "end_line": 2301}, "ok": true, "elapsed_ms": 0.174}
+{"call": 12, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1403, "end_line": 1409}, "ok": true, "elapsed_ms": 0.122}
+{"call": 13, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2017, "end_line": 2024}, "ok": true, "elapsed_ms": 0.148}
+{"call": 14, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1147, "end_line": 1157}, "ok": true, "elapsed_ms": 0.115}
+{"call": 15, "tool": "net", "args": {"query": "VCC", "offset": 0, "limit": 40, "detail": true}, "ok": true, "elapsed_ms": 0.074}
+{"call": 16, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 14, "output_path": "runs/20261018_clay_r6/case_b/reviewer_renders/tps61201-p14.png", "dpi": 135}, "ok": true, "elapsed_ms": 42.728}
+{"call": 17, "tool": "stats", "args": {}, "ok": true, "elapsed_ms": 0.005}

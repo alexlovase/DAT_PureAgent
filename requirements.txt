@@ -1,0 +1,2 @@
+# Graph, calculation and report tools otherwise use the Python standard library.
+PyMuPDF>=1.24,<2

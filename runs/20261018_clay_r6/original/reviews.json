@@ -1,0 +1,141 @@
+[
+  {
+    "candidate_id": "CLAY-U6-UVLO-001",
+    "reviewer": "independent_design_audit",
+    "verdict": "confirmed",
+    "why": "在所提供的网表中，U6.7 UVLO 只有本脚一个端点，没有接入外部阈值网络，也没有连接 VAUX。U6 的固定输出型号与物理脚绑定可由原始 part/primitive 记录核实。TI 引脚表明确要求不用 UVLO 时接 VAUX；所给连接未实现规定的 UVLO 接法，因此可确认为这份网表的电气连接错误。",
+    "raw_connection_evidence": [
+      {
+        "file": "examples/clay_r6/clay-r6/pstxprt.dat",
+        "lines": [1240, 1248],
+        "fact": "U6 原始实例绑定 TPS61201_VSON10_3X3_TPS61201DRC primitive。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstchip.dat",
+        "lines": [1487, 1529],
+        "fact": "该 primitive 的 VALUE 为 TPS61201DRCT，并明确给出 VAUX=物理脚1、UVLO=物理脚7；该判断使用实际物理脚映射。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [2020, 2026],
+        "net": "UVLO",
+        "members": ["U6.7"],
+        "fact": "完整网络只有 U6.7；下一网络从 2027 行开始，结论不是分页截断造成。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [1147, 1156],
+        "net": "N00478",
+        "members": ["U6.1", "C32.1"],
+        "fact": "VAUX 位于另一完整网络，UVLO 不在其中。"
+      }
+    ],
+    "datasheet_evidence": [
+      {
+        "file": "TPS61201.pdf",
+        "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+        "document": "TI SLVS577E, revised December 2014",
+        "pages": [4, 13],
+        "visually_checked_pages": [4],
+        "fact": "页4核实 TPS61201 固定3.3 V型号、VAUX和UVLO脚号，并要求 UVLO 不使用时接 VAUX。页13说明 UVLO 外部阈值控制与主输出禁用关系，不给出悬空脚的确定电压或确定行为。"
+      }
+    ],
+    "confirmed_scope": "所给 DAT 连接与器件规定接法矛盾。",
+    "excluded_consequences": [
+      "没有把悬空 UVLO 的实际电压假定为 0 V。",
+      "没有证明实板必定无法启动、实际 VCC 数值、过压或器件损坏。",
+      "没有检查 PCB 是否另有未表达在 DAT 中的改线。"
+    ],
+    "recommendation_review": "若不需要外部欠压门限，将 U6.7 接至 U6.1 VAUX；若需要该功能，按实际监控电压和目标阈值设计外部分压。"
+  },
+  {
+    "candidate_id": "CLAY-U6-GROUND-002",
+    "reviewer": "independent_design_audit",
+    "verdict": "undetermined",
+    "why": "原始 DAT 确实把 U6.9 GND 与 U6.4 PGND 分配到不同网络。手册要求两者在 PCB 上单点连接；这不是仅凭不同逻辑网络名即可证明的 PCB 连接缺陷。现有输入未提供铜连接或 net-tie 证据，不能升级为确定的实板电气错误，也不能判定接地已经合格。",
+    "raw_connection_evidence": [
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [1915, 1939],
+        "net": "GND_EARTH",
+        "members": ["U6.4", "U6.11", "C32.2", "C29.2", "C31.2", "C30.2", "DS16.1"],
+        "fact": "完整七端点网络包含 U6.4 PGND；此处保留 CAD 给出的额外物理脚11，未按封装标题裁剪。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [1744, 1746],
+        "net": "GND",
+        "members": ["U6.9"],
+        "members_are_excerpt": true,
+        "fact": "U6.9 GND 在另一网络；这里只列该脚的原始行，未把 GND 网络成员简写当作完整集合。"
+      }
+    ],
+    "datasheet_evidence": [
+      {
+        "file": "TPS61201.pdf",
+        "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+        "pages": [4, 12],
+        "visually_checked_pages": [4, 12],
+        "fact": "页4定义 GND/PGND 引脚；页12节10.3.1.1要求控制地与功率地在 PCB 上单点相连，理想位置靠近 GND 脚。"
+      }
+    ],
+    "needed_evidence_for_this_claim": "PCB 铜连接或等效明确记录，能证明或反驳 GND 与 PGND 的实际单点连接。",
+    "engineer_error_report": "exclude"
+  },
+  {
+    "candidate_id": "CLAY-DS1-LIMIT-003",
+    "reviewer": "independent_design_audit",
+    "verdict": "undetermined",
+    "why": "R1=30 Ω 串联 DS1 的连接成立，但输入没有确定 J1 或 D1 后 CHG_IN 的工作电压。将 CHG_IN 假设为 4.5 V 时，15 mA 阈值对应 LED 两端所需电压为 4.05 V；这是条件负载线试算。器件手册的典型 I-V 曲线不能替代适用工况下的保证值，充电芯片的允许输入范围也不是本板实际输入。因此不能确认 DS1 已超限。",
+    "raw_connection_evidence": [
+      {
+        "file": "examples/clay_r6/clay-r6/pstchip.dat",
+        "lines": [475, 489],
+        "fact": "R1 所用电阻 primitive 的 VALUE 为30，不能把它误读为30k。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxprt.dat",
+        "lines": [750, 758],
+        "fact": "R1 实例绑定该30 Ω primitive。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [2137, 2152],
+        "net": "N08855",
+        "members": ["D1.1", "R1.2", "C3.1", "U1.1"],
+        "fact": "完整网络是 D1 后、U1 CHG_IN 所在节点。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [1197, 1206],
+        "net": "N33179",
+        "members": ["DS1.2", "R1.1"],
+        "fact": "R1 与 DS1 阳极串联；DS1.1 阴极在 GND，原始记录为1552–1554行。"
+      },
+      {
+        "file": "examples/clay_r6/clay-r6/pstxnet.dat",
+        "lines": [480, 489],
+        "net": "N08912",
+        "members": ["D1.2", "J1.1"],
+        "fact": "输入来自外部连接器 J1；连接器数据没有提供实际电源电压。"
+      }
+    ],
+    "datasheet_evidence": [
+      {
+        "file": "LB-QH9G.pdf",
+        "url": "https://look.ams-osram.com/m/3184c82bafe7f3ef/original/LB-QH9G.pdf",
+        "pages": [2, 3, 8, 20],
+        "visually_checked_pages": [3, 8],
+        "fact": "页3连续正向电流上限为15 mA，条件为TA=25 °C，短时浪涌额定不能代替连续额定。页8给出典型正向I-V曲线，页20说明典型曲线不保证每颗器件。页2订货后缀与DAT文本有N100/N1OO差异，家族层资料不能被升级为完整个体保证。"
+      },
+      {
+        "file": "LM3658.pdf",
+        "url": "https://www.ti.com/lit/ds/symlink/lm3658.pdf",
+        "pages": [3],
+        "fact": "CHG_IN规定工作范围为4.5–6.0 V；该范围是器件条件，不证明板上实际电压。"
+      }
+    ],
+    "needed_evidence_for_this_claim": "实际外部供电/CHG_IN工况及适用温度下能支持阈值比较的LED电气数据。缺少无关封装信息本身不阻止这项局部分析。",
+    "engineer_error_report": "exclude"
+  }
+]

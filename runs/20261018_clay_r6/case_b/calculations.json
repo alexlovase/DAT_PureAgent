@@ -1,0 +1,26 @@
+[
+  {
+    "id": "case_b_u6_nominal_cout_margin",
+    "result": null,
+    "trial_result": 9.0,
+    "usable": false,
+    "status": "conditional",
+    "matches_recorded_calculation": true
+  },
+  {
+    "id": "case_b_u1_full_rate_current",
+    "result": null,
+    "trial_result": 0.8333333333333334,
+    "usable": false,
+    "status": "conditional",
+    "matches_recorded_calculation": true
+  },
+  {
+    "id": "case_b_u6_regulated_vcc_claim",
+    "result": null,
+    "trial_result": null,
+    "usable": false,
+    "status": "not_computed",
+    "matches_recorded_calculation": true
+  }
+]

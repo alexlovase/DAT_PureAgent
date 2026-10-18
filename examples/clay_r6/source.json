@@ -1,0 +1,59 @@
+{
+  "board": "Clay R6",
+  "repository": "https://github.com/ah-cog/Clay",
+  "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+  "design_path": "Circuit/R6",
+  "format": "Cadence OrCAD expanded PST DAT",
+  "license": "MIT",
+  "license_url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/LICENSE",
+  "observed_export": "PSTWRITER 16.6.0, 2016-02-08",
+  "observed_at": "2026-10-18",
+  "input_counts": {
+    "refdes": 133,
+    "net_records": 165,
+    "node_records": 546,
+    "primitives": 53
+  },
+  "provenance_note": "Original hardware design files, not a synthetic parser fixture. The same commit also contains CLAYR6.pdf, CLAYR6.brd, BOMs and fabrication/assembly documents. Counts describe raw DAT records, not a claim that all named records represent physical connected nets.",
+  "design_evidence": [
+    "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/CLAYR6.pdf",
+    "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/CLAYR6.brd",
+    "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/R6_BOM.xlsx"
+  ],
+  "files": [
+    {
+      "path": "Circuit/R6/allegro/pstchip.dat",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat",
+      "cache_path": "clay-r6/pstchip.dat",
+      "bytes": 38433,
+      "git_blob_sha": "469412a38603f4015b9d02ea7ce297647ee2e968"
+    },
+    {
+      "path": "Circuit/R6/allegro/pstxprt.dat",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxprt.dat",
+      "cache_path": "clay-r6/pstxprt.dat",
+      "bytes": 55571,
+      "git_blob_sha": "84ae125c7e7ef6960cfc2f4126c9af35a68527d4"
+    },
+    {
+      "path": "Circuit/R6/allegro/pstxnet.dat",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat",
+      "cache_path": "clay-r6/pstxnet.dat",
+      "bytes": 88191,
+      "git_blob_sha": "89d195a1606b3d682cdb92e4cb1dbf88700b32f1"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/LICENSE",
+      "cache_path": "clay-r6/LICENSE",
+      "bytes": 1081,
+      "git_blob_sha": "3aea9080afa472fa8870b4771e1f06c88bd6b4c7"
+    }
+  ],
+  "discovery_reference": {
+    "repository": "IntelligentElectron/test-fixtures",
+    "commit": "1a46586c4323e3071804923b4be1ed56e21cf8e1",
+    "path": "cadence/clay-r6/README.md"
+  }
+}
+

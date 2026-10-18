@@ -1,0 +1,192 @@
+{
+  "reviewer": "independent_design_audit",
+  "reviewed_at_utc": "2026-10-18T13:34:22.813620+00:00",
+  "scope": "Independent source inspection and original-DAT endpoint comparison of dat.py and cli.py; no electrical findings assessed.",
+  "implementation_state": "Working-tree implementation after minimal fixes for PARSER-01 through PARSER-03; independently retested.",
+  "decision": {
+    "original_clay_r6_facts": "passed_exact_multiset_and_set_comparison",
+    "original_dataset_can_be_investigated": true,
+    "robustness": "three_reported_synthetic_input_defects_fixed_and_retested"
+  },
+  "input": {
+    "repository": "ah-cog/Clay",
+    "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+    "format": "original_native_OrCAD_PST_16.6",
+    "copy_byte_identical": {
+      "pstchip.dat": true,
+      "pstxprt.dat": true,
+      "pstxnet.dat": true
+    }
+  },
+  "method": "Independent line-record scanner over original source files, separate from production Reader/DatGraph. Compare ordinary (full_net_path, ref, physical_pin) multisets, NC-exported and NC_PINS sets, all physical pins and library labels. Synthetic tests modify strings in memory and intercept file reads; source files were not changed.",
+  "original_results": {
+    "components": 133,
+    "primitives": 53,
+    "physical_pins": 548,
+    "ordinary_nets": 164,
+    "ordinary_endpoints": 537,
+    "nc_exported_pins": 9,
+    "nc_declared_pins": 2,
+    "endpoint_multiset_equal": true,
+    "missing_endpoints": [],
+    "extra_endpoints": [],
+    "nc_exported_set_equal": true,
+    "nc_declared_set_equal": true,
+    "physical_pin_set_equal": true,
+    "library_labels_equal": true,
+    "node_occurrence_paths_equal_part_sections": true,
+    "input_diagnostics": [],
+    "net_pagination": {
+      "GND": {
+        "pages": 3,
+        "items": 103,
+        "exact": true
+      },
+      "VCC": {
+        "pages": 3,
+        "items": 85,
+        "exact": true
+      }
+    },
+    "component_pagination": {
+      "U5": {
+        "items": 100,
+        "exact": true
+      }
+    },
+    "boundary_checks": [
+      {
+        "refs": [
+          "U1"
+        ],
+        "outside_endpoints": 119,
+        "exact": true
+      },
+      {
+        "refs": [
+          "U7"
+        ],
+        "outside_endpoints": 210,
+        "exact": true
+      },
+      {
+        "refs": [
+          "C22",
+          "C23",
+          "L5",
+          "R17",
+          "R18",
+          "U6"
+        ],
+        "outside_endpoints": 193,
+        "exact": true
+      }
+    ]
+  },
+  "required_fixes": [
+    {
+      "id": "PARSER-01",
+      "location": "pureagent/dat.py:_parse_chips pin attrs.update(r.properties())",
+      "case": "Repeat PIN_NUMBER with conflicting (1) then (2) in separate semicolon-terminated statements for WIRE primitive.",
+      "observed": "Accepted; original declared physical pin is replaced by pin 2, while netlist later adds pin 1 as undeclared.",
+      "fix": "Detect conflicts across property statements before updating physical mapping; reject or preserve unresolved input explicitly.",
+      "original_board_triggered": false,
+      "resolution": {
+        "status": "fixed_and_independently_retested",
+        "id": "PARSER-01",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstchip.dat:1720: conflicting property PIN_NUMBER"
+      }
+    },
+    {
+      "id": "PARSER-02",
+      "location": "pureagent/dat.py:_parse_nets net.members append",
+      "case": "Duplicate one raw NODE_NAME record within the same ordinary net.",
+      "observed": "Accepted without diagnostics; ordinary endpoint count increases from 537 to 538 and queries duplicate the pin.",
+      "fix": "Reject duplicate same-net physical endpoints, or deduplicate with explicit retained source/diagnostic so electrical membership is not duplicated.",
+      "original_board_triggered": false,
+      "resolution": {
+        "status": "fixed_and_independently_retested",
+        "id": "PARSER-02",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstxnet.dat:10: duplicate endpoint U5.93 on PTD0/LLWU_P12/SPI0_PCS0/UART2_R"
+      }
+    },
+    {
+      "id": "PARSER-03",
+      "location": "pureagent/dat.py:_parse_nets node_path vs component.sections",
+      "case": "Change one U5 node occurrence from INS541 to INS999999 while preserving ref and physical pin.",
+      "observed": "Accepted without diagnostics and bound to the existing U5 instance.",
+      "fix": "For supported single-section inputs, detect inconsistent occurrence paths across pstxprt and pstxnet and reject or quarantine affected binding.",
+      "original_board_triggered": false,
+      "resolution": {
+        "status": "fixed_and_independently_retested",
+        "id": "PARSER-03",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstxnet.dat:7: occurrence path for U5 differs from pstxprt.dat"
+      }
+    }
+  ],
+  "review_notes": [
+    "No automatic voltage, package-based pin pruning, DNP removal, or device conduction model was found in dat.py. Unknown external pins are retained in boundary output.",
+    "NC export records are retained separately and not made conductive; two NC_PINS antenna pins remain present.",
+    "The current source has only single-number PIN_NUMBER and section 1. Passing this board does not validate multi-section or multi-number mappings.",
+    "The calculation evaluator trusts caller-supplied source and operating-mode validity; arithmetic success is not an electrical proof. Candidate verification remains required."
+  ],
+  "retest": {
+    "status": "passed",
+    "tested_at_utc": "2026-10-18T13:36:30.599254+00:00",
+    "scope": "Exact replay of the three reported in-memory defect cases plus original source-copy, endpoint/NC/physical-pin equality and prior pagination/boundary checks. No wider speculative test expansion.",
+    "fix_cases": [
+      {
+        "id": "PARSER-01",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstchip.dat:1720: conflicting property PIN_NUMBER"
+      },
+      {
+        "id": "PARSER-02",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstxnet.dat:10: duplicate endpoint U5.93 on PTD0/LLWU_P12/SPI0_PCS0/UART2_R"
+      },
+      {
+        "id": "PARSER-03",
+        "passed": true,
+        "observed_exception": "DatError",
+        "observed": "pstxnet.dat:7: occurrence path for U5 differs from pstxprt.dat"
+      }
+    ],
+    "original_checks": {
+      "source_copies_byte_identical": true,
+      "ordinary_endpoint_multiset_equal": true,
+      "nc_exported_set_equal": true,
+      "nc_declared_set_equal": true,
+      "physical_pin_set_equal": true,
+      "library_labels_equal": true,
+      "no_original_input_diagnostics": true,
+      "GND_pagination_equal": true,
+      "VCC_pagination_equal": true,
+      "boundary_U1": true,
+      "boundary_U7": true,
+      "boundary_C22,C23,L5,R17,R18,U6": true
+    },
+    "overview": {
+      "components": 133,
+      "physical_pins": 548,
+      "electrical_nets": 164,
+      "connected_endpoints": 537,
+      "pin_states": {
+        "connected": 537,
+        "unconnected": 11
+      },
+      "nc_exported_endpoints": 9,
+      "nc_declared_pins": 2,
+      "input_diagnostic_count": 0,
+      "next": "inventory enumerates every instance; component/net expand all members"
+    }
+  }
+}

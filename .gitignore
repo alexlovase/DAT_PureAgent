@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+.cache/
+_work/
+runs/**/pdf_renders/
+runs/**/pdf/
+runs/**/*.png

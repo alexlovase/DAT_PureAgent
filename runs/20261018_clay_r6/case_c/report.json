@@ -1,0 +1,129 @@
+{
+  "run_status": "partial_review",
+  "scope": "受控变体 case_c：U6及外围，U1接线/设定抽查。",
+  "confirmed_errors": [
+    {
+      "id": "case_c_u6_fb_open",
+      "title": "U6 固定输出版本的 FB 脚未接回输出",
+      "refs": [
+        "U6"
+      ],
+      "why": "输入明确将 U6 绑定为 TPS61201DRCT。U6.2 VOUT 连接 VCC，但 U6.10 FB 被列在 pstxnet.dat 的 NC 段。TI 对 TPS61201 固定输出版本要求 FB 直接连接 VOUT，用于输出采样；当前接法缺少规定反馈连接，不能成立正常的固定 3.3 V 闭环调节。未推断实际 VCC 电压或具体过压后果。",
+      "raw_connection_evidence": [
+        {
+          "file": ".cache/variants/case_c/pstxprt.dat",
+          "lines": [
+            1240,
+            1248
+          ],
+          "fact": "U6实例绑定TPS61201_VSON10_3X3_TPS61201DRC primitive。"
+        },
+        {
+          "file": ".cache/variants/case_c/pstchip.dat",
+          "lines": [
+            1442,
+            1484
+          ],
+          "fact": "完整primitive保留PART_NAME=TPS61201、VALUE=TPS61201DRCT及11个物理脚的PIN_NUMBER；FB=10、VOUT=2。body中没有JEDEC_TYPE。没有把缺失字段补写或作为报错门槛。"
+        },
+        {
+          "file": ".cache/variants/case_c/pstxnet.dat",
+          "lines": [
+            2267,
+            2301
+          ],
+          "fact": "name/path/C_SIGNAL均为NC的未连接汇总中，2298–2300行记录U6.10 FB。NC成员不构成一条导通网。"
+        },
+        {
+          "file": ".cache/variants/case_c/pstxnet.dat",
+          "lines": [
+            1406,
+            1408
+          ],
+          "net": "VCC",
+          "members": [
+            "U6.2"
+          ],
+          "members_are_excerpt": true,
+          "fact": "U6.2 VOUT位于VCC。另独立逐行扫描本case整个pstxnet.dat，按NET_NAME边界重建U6全部11条NODE_NAME归属，确认U6.10只在NC出现一次。"
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "document": "TI SLVS577E, revised December 2014",
+          "pages": [
+            4,
+            14
+          ],
+          "visually_checked_pages": [
+            4,
+            14
+          ],
+          "fact": "本case重新读取页4和14正文；页4固定型号和引脚表、页14节11.2.2.1均支持固定输出版本FB直接连接VOUT的要求。物理脚表已在本次独立复核的同一PDF图像中核实。"
+        }
+      ],
+      "recommendation": "将 U6.10 FB 直接接到 U6.2 VOUT 所在的 VCC 网络，再复核闭环供电条件。"
+    },
+    {
+      "id": "case_c_u6_uvlo_floating",
+      "title": "U6 UVLO 脚仅连单端网络，未接欠压阈值偏置",
+      "refs": [
+        "U6"
+      ],
+      "why": "完整 UVLO 网络只有 U6.7 一个端点；没有分压、电源或 VAUX 接入。TI 规定不用外部欠压监控时必须将该脚连接 VAUX；使用该功能时也需给定分压/电压条件。该悬空接法使规定欠压判据未被建立，不能保证 VOUT 正常使能。没有把悬空脚电压假定为 0 V。",
+      "raw_connection_evidence": [
+        {
+          "file": ".cache/variants/case_c/pstchip.dat",
+          "lines": [
+            1442,
+            1484
+          ],
+          "fact": "VALUE=TPS61201DRCT，UVLO为物理脚7、VAUX为物理脚1；这些信息直接来自本case原始primitive。"
+        },
+        {
+          "file": ".cache/variants/case_c/pstxnet.dat",
+          "lines": [
+            2017,
+            2024
+          ],
+          "net": "UVLO",
+          "members": [
+            "U6.7"
+          ],
+          "fact": "完整网络只有U6.7，2024行开始下一网络。独立原文扫描结果一致。"
+        },
+        {
+          "file": ".cache/variants/case_c/pstxnet.dat",
+          "lines": [
+            1147,
+            1157
+          ],
+          "net": "N00478",
+          "members": [
+            "U6.1",
+            "C32.1"
+          ],
+          "fact": "VAUX所在完整网络不含UVLO，1157行开始下一网络。"
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "document": "TI SLVS577E, revised December 2014",
+          "pages": [
+            4,
+            13
+          ],
+          "visually_checked_pages": [
+            4
+          ],
+          "fact": "本case重新读取页4和13。页4规定不用UVLO时接VAUX；页13说明外部分压设置阈值及欠压时禁止主输出，不提供悬空脚电压的保证值。"
+        }
+      ],
+      "recommendation": "若不用外部欠压门限，将 U6.7 UVLO 接到 U6.1 VAUX；若需要电池欠压保护，按目标电池门限接入并核算分压网络。"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "LM3658_R6_nominal_full_rate",
+    "result": null,
+    "trial_result": 0.8333333333333334,
+    "usable": false,
+    "status": "conditional",
+    "matches_recorded_calculation": true
+  },
+  {
+    "id": "IS31FL3236_R15_nominal_channel_current",
+    "result": null,
+    "trial_result": 0.009902343749999999,
+    "usable": false,
+    "status": "conditional",
+    "matches_recorded_calculation": true
+  },
+  {
+    "id": "DS1_R1_forward_voltage_needed_at_limit_chgin_4p5",
+    "result": null,
+    "trial_result": 4.05,
+    "usable": false,
+    "status": "conditional",
+    "matches_recorded_calculation": true
+  }
+]

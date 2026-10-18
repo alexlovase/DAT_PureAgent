@@ -1,0 +1,423 @@
+{
+  "case": "case_b",
+  "investigator": "dat_pureagent_audit",
+  "scope": {
+    "description": "局部调查 U6 的反馈、UVLO、使能/模式脚和相关 L/C/地参考；抽查 U1 的引脚、ISET 与 MCU 控制连接。",
+    "primary_refs": [
+      "U6"
+    ],
+    "spot_checked_refs": [
+      "U1"
+    ],
+    "peripheral_refs": [
+      "L5",
+      "C29",
+      "C30",
+      "C31",
+      "C32",
+      "DS16",
+      "R5",
+      "R6"
+    ],
+    "input_dir": ".cache/variants/case_b",
+    "full_board": false,
+    "independent_review_completed": false,
+    "read_truth_or_original_board_diff": false,
+    "limits": [
+      "没有 PCB 铜连接、外部电源/电池工作点、负载和完整固件；未执行全板负载、热或器件应力审查。",
+      "C/R/L 的标称值可以比较，未将未知容差、偏压降容与额定值当作已满足。",
+      "以下 candidates 是调查意见，需另一个调查者按原文独立复核。"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "case_b_u6_fb_open",
+      "investigator": "dat_pureagent_audit",
+      "title": "U6 固定输出版本的 FB 脚未接回输出",
+      "refs": [
+        "U6"
+      ],
+      "why": "输入明确将 U6 绑定为 TPS61201DRCT。U6.2 VOUT 连接 VCC，但 U6.10 FB 被列在 pstxnet.dat 的 NC 段。TI 对 TPS61201 固定输出版本要求 FB 直接连接 VOUT，用于输出采样；当前接法缺少规定反馈连接，不能成立正常的固定 3.3 V 闭环调节。未推断实际 VCC 电压或具体过压后果。",
+      "recommendation": "将 U6.10 FB 直接接到 U6.2 VOUT 所在的 VCC 网络，再复核闭环供电条件。",
+      "raw_connection_evidence": {
+        "files": [
+          {
+            "file": "pstxprt.dat",
+            "lines": [
+              1240,
+              1248
+            ],
+            "fact": "U6 绑定 TPS61201 primitive"
+          },
+          {
+            "file": "pstchip.dat",
+            "lines": [
+              1487,
+              1530
+            ],
+            "fact": "物理脚10=FB、脚2=VOUT，VALUE=TPS61201DRCT"
+          },
+          {
+            "file": "pstxnet.dat",
+            "lines": [
+              2267,
+              2300
+            ],
+            "fact": "NC 段包含 U6 10 FB"
+          },
+          {
+            "file": "pstxnet.dat",
+            "lines": [
+              1406,
+              1408
+            ],
+            "fact": "U6 2 VOUT 位于 VCC 网络"
+          }
+        ],
+        "tool_calls": [
+          1,
+          7,
+          25,
+          26,
+          27,
+          37
+        ]
+      },
+      "datasheet_evidence": {
+        "file": "TPS61201.pdf",
+        "document": "TI SLVS577E, revised December 2014",
+        "pages": [
+          4,
+          12,
+          14
+        ],
+        "requirement": "TPS61201DRC 为 3.3 V 固定输出选项；脚10为 FB。固定输出版本必须把 FB 直接接至 VOUT，电压环由该脚采样。",
+        "visually_checked_pages": [
+          4,
+          14
+        ]
+      },
+      "status": "candidate"
+    },
+    {
+      "id": "case_b_u6_uvlo_floating",
+      "investigator": "dat_pureagent_audit",
+      "title": "U6 UVLO 脚仅连单端网络，未接欠压阈值偏置",
+      "refs": [
+        "U6"
+      ],
+      "why": "完整 UVLO 网络只有 U6.7 一个端点；没有分压、电源或 VAUX 接入。TI 规定不用外部欠压监控时必须将该脚连接 VAUX；使用该功能时也需给定分压/电压条件。该悬空接法使规定欠压判据未被建立，不能保证 VOUT 正常使能。没有把悬空脚电压假定为 0 V。",
+      "recommendation": "若不用外部欠压门限，将 U6.7 UVLO 接到 U6.1 VAUX；若需要电池欠压保护，按目标电池门限接入并核算分压网络。",
+      "raw_connection_evidence": {
+        "files": [
+          {
+            "file": "pstchip.dat",
+            "lines": [
+              1509,
+              1511
+            ],
+            "fact": "UVLO 对应物理脚7"
+          },
+          {
+            "file": "pstxnet.dat",
+            "lines": [
+              2017,
+              2024
+            ],
+            "fact": "UVLO 网络仅有 U6.7，随后已开始下一个 NET_NAME"
+          }
+        ],
+        "network_query": {
+          "query": "UVLO",
+          "total": 1,
+          "members": [
+            "U6.7"
+          ]
+        },
+        "tool_calls": [
+          8,
+          19,
+          26,
+          28
+        ]
+      },
+      "datasheet_evidence": {
+        "file": "TPS61201.pdf",
+        "document": "TI SLVS577E, revised December 2014",
+        "pages": [
+          4,
+          13
+        ],
+        "requirement": "UVLO 不使用时必须接 VAUX；页13说明该脚低于欠压阈值会禁止主输出，外部分压可用于设定监控阈值。",
+        "visually_checked_pages": [
+          4
+        ]
+      },
+      "status": "candidate"
+    }
+  ],
+  "checks": [
+    {
+      "id": "u6_identity_and_pin_binding",
+      "refs": [
+        "U6"
+      ],
+      "status": "checked",
+      "conclusion": "通过 part、primitive 与手册页4交叉核对固定版本及物理脚号；没有从网络名称猜工作电压。",
+      "tool_calls": [
+        1,
+        25,
+        26,
+        14,
+        16
+      ]
+    },
+    {
+      "id": "u6_feedback",
+      "refs": [
+        "U6"
+      ],
+      "status": "candidate",
+      "candidate_id": "case_b_u6_fb_open"
+    },
+    {
+      "id": "u6_uvlo",
+      "refs": [
+        "U6"
+      ],
+      "status": "candidate",
+      "candidate_id": "case_b_u6_uvlo_floating"
+    },
+    {
+      "id": "u6_enable_and_power_save",
+      "refs": [
+        "U6"
+      ],
+      "status": "checked",
+      "conclusion": "VIN、EN、PS 同接 VBAT；EN/PS 有外部网络连接，非悬空。根据手册只识别配置，实际 VBAT 电压和上电状态未知，不宣称始终使能。",
+      "tool_calls": [
+        1,
+        29,
+        14,
+        42
+      ]
+    },
+    {
+      "id": "u6_passive_configuration",
+      "refs": [
+        "L5",
+        "C29",
+        "C30",
+        "C31",
+        "C32"
+      ],
+      "status": "checked_with_conditions",
+      "conclusion": "L5 标称2.2uH连接输入与L脚；C30标称10uF连接输入—PGND网络；C29/C31各10uF并联于VCC—PGND网络；C32标称0.1uF连接VAUX—PGND网络。20uF与手册输出电容估算11uF的名义差为9uF，但不是有效电容或环路稳定性通过结论。手册VAUX最小推荐为0.1uF，因此没有把典型表中的1uF误判成所有工况强制值。",
+      "tool_calls": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        32,
+        41,
+        47
+      ]
+    },
+    {
+      "id": "u6_ground_reference",
+      "refs": [
+        "U6",
+        "C32",
+        "DS16"
+      ],
+      "status": "undetermined",
+      "conclusion": "原始网表中 U6.4/11 与局部电容返回位于 GND_EARTH，U6.9 位于 GND，所给连接中未显示两者直接连接。手册页12/21要求 PCB 单点连接；只给 DAT，不能排除未表达的 PCB 单点铜连接，本次未把它升级为确定电气错误。C32的控制地返回判断也依赖该关系。",
+      "tool_calls": [
+        3,
+        21,
+        30,
+        31,
+        43
+      ]
+    },
+    {
+      "id": "u1_pin_and_control_spot_check",
+      "refs": [
+        "U1"
+      ],
+      "status": "checked_with_conditions",
+      "conclusion": "手册物理脚4=USB_sel、脚5=EN_b，与 primitive 定义一致。网络名 EN_B 连接 U1.4/U5.83，USB_SEL 连接 U1.5/U5.84；网络名与功能名不一致本身不能证明电气错误，未审查固件映射，不报告错接。",
+      "tool_calls": [
+        2,
+        23,
+        24,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "u1_iset_spot_check",
+      "refs": [
+        "U1",
+        "R6"
+      ],
+      "status": "checked_with_conditions",
+      "conclusion": "U1.8 经 R6=3.0k 到 GND，连接与 ISET 配置形式相符；手册 KISET=2500 AΩ 给出约0.833 A的名义全速充电设定。实际充电模式、压差、电池允许电流与温升未知，不作为已成立的实际电流或安全通过。",
+      "tool_calls": [
+        34,
+        38,
+        39,
+        40,
+        44,
+        48
+      ]
+    },
+    {
+      "id": "u6_voltage_propagation",
+      "refs": [
+        "U6"
+      ],
+      "status": "not_usable",
+      "conclusion": "未将型号标称3.3 V写成实际VCC；在反馈/UVLO条件不满足时，计算工具返回result=null、usable=false。",
+      "tool_calls": [
+        49
+      ]
+    }
+  ],
+  "calculations": [
+    {
+      "id": "case_b_u6_nominal_cout_margin",
+      "inputs": {
+        "cout_a": {
+          "value": 10,
+          "unit": "uF",
+          "source": "component C29:10uF, VCC–GND_EARTH"
+        },
+        "cout_b": {
+          "value": 10,
+          "unit": "uF",
+          "source": "component C31:10uF, VCC–GND_EARTH"
+        },
+        "l_uh": {
+          "value": 2.2,
+          "unit": "uH",
+          "source": "component L5:2.2uH"
+        },
+        "factor": {
+          "value": 5,
+          "unit": "uF/uH",
+          "source": "TPS61201.pdf page 16, equation (5)"
+        }
+      },
+      "expression": "cout_a + cout_b - factor * l_uh",
+      "result_unit": "uF",
+      "assumptions": [
+        "C29 与 C31 的所给标称值在相同两网络上并联；此处仅比较名义值。",
+        "未把未知偏压降容、容差或 PCB 条件视作已满足。"
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "用于名义输出电容与手册估算值比较；当前 FB 连接不满足固定版本要求，且有效电容未知，不能据此证明闭环稳定或实际 VCC。"
+      },
+      "result": null,
+      "usable": false,
+      "status": "conditional",
+      "trial_result": 9,
+      "reason": "Conditional operating mode; trial result must not be propagated",
+      "tool_call": 47
+    },
+    {
+      "id": "case_b_u1_full_rate_current",
+      "inputs": {
+        "k_iset": {
+          "value": 2500,
+          "unit": "A*ohm",
+          "source": "LM3658.pdf page 4, KISET typical coefficient"
+        },
+        "r_iset": {
+          "value": 3000,
+          "unit": "ohm",
+          "source": "component R6=3.0k; N00337 endpoints U1.8 and R6.2; R6.1=GND"
+        }
+      },
+      "expression": "k_iset / r_iset",
+      "result_unit": "A",
+      "assumptions": [
+        "只针对 CHG_IN 输入的全速充电阶段。",
+        "需要 4.5–6 V 输入、足够压差和规定的电池电压范围；没有假定实际电池状态、输入源或温升。"
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "阻值和公式明确，但输入电压、充电阶段及热调节状态未给出；结果是名义设定值，不能当作实际充电电流。"
+      },
+      "result": null,
+      "usable": false,
+      "status": "conditional",
+      "trial_result": 0.8333333333333334,
+      "reason": "Conditional operating mode; trial result must not be propagated",
+      "tool_call": 48
+    },
+    {
+      "id": "case_b_u6_regulated_vcc_claim",
+      "inputs": {
+        "fixed_setpoint": {
+          "value": 3.3,
+          "unit": "V",
+          "source": "TPS61201.pdf page 4, TPS61201DRC fixed output option"
+        }
+      },
+      "expression": "fixed_setpoint",
+      "result_unit": "V",
+      "assumptions": [
+        "若器件满足反馈与使能/UVLO等运行条件，3.3 V 为固定版本标称设定值。"
+      ],
+      "validity": {
+        "status": "invalid",
+        "reason": "当前 U6.10 FB 在原始 NC 段且 UVLO 无外部偏置；不能把固定版本的标称设定值传播为已成立的 VCC 工作电压。"
+      },
+      "result": null,
+      "usable": false,
+      "status": "not_computed",
+      "reason": "Operating-mode validity is invalid; no numeric result computed",
+      "tool_call": 49
+    }
+  ],
+  "rendered_pages": [
+    {
+      "file": "TPS61201.pdf",
+      "page": 4,
+      "image": "pdf/TPS61201-page-4.png",
+      "visually_read": true
+    },
+    {
+      "file": "TPS61201.pdf",
+      "page": 14,
+      "image": "pdf/TPS61201-page-14.png",
+      "visually_read": true
+    },
+    {
+      "file": "TPS61201.pdf",
+      "page": 16,
+      "image": "pdf/TPS61201-page-16.png",
+      "visually_read": true
+    },
+    {
+      "file": "LM3658.pdf",
+      "page": 2,
+      "image": "pdf/LM3658-page-2.png",
+      "visually_read": true
+    },
+    {
+      "file": "LM3658.pdf",
+      "page": 4,
+      "image": "pdf/LM3658-page-4.png",
+      "visually_read": true
+    }
+  ],
+  "tool_trace": {
+    "file": "investigator_tool_calls.jsonl",
+    "calls": 49,
+    "notes": "所有 component/pin/net/boundary/source/pdf/calculate 调用均走带 trace 的 serve。另使用只针对 case_b 三个DAT的文件名/行号定位及本地渲染图查看；未读取真值、生成脚本或原板差分。"
+  }
+}

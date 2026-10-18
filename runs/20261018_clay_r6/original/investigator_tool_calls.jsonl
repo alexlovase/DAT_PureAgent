@@ -1,0 +1,91 @@
+{"call": 1, "tool": "overview", "args": {}, "ok": true, "elapsed_ms": 0.318}
+{"call": 2, "tool": "inventory", "args": {"offset": 0, "limit": 40}, "ok": true, "elapsed_ms": 0.133}
+{"call": 3, "tool": "datasheets", "args": {}, "ok": true, "elapsed_ms": 0.086}
+{"call": 4, "tool": "inventory", "args": {"offset": 40, "limit": 60}, "ok": true, "elapsed_ms": 0.128}
+{"call": 5, "tool": "inventory", "args": {"offset": 100, "limit": 60}, "ok": true, "elapsed_ms": 0.045}
+{"call": 6, "tool": "component", "args": {"ref": "U1", "detail": true}, "ok": true, "elapsed_ms": 0.037}
+{"call": 7, "tool": "component", "args": {"ref": "D1", "detail": true}, "ok": true, "elapsed_ms": 0.01}
+{"call": 8, "tool": "component", "args": {"ref": "U4", "detail": true}, "ok": true, "elapsed_ms": 0.119}
+{"call": 9, "tool": "component", "args": {"ref": "U4", "offset": 40, "limit": 40, "detail": true}, "ok": true, "elapsed_ms": 0.187}
+{"call": 10, "tool": "net", "args": {"query": "N00337"}, "ok": true, "elapsed_ms": 0.016}
+{"call": 11, "tool": "net", "args": {"query": "N00975"}, "ok": true, "elapsed_ms": 0.008}
+{"call": 12, "tool": "component", "args": {"ref": "DS1", "detail": true}, "ok": true, "elapsed_ms": 0.015}
+{"call": 13, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 479.924}
+{"call": 14, "tool": "pdf_search", "args": {"file": "LM3658.pdf", "query": "ISET"}, "ok": true, "elapsed_ms": 82.719}
+{"call": 15, "tool": "pdf_search", "args": {"file": "IS31FL3236-board-copy.pdf", "query": "R_EXT"}, "ok": true, "elapsed_ms": 23.224}
+{"call": 16, "tool": "component", "args": {"ref": "R6", "detail": true}, "ok": true, "elapsed_ms": 0.041}
+{"call": 17, "tool": "component", "args": {"ref": "R15", "detail": true}, "ok": true, "elapsed_ms": 0.015}
+{"call": 18, "tool": "component", "args": {"ref": "DS2", "detail": true}, "ok": true, "elapsed_ms": 0.014}
+{"call": 19, "tool": "component", "args": {"ref": "DS3", "detail": true}, "ok": true, "elapsed_ms": 0.025}
+{"call": 20, "tool": "component", "args": {"ref": "DS4", "detail": true}, "ok": true, "elapsed_ms": 0.017}
+{"call": 21, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 8}, "ok": true, "elapsed_ms": 0.224}
+{"call": 22, "tool": "pdf_page", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 10}, "ok": true, "elapsed_ms": 0.245}
+{"call": 23, "tool": "pdf_page", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 11}, "ok": true, "elapsed_ms": 0.175}
+{"call": 24, "tool": "net", "args": {"query": "N33179"}, "ok": true, "elapsed_ms": 0.031}
+{"call": 25, "tool": "net", "args": {"query": "N08912"}, "ok": true, "elapsed_ms": 0.009}
+{"call": 26, "tool": "net", "args": {"query": "N08855"}, "ok": true, "elapsed_ms": 0.007}
+{"call": 27, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 8.952}
+{"call": 28, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 4.34}
+{"call": 29, "tool": "pdf_page", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 5.127}
+{"call": 30, "tool": "pdf_page", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 5.373}
+{"call": 31, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 0.12}
+{"call": 32, "tool": "pdf_render", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 11, "output_path": "runs/20261018_clay_r6/original/pdf_renders/issi-current-setting-p11.png"}, "ok": true, "elapsed_ms": 45.658}
+{"call": 33, "tool": "pdf_render", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 1, "output_path": "runs/20261018_clay_r6/original/pdf_renders/liteon-pin-diagram-p1.png"}, "ok": true, "elapsed_ms": 47.06}
+{"call": 34, "tool": "component", "args": {"ref": "R1", "detail": true}, "ok": true, "elapsed_ms": 0.038}
+{"call": 35, "tool": "component", "args": {"ref": "J1", "detail": true}, "ok": true, "elapsed_ms": 0.017}
+{"call": 36, "tool": "component", "args": {"ref": "C3", "detail": true}, "ok": true, "elapsed_ms": 0.011}
+{"call": 37, "tool": "boundary", "args": {"refs": ["D1", "R1", "DS1", "C3"]}, "ok": true, "elapsed_ms": 0.102}
+{"call": 38, "tool": "boundary", "args": {"refs": ["U4", "R15", "DS4", "DS5", "DS6", "DS7", "DS8", "DS9", "DS10", "DS11", "DS12", "DS13", "DS14", "DS15"]}, "ok": true, "elapsed_ms": 0.182}
+{"call": 39, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 0.444}
+{"call": 40, "tool": "pdf_page", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 5}, "ok": true, "elapsed_ms": 0.083}
+{"call": 41, "tool": "pdf_render", "args": {"file": "LB-QH9G.pdf", "page_number": 3, "output_path": "runs/20261018_clay_r6/original/pdf_renders/osram-ratings-p3.png"}, "ok": true, "elapsed_ms": 55.578}
+{"call": 42, "tool": "pdf_render", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 2, "output_path": "runs/20261018_clay_r6/original/pdf_renders/liteon-ratings-p2.png"}, "ok": true, "elapsed_ms": 35.664}
+{"call": 43, "tool": "calculate", "args": {"record": {"id": "LM3658_R6_nominal_full_rate", "inputs": {"K_ISET": {"value": 2500, "unit": "A*ohm", "source": "LM3658.pdf PDF p4 K_ISET typical coefficient and p8 CHG_IN full-rate equation"}, "R_ISET": {"value": 3000, "unit": "ohm", "source": "R6 VALUE='3.0k', component and net N00337; pstxprt.dat 960-968; R6.2=U1.8, R6.1=GND"}}, "expression": "K_ISET / R_ISET", "result_unit": "A", "assumptions": ["R6 is assembled at its nominal value; no resistor tolerance is present in the DAT", "Coefficient is a typical datasheet value, not a guaranteed exact current", "CHG_IN is the selected source, charging is in full-rate mode and neither dropout nor thermal regulation limits current", "No battery charge-rate suitability is inferred"], "validity": {"status": "conditional", "reason": "The resistor setting is known, but input/battery voltage, enable state, thermal conditions and battery model are not established; this is a nominal setpoint trial only."}}}, "ok": true, "elapsed_ms": 2.521}
+{"call": 44, "tool": "calculate", "args": {"record": {"id": "IS31FL3236_R15_nominal_channel_current", "inputs": {"x": {"value": 58.5, "unit": "", "source": "IS31FL3236-board-copy.pdf PDF p11 Formula (2), visually verified"}, "V_EXT": {"value": 1.3, "unit": "V", "source": "IS31FL3236-board-copy.pdf PDF p11, typical V_EXT=1.3V"}, "R_EXT": {"value": 7680, "unit": "ohm", "source": "R15 VALUE='7.68k'; pstxprt.dat 810-818; N00975 has only U4.40 and R15.2, R15.1=GND"}}, "expression": "x * V_EXT / R_EXT", "result_unit": "A", "assumptions": ["R15 is assembled at its nominal value; resistor tolerance is unknown", "Equation is stated with V_OUT=0.8V and typical coefficients", "Channel scaling SL='00' and the current sink has sufficient voltage headroom", "This is on-state nominal current, not the PWM-average LED current"], "validity": {"status": "conditional", "reason": "Output headroom, software current scale/PWM/enable and device/tolerance variation are not established; the trial is not an observed channel current."}}}, "ok": true, "elapsed_ms": 0.095}
+{"call": 45, "tool": "calculate", "args": {"record": {"id": "DS1_R1_forward_voltage_needed_at_limit_chgin_4p5", "inputs": {"V_CHGIN_case": {"value": 4.5, "unit": "V", "source": "LM3658.pdf PDF p3 lower end of the specified CHG_IN operating range; chosen scenario, NOT measured board voltage"}, "I_F_limit": {"value": 0.015, "unit": "A", "source": "LB-QH9G.pdf PDF p3 DC forward-current maximum at TA=25C, visually verified"}, "R_series": {"value": 30, "unit": "ohm", "source": "R1 VALUE='30'; pstxprt.dat 750-758; N08855 -> R1 -> N33179 -> DS1 -> GND"}}, "expression": "V_CHGIN_case - I_F_limit * R_series", "result_unit": "V", "assumptions": ["This evaluates the LED forward voltage required for exactly 15mA at an assumed CHG_IN=4.5V", "D1 drop is already outside the selected post-diode CHG_IN node; do not subtract it a second time", "No constant-voltage LED model is used and no operating current is predicted", "LB-QH9G family binding has an unresolved N100/N1OO suffix ambiguity"], "validity": {"status": "conditional", "reason": "J1/CHG_IN actual operating voltage and DS1 V-I behavior at the limiting current are not established; this is a load-line threshold scenario only."}}}, "ok": true, "elapsed_ms": 0.068}
+{"call": 46, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 195, "end_line": 241}, "ok": true, "elapsed_ms": 0.118}
+{"call": 47, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 474, "end_line": 490}, "ok": true, "elapsed_ms": 0.094}
+{"call": 48, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 549, "end_line": 610}, "ok": true, "elapsed_ms": 0.092}
+{"call": 49, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2136, "end_line": 2154}, "ok": true, "elapsed_ms": 0.229}
+{"call": 50, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1197, "end_line": 1209}, "ok": true, "elapsed_ms": 0.201}
+{"call": 51, "tool": "pdf_search", "args": {"file": "LB-QH9G.pdf", "query": "forward current"}, "ok": true, "elapsed_ms": 107.963}
+{"call": 52, "tool": "pdf_page", "args": {"file": "SE20AFJ.pdf", "page_number": 1}, "ok": true, "elapsed_ms": 4.825}
+{"call": 53, "tool": "pdf_page", "args": {"file": "SE20AFJ.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 1.749}
+{"call": 54, "tool": "pdf_page", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 0.129}
+{"call": 55, "tool": "pdf_render", "args": {"file": "LM3658.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/original/pdf_renders/ti-iset-table-p4.png"}, "ok": true, "elapsed_ms": 35.63}
+{"call": 56, "tool": "pdf_render", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 3, "output_path": "runs/20261018_clay_r6/original/pdf_renders/issi-qfn-pin-table-p3.png"}, "ok": true, "elapsed_ms": 22.848}
+{"call": 57, "tool": "pdf_render", "args": {"file": "SE20AFJ.pdf", "page_number": 1, "output_path": "runs/20261018_clay_r6/original/pdf_renders/vishay-polarity-p1.png"}, "ok": true, "elapsed_ms": 65.238}
+{"call": 58, "tool": "net", "args": {"query": "USB_SEL"}, "ok": true, "elapsed_ms": 0.016}
+{"call": 59, "tool": "net", "args": {"query": "EN_B"}, "ok": true, "elapsed_ms": 0.008}
+{"call": 60, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 222, "end_line": 237}, "ok": true, "elapsed_ms": 0.298}
+{"call": 61, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 867, "end_line": 878}, "ok": true, "elapsed_ms": 0.186}
+{"call": 62, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1550, "end_line": 1570}, "ok": true, "elapsed_ms": 0.138}
+{"call": 63, "tool": "pdf_render", "args": {"file": "LB-QH9G.pdf", "page_number": 8, "output_path": "runs/20261018_clay_r6/original/pdf_renders/osram-forward-curve-p8.png"}, "ok": true, "elapsed_ms": 42.1}
+{"call": 64, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 20}, "ok": true, "elapsed_ms": 0.263}
+{"call": 65, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 0.189}
+{"call": 66, "tool": "boundary", "args": {"refs": ["U1", "R6"]}, "ok": true, "elapsed_ms": 0.171}
+{"call": 67, "tool": "net", "args": {"query": "N05869"}, "ok": true, "elapsed_ms": 0.012}
+{"call": 68, "tool": "net", "args": {"query": "N05857"}, "ok": true, "elapsed_ms": 0.006}
+{"call": 69, "tool": "net", "args": {"query": "N05845"}, "ok": true, "elapsed_ms": 0.131}
+{"call": 70, "tool": "component", "args": {"ref": "U6", "detail": true}, "ok": true, "elapsed_ms": 0.07}
+{"call": 71, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 4.936}
+{"call": 72, "tool": "pdf_search", "args": {"file": "TPS61201.pdf", "query": "PGND"}, "ok": true, "elapsed_ms": 105.107}
+{"call": 73, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/original/pdf_renders/ti-tps61201-pin-table-p4.png"}, "ok": true, "elapsed_ms": 28.371}
+{"call": 74, "tool": "net", "args": {"query": "GND_EARTH", "limit": 100}, "ok": true, "elapsed_ms": 0.025}
+{"call": 75, "tool": "net", "args": {"query": "UVLO", "limit": 100}, "ok": true, "elapsed_ms": 0.012}
+{"call": 76, "tool": "net", "args": {"query": "N00478", "limit": 100}, "ok": true, "elapsed_ms": 0.008}
+{"call": 77, "tool": "net", "args": {"query": "N00355", "limit": 100}, "ok": true, "elapsed_ms": 0.005}
+{"call": 78, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 12}, "ok": true, "elapsed_ms": 0.166}
+{"call": 79, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 13}, "ok": true, "elapsed_ms": 0.065}
+{"call": 80, "tool": "component", "args": {"ref": "C29", "detail": true}, "ok": true, "elapsed_ms": 0.02}
+{"call": 81, "tool": "component", "args": {"ref": "C30", "detail": true}, "ok": true, "elapsed_ms": 0.009}
+{"call": 82, "tool": "component", "args": {"ref": "C31", "detail": true}, "ok": true, "elapsed_ms": 0.006}
+{"call": 83, "tool": "component", "args": {"ref": "C32", "detail": true}, "ok": true, "elapsed_ms": 0.006}
+{"call": 84, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2018, "end_line": 2032}, "ok": true, "elapsed_ms": 0.25}
+{"call": 85, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1915, "end_line": 1943}, "ok": true, "elapsed_ms": 0.199}
+{"call": 86, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 1486, "end_line": 1530}, "ok": true, "elapsed_ms": 0.093}
+{"call": 87, "tool": "source", "args": {"filename": "pstxprt.dat", "start_line": 1240, "end_line": 1248}, "ok": true, "elapsed_ms": 0.109}
+{"call": 88, "tool": "component", "args": {"ref": "DS16", "detail": true}, "ok": true, "elapsed_ms": 0.195}
+{"call": 89, "tool": "component", "args": {"ref": "R21", "detail": true}, "ok": true, "elapsed_ms": 0.016}
+{"call": 90, "tool": "component", "args": {"ref": "L5", "detail": true}, "ok": true, "elapsed_ms": 0.014}
+{"call": 91, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 12, "output_path": "runs/20261018_clay_r6/original/pdf_renders/ti-tps61201-ground-rule-p12.png"}, "ok": true, "elapsed_ms": 42.634}

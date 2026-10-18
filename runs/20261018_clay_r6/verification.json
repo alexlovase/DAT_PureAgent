@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-18",
+  "execution": "Actual session Agent investigations and independent reviews, followed by deterministic arithmetic/report replay",
+  "source_files_byte_identical": {
+    "pstchip.dat": true,
+    "pstxprt.dat": true,
+    "pstxnet.dat": true,
+    "LICENSE": true
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "pymupdf": "1.26.6"
+  },
+  "regressions": {
+    "command": "python -m unittest discover -s tests -v",
+    "tests_run": 17,
+    "failures": 0,
+    "errors": 0,
+    "observed_result": "OK",
+    "scope": "Native endpoint/NC contracts, input conflict rejection, paging, unknown neighbors, optional identity, sourced arithmetic/mode validity, independent report presentation"
+  },
+  "source_acquisition": {
+    "validated_assets": 15,
+    "manufacturer_pdfs": 11,
+    "manufacturer_host": 6,
+    "manufacturer_documents_from_pinned_board_mirror": 5,
+    "pdf_content_committed": false
+  },
+  "parser_independent_review": "parser_independent_review.json",
+  "actual_agent_tool_traces": {
+    "original": {
+      "investigator": {
+        "calls": 91,
+        "all_calls_ok": true
+      },
+      "reviewer": {
+        "calls": 49,
+        "all_calls_ok": true
+      }
+    },
+    "case_b": {
+      "investigator": {
+        "calls": 49,
+        "all_calls_ok": true
+      },
+      "reviewer": {
+        "calls": 17,
+        "all_calls_ok": true
+      }
+    },
+    "case_c": {
+      "investigator": {
+        "calls": 41,
+        "all_calls_ok": true
+      },
+      "reviewer": {
+        "calls": 14,
+        "all_calls_ok": true
+      }
+    }
+  },
+  "tool_reuse_and_view_check": {
+    "same_graph_instance": true,
+    "same_pdf_instance_on_repeat": true,
+    "nonessential_keys_in_default_sample_views": []
+  },
+  "case_results": {
+    "original": {
+      "graph": {
+        "components": 133,
+        "physical_pins": 548,
+        "electrical_nets": 164,
+        "connected_endpoints": 537,
+        "pin_states": {
+          "connected": 537,
+          "unconnected": 11
+        },
+        "nc_exported_endpoints": 9,
+        "nc_declared_pins": 2,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "run_status": "partial_review",
+      "confirmed_count": 1,
+      "confirmed_ids": [
+        "CLAY-U6-UVLO-001"
+      ],
+      "replayed_calculations": 3,
+      "all_calculations_match": true
+    },
+    "case_b": {
+      "graph": {
+        "components": 133,
+        "physical_pins": 548,
+        "electrical_nets": 164,
+        "connected_endpoints": 536,
+        "pin_states": {
+          "connected": 536,
+          "unconnected": 12
+        },
+        "nc_exported_endpoints": 10,
+        "nc_declared_pins": 2,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "run_status": "partial_review",
+      "confirmed_count": 2,
+      "confirmed_ids": [
+        "case_b_u6_fb_open",
+        "case_b_u6_uvlo_floating"
+      ],
+      "replayed_calculations": 3,
+      "all_calculations_match": true
+    },
+    "case_c": {
+      "graph": {
+        "components": 133,
+        "physical_pins": 548,
+        "electrical_nets": 164,
+        "connected_endpoints": 536,
+        "pin_states": {
+          "connected": 536,
+          "unconnected": 12
+        },
+        "nc_exported_endpoints": 10,
+        "nc_declared_pins": 2,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "run_status": "partial_review",
+      "confirmed_count": 2,
+      "confirmed_ids": [
+        "case_c_u6_fb_open",
+        "case_c_u6_uvlo_floating"
+      ],
+      "replayed_calculations": 3,
+      "all_calculations_match": true
+    }
+  },
+  "variant_controls": {
+    "original_modified": false,
+    "case_b_injected_change": "U6.10 FB disconnected from VCC and added to NC export group",
+    "case_c_additional_change": "53 JEDEC_TYPE properties removed",
+    "case_b_case_c_full_pin_and_connection_facts_equal": true,
+    "same_two_requirement_failures_confirmed": true,
+    "scope_limit": "Exact VALUE and resolved physical pins remain; this is not a test of all identity/pin mappings being absent"
+  },
+  "replay": {
+    "command": "python scripts/replay_clay_r6.py",
+    "calculations_replayed": 9,
+    "all_match_recorded_values": true,
+    "new_llm_calls": 0,
+    "report_counts_match_independent_reviews": true
+  },
+  "limits": [
+    "Local selected-circuit investigation only; inventory enumeration does not establish full-board coverage.",
+    "Session Agents used real tools; standalone Deep Agents/provider harness is not installed or tested.",
+    "No measured end-to-end API cost, token savings, accuracy, recall or speedup.",
+    "Scalar calculator checks syntax and declared mode/source presence, not dimensions, datasheet applicability or circuit operating-point truth."
+  ]
+}

@@ -1,0 +1,973 @@
+{
+  "schema_version": 1,
+  "investigator": "industry_lightweight",
+  "investigated_on": "2026-10-18",
+  "input": {
+    "repository": "ah-cog/Clay",
+    "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+    "dat_directory": "examples/clay_r6/clay-r6",
+    "datasheet_manifest": "examples/clay_r6/datasheets.json",
+    "variant": "original"
+  },
+  "scope": {
+    "status": "partial",
+    "selected_by_investigator": [
+      "U1/R6 充电电流设定与相关供电、控制连接",
+      "D1/R1/DS1/C3 外部电源入口及指示灯",
+      "U4/R15 RGB 恒流设定、DS4 三色极性与局部边界"
+    ],
+    "additional_scope_requested": [
+      "U6 的 11 个导出物理引脚、固定输出反馈、UVLO、PGND/GND 和相邻 L5/C29-C32/DS16/R21 连接"
+    ],
+    "completed_assertions": [
+      "inventory 的 133 个实例均已翻页列出；这只是清单完整性，不等于全板电气检查",
+      "U4 的 45 个导出引脚已用两页 component 读完",
+      "所有用于判断的局部网络查询都读到了完整端点，且检查了跨域边界",
+      "三项 calculate 调用均保留输入来源及工作模式条件，并以 Python Decimal 独立算术复核",
+      "10 个相关 PDF 页面已经渲染并目读，包括引脚、极性、额定值、计算公式与接地要求"
+    ],
+    "not_completed": [
+      "整板启动、功能、热、电源完整性、时序和 PCB 布局审查",
+      "DS5-DS15 的每一个颜色到通道的逐一映射；其边界已查，详细极性抽查对象为 DS4",
+      "电池允许充电倍率与实际接入电源的确认",
+      "U4 的实际软件电流缩放、PWM、输出余量及全温度 LED 电流裕量",
+      "PCB 铜箔或网桥是否在导出网表之外连接 GND_EARTH 与 GND",
+      "对 U2/U3/U5/U7/U8 的完整电气审查"
+    ]
+  },
+  "summary": {
+    "candidates": 3,
+    "candidates_by_evidence": {
+      "direct_netlist_requirement_conflict": 1,
+      "pcb_connection_verification_needed": 1,
+      "conditional_operating_scenario": 1
+    },
+    "confirmed_findings": [],
+    "confirmation_note": "候选保留给独立复核。U6 UVLO 具有直接原始网表和手册证据；未据此宣称成品板必定不能启动。没有将条件试算升格为实测结果或全板通过。"
+  },
+  "candidates": [
+    {
+      "id": "CLAY-U6-UVLO-001",
+      "investigator": "industry_lightweight",
+      "title": "U6.7 UVLO 只连接到自身，未实现手册要求的接法",
+      "refs": [
+        "U6"
+      ],
+      "why": "UVLO 是单端点网络，唯一成员为 U6.7。不存在分压、电源连接或外部控制端点。TPS61201 手册要求不使用该功能时将 UVLO 接 VAUX，并说明 UVLO 低于约 0.25 V 时主输出被欠压闭锁。仅给引脚命名不会给它一个有效电平。",
+      "recommendation": "若不需要可编程欠压保护，将 U6.7 接到 U6.1 VAUX；若需要该功能，按实际电池和欠压阈值设计并连接输入网络。先复核原理图/PCB 的同版实现，再更新设计。",
+      "raw_connection_evidence": [
+        {
+          "file": "pstxnet.dat",
+          "start_line": 2020,
+          "end_line": 2027,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L2020-L2027",
+          "fact": "UVLO 的整个 NET_NAME 区段仅有 NODE_NAME U6 7；随后即进入 CLK 网络。",
+          "tool_calls": [
+            75,
+            84
+          ]
+        },
+        {
+          "file": "pstchip.dat",
+          "start_line": 1487,
+          "end_line": 1530,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat#L1487-L1530",
+          "fact": "U6 原型明确 VALUE=TPS61201DRCT，UVLO=7，VAUX=1。",
+          "tool_calls": [
+            70,
+            86
+          ]
+        },
+        {
+          "file": "pstxprt.dat",
+          "start_line": 1240,
+          "end_line": 1248,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxprt.dat#L1240-L1248",
+          "fact": "U6 实例绑定这一 TPS61201 原型，位于 VREG 层级。",
+          "tool_calls": [
+            87
+          ]
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            4
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "固定版本型号为 TPS61201DRC；7 脚是 UVLO，未使用时须接 VAUX。",
+          "visually_inspected_pages": [
+            4
+          ]
+        },
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            13
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "10.3.1.6 说明 UVLO 比较器影响 VOUT；欠压时 VAUX 仍维持。",
+          "visually_inspected_pages": []
+        }
+      ],
+      "status": "candidate",
+      "evidence_strength": "direct_netlist_requirement_conflict",
+      "applicability": "对给定原始 DAT 的连接要求检查有效；实际启动结果未测量。",
+      "limitations": [
+        "未检查是否存在未反映到这份导出中的 PCB 飞线或后续设计改动。"
+      ]
+    },
+    {
+      "id": "CLAY-U6-GROUND-002",
+      "investigator": "industry_lightweight",
+      "title": "U6 的 PGND 与控制地在网表中分开，需核实 PCB 单点连接",
+      "refs": [
+        "U6",
+        "C29",
+        "C30",
+        "C31",
+        "C32",
+        "DS16",
+        "R21"
+      ],
+      "why": "U6.4 和导出附加焊盘 11 属于 GND_EARTH；U6.9 属于另一个 GND。完整 GND_EARTH 只有 7 个端点：U6.4、U6.11、C29.2、C30.2、C31.2、C32.2、DS16.1。没有网桥或接到 GND 的无源连接端点。厂家要求 PGND 与 GND 在 PCB 上单点连接；这份 DAT 没有体现这个连接。",
+      "recommendation": "核对 PCB 的 GND_EARTH/GND 铜箔与网桥。若没有单点连接，应按手册在合适位置连接；若 PCB 已实现，保留可追溯依据，避免把本项当作成品板断地结论。",
+      "raw_connection_evidence": [
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1915,
+          "end_line": 1940,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1915-L1940",
+          "fact": "完整 GND_EARTH 区段含上述 7 个端点，没有直接 GND 网桥。",
+          "tool_calls": [
+            74,
+            85
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1744,
+          "end_line": 1746,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1744-L1746",
+          "fact": "U6.9 位于 GND。",
+          "tool_calls": [
+            70
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1406,
+          "end_line": 1420,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1406-L1420",
+          "fact": "U6 VOUT/FB、C29.1、C31.1 和 R21.2 接 VCC；这些不是 PGND 到 GND 的直接连接。",
+          "tool_calls": [
+            70,
+            80,
+            82,
+            89
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1171,
+          "end_line": 1176,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1171-L1176",
+          "fact": "DS16/R21 构成从 VCC 到 GND_EARTH 的 LED 支路；不能充当可靠地连接。",
+          "tool_calls": [
+            88,
+            89
+          ]
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            4
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "4 脚 PGND，9 脚 GND；热焊盘应接 PGND。",
+          "visually_inspected_pages": [
+            4
+          ]
+        },
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            12
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "10.3.1.1 要求两种地在 PCB 上单点连接，理想位置靠近 GND 引脚。",
+          "visually_inspected_pages": [
+            12
+          ]
+        }
+      ],
+      "status": "candidate",
+      "evidence_strength": "pcb_connection_verification_needed",
+      "applicability": "已确认导出网表不体现该连接；是否违反 PCB 要求尚待核实。",
+      "limitations": [
+        "PCB 铜箔直接短接或专用网桥可能不体现在这三 DAT 中，本次没有读 PCB 连接数据库。"
+      ]
+    },
+    {
+      "id": "CLAY-DS1-LIMIT-003",
+      "investigator": "industry_lightweight",
+      "title": "DS1 的 30 Ω 限流支路位于外部充电输入，需按真实输入复核电流",
+      "refs": [
+        "J1",
+        "D1",
+        "R1",
+        "DS1",
+        "C3",
+        "U1"
+      ],
+      "why": "R1=30 Ω，串接 DS1 后回 GND；电阻高端是 D1 阴极和 U1.CHG_IN 所在的 N08855，不是已知稳定的 VCC。LB QH9G 资料给出 25°C 时 15 mA 的最大直流电流。仅作假设 CHG_IN=4.5 V 的检查，在 15 mA 时 DS1 必须承受 4.05 V；厂家典型 V-I 曲线在 15 mA 附近的 VF 约为 3.1 V，因而该工作场景值得核查。典型曲线不能给出所有实物的保证电流。",
+      "recommendation": "确认 J1 输入范围及 D1 后实际 CHG_IN 电压、DS1 精确订货型号和允许亮度电流，再按最坏条件选择 R1 并复核耗散。当前不要把试算电流或典型电压当作原板实测过流结论。",
+      "raw_connection_evidence": [
+        {
+          "file": "pstchip.dat",
+          "start_line": 196,
+          "end_line": 224,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat#L196-L224",
+          "fact": "D1 导出极性 A=2/C=1；DS1 家族导出极性 A=2/C=1，原始型号后缀保留 N100。",
+          "tool_calls": [
+            46
+          ]
+        },
+        {
+          "file": "pstchip.dat",
+          "start_line": 475,
+          "end_line": 489,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat#L475-L489",
+          "fact": "电阻原型 VALUE='30'，按电阻值惯例解释为 30 Ω。",
+          "tool_calls": [
+            47
+          ]
+        },
+        {
+          "file": "pstxprt.dat",
+          "start_line": 750,
+          "end_line": 758,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxprt.dat#L750-L758",
+          "fact": "R1 实例使用 30 Ω 原型。",
+          "tool_calls": [
+            34
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 2137,
+          "end_line": 2152,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L2137-L2152",
+          "fact": "N08855 全部端点：D1.1、R1.2、C3.1、U1.1 CHG_IN。",
+          "tool_calls": [
+            26,
+            49
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1197,
+          "end_line": 1206,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1197-L1206",
+          "fact": "N33179 只连接 R1.1 与 DS1.2。",
+          "tool_calls": [
+            24,
+            50
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1552,
+          "end_line": 1554,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1552-L1554",
+          "fact": "DS1.1 回 GND。",
+          "tool_calls": [
+            62
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 480,
+          "end_line": 489,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L480-L489",
+          "fact": "D1.2 阳极由 J1.1 输入。",
+          "tool_calls": [
+            25
+          ]
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "LB-QH9G.pdf",
+          "pdf_pages_1_based": [
+            2
+          ],
+          "url": "https://look.ams-osram.com/m/3184c82bafe7f3ef/original/LB-QH9G.pdf",
+          "fact": "厂家订货型号写 N1OO，DAT 写 N100；保留后缀歧义。",
+          "visually_inspected_pages": []
+        },
+        {
+          "file": "LB-QH9G.pdf",
+          "pdf_pages_1_based": [
+            3
+          ],
+          "url": "https://look.ams-osram.com/m/3184c82bafe7f3ef/original/LB-QH9G.pdf",
+          "fact": "TA=25°C 时最大直流 IF=15 mA。",
+          "visually_inspected_pages": [
+            3
+          ]
+        },
+        {
+          "file": "LB-QH9G.pdf",
+          "pdf_pages_1_based": [
+            8,
+            20
+          ],
+          "url": "https://look.ams-osram.com/m/3184c82bafe7f3ef/original/LB-QH9G.pdf",
+          "fact": "已目读典型 V-I 曲线；第 20 页强调典型数据不保证每个实物。",
+          "visually_inspected_pages": [
+            8
+          ]
+        },
+        {
+          "file": "LM3658.pdf",
+          "pdf_pages_1_based": [
+            3
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/lm3658.pdf",
+          "fact": "CHG_IN 的规定工作范围是 4.5–6.0 V；这里仅取其下端作场景，不认定板上实际电压。",
+          "visually_inspected_pages": []
+        }
+      ],
+      "calculation_ids": [
+        "DS1_R1_forward_voltage_needed_at_limit_chgin_4p5"
+      ],
+      "status": "candidate",
+      "evidence_strength": "conditional_operating_scenario",
+      "applicability": "条件场景检查；J1 实际供电、装配和精确 LED 绑定尚未确认。",
+      "limitations": [
+        "未预测实际 LED 电流；没有用 IF=5mA 下的 VF 数值当恒定压降求出所谓真实电流。",
+        "D1 压降未重复扣除，4.5 V 场景的定义已在二极管后。"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "U1_ISET_CONNECTION",
+      "refs": [
+        "U1",
+        "R6"
+      ],
+      "assertion": "R6 是 U1.8 ISET 到 GND 的完整 3.0 kΩ 支路，U1.3 和导出焊盘 11 在 GND。",
+      "status": "checked_no_contradiction",
+      "raw_sources": [
+        {
+          "file": "pstxnet.dat",
+          "start_line": 226,
+          "end_line": 235,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L226-L235",
+          "fact": "N00337 只有 U1.8/R6.2。",
+          "tool_calls": [
+            60
+          ]
+        },
+        {
+          "file": "pstxnet.dat",
+          "start_line": 1558,
+          "end_line": 1566,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L1558-L1566",
+          "fact": "U1.3、U1.11、R6.1 均位于 GND。",
+          "tool_calls": [
+            62
+          ]
+        },
+        {
+          "file": "pstchip.dat",
+          "start_line": 595,
+          "end_line": 609,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat#L595-L609",
+          "fact": "R6 原型 VALUE='3.0k'。",
+          "tool_calls": [
+            48
+          ]
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "LM3658.pdf",
+          "pdf_pages_1_based": [
+            2
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/lm3658.pdf",
+          "fact": "8 脚 ISET 通过电阻接 GND。",
+          "visually_inspected_pages": []
+        }
+      ],
+      "limits": "这里只确认接法；未认定电池适用性或实际充电电流。"
+    },
+    {
+      "id": "U1_ISET_CURRENT",
+      "refs": [
+        "U1",
+        "R6"
+      ],
+      "assertion": "2500 AΩ / 3000 Ω 的名义设定为约 0.833 A。",
+      "status": "conditional_calculation",
+      "calculation_ids": [
+        "LM3658_R6_nominal_full_rate"
+      ],
+      "limits": "资料的 50–1000 mA 设定范围能容纳该名义值；实际源选择、电池电压、热调节和电池允许充电倍率仍待确认。"
+    },
+    {
+      "id": "U1_CONTROL_NET_NAMES",
+      "refs": [
+        "U1",
+        "U5"
+      ],
+      "assertion": "U1.4 USB_sel 接名为 EN_B 的网并到 U5.83；U1.5 EN_b 接名为 USB_SEL 的网并到 U5.84。",
+      "status": "no_electrical_error_from_name_alone",
+      "limits": "名称交叉不能单独证明硬件功能错误；需要固件 GPIO 配置和设计意图才能继续判断。",
+      "datasheet_evidence": [
+        {
+          "file": "LM3658.pdf",
+          "pdf_pages_1_based": [
+            2
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/lm3658.pdf",
+          "fact": "4/5 脚的真实功能分别是 USB_sel/EN_b。",
+          "visually_inspected_pages": []
+        }
+      ]
+    },
+    {
+      "id": "D1_LOGICAL_POLARITY",
+      "refs": [
+        "D1",
+        "J1",
+        "U1"
+      ],
+      "assertion": "按 DAT 极性，J1.1 接 D1 阳极，D1 阴极接充电输入；这一逻辑方向没有矛盾。",
+      "status": "checked_no_contradiction",
+      "datasheet_evidence": [
+        {
+          "file": "SE20AFJ.pdf",
+          "pdf_pages_1_based": [
+            1,
+            2
+          ],
+          "url": "https://www.vishay.com/docs/89954/se20afb.pdf",
+          "fact": "厂家图示阳/阴极，色带是阴极；精确 SE20AFJ-M3/6A 在订货表中。",
+          "visually_inspected_pages": [
+            1
+          ]
+        }
+      ],
+      "limits": "厂家文档没有给本 CAD 封装的数字 1/2 对应表。数字映射来自 DAT，未据此宣称已验证 PCB 封装和装配方向。"
+    },
+    {
+      "id": "U4_REXT_CONNECTION",
+      "refs": [
+        "U4",
+        "R15"
+      ],
+      "assertion": "QFN 40 脚 R_EXT 经 R15=7.68 kΩ 接 GND；17/39 与导出热焊盘 45 也在 GND。7.68 kΩ 大于手册的 2 kΩ 最小推荐 R_EXT。",
+      "status": "checked_no_contradiction",
+      "raw_sources": [
+        {
+          "file": "pstxnet.dat",
+          "start_line": 867,
+          "end_line": 876,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstxnet.dat#L867-L876",
+          "fact": "R_EXT 网络只有 U4.40 和 R15.2。",
+          "tool_calls": [
+            61
+          ]
+        },
+        {
+          "file": "pstchip.dat",
+          "start_line": 550,
+          "end_line": 563,
+          "url": "https://github.com/ah-cog/Clay/blob/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Circuit/R6/allegro/pstchip.dat#L550-L563",
+          "fact": "R15 原型为 7.68 kΩ。",
+          "tool_calls": [
+            48
+          ]
+        }
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "IS31FL3236-board-copy.pdf",
+          "pdf_pages_1_based": [
+            3,
+            11
+          ],
+          "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_DRIVER_31FL3236.pdf",
+          "fact": "QFN 引脚列与 R_EXT 推荐下限、公式。",
+          "visually_inspected_pages": [
+            3,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DS4_RGB_POLARITY",
+      "refs": [
+        "U4",
+        "DS4"
+      ],
+      "assertion": "DS4.4 是共阳极并接 VCC，蓝/红/绿阴极 1/2/3 分别接 U4 OUT1/OUT2/OUT3 的 43/44/1 脚；三条阴极网络各只有两端。",
+      "status": "checked_no_contradiction",
+      "datasheet_evidence": [
+        {
+          "file": "LTST-C19FD1WT-board-copy.pdf",
+          "pdf_pages_1_based": [
+            1
+          ],
+          "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_RGB_Lite-On-LTST-C19FD1WT.pdf",
+          "fact": "极性图明确共阳极 4，阴极蓝1/红2/绿3。",
+          "visually_inspected_pages": [
+            1
+          ]
+        },
+        {
+          "file": "IS31FL3236-board-copy.pdf",
+          "pdf_pages_1_based": [
+            3,
+            11
+          ],
+          "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_DRIVER_31FL3236.pdf",
+          "fact": "QFN 通道对应与外置 R_EXT 恒流设定。",
+          "visually_inspected_pages": [
+            3,
+            11
+          ]
+        }
+      ],
+      "limits": "恒流驱动支路不能套用每色必须额外串电阻的简单规则。本项细查的是 DS4，未声称逐个核查其余 11 只 RGB LED。"
+    },
+    {
+      "id": "U4_RGB_CURRENT",
+      "refs": [
+        "U4",
+        "R15",
+        "DS4"
+      ],
+      "assertion": "按典型公式得到名义单通道 9.90234375 mA；LTST-C19FD1WT 的三色同时 DC 工作上限是每色 10 mA。",
+      "status": "conditional_calculation",
+      "calculation_ids": [
+        "IS31FL3236_R15_nominal_channel_current"
+      ],
+      "datasheet_evidence": [
+        {
+          "file": "LTST-C19FD1WT-board-copy.pdf",
+          "pdf_pages_1_based": [
+            2
+          ],
+          "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_RGB_Lite-On-LTST-C19FD1WT.pdf",
+          "fact": "单色蓝/绿20mA、红30mA；全三色同时工作每色10mA，需遵守脚注。",
+          "visually_inspected_pages": [
+            2
+          ]
+        }
+      ],
+      "limits": "名义值低于 25°C 全三色上限，但裕量很小。实际 SL/PWM、温度、电阻与器件变化、输出电压余量未核实，既不报确认过流，也不声明可靠性通过。"
+    },
+    {
+      "id": "U6_FIXED_OUTPUT_FB",
+      "refs": [
+        "U6"
+      ],
+      "assertion": "精确器件 TPS61201DRCT 属于固定 3.3 V 型号；U6.10 FB 与 U6.2 VOUT 同接 VCC，符合固定版本直连要求。",
+      "status": "checked_no_contradiction",
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            4,
+            12
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "固定电压型号选项和 FB 直连要求。",
+          "visually_inspected_pages": [
+            4,
+            12
+          ]
+        }
+      ],
+      "limits": "没有用可调 TPS61200 的分压公式判错。3.3 V 是型号输出目标，尚不是本板已建立的工作电压。"
+    },
+    {
+      "id": "U6_EN_PS_CONNECTED",
+      "refs": [
+        "U6"
+      ],
+      "assertion": "EN(6)、PS(8) 和 VIN(5) 同接 VBAT，EN/PS 没有浮空。",
+      "status": "checked_no_contradiction",
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            4,
+            13
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "EN/PS 不能浮空；PS 高会禁止省电模式。",
+          "visually_inspected_pages": [
+            4
+          ]
+        }
+      ],
+      "limits": "此处只检查有明确连接，不证明 VBAT 电压、启动和负载条件有效。"
+    },
+    {
+      "id": "U6_THERMAL_PAD",
+      "refs": [
+        "U6"
+      ],
+      "assertion": "导出的附加焊盘 11 与 PGND(4) 在同一 GND_EARTH。",
+      "status": "checked_no_contradiction",
+      "datasheet_evidence": [
+        {
+          "file": "TPS61201.pdf",
+          "pdf_pages_1_based": [
+            4
+          ],
+          "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+          "fact": "热焊盘应接 PGND。",
+          "visually_inspected_pages": [
+            4
+          ]
+        }
+      ],
+      "limits": "物理焊接及 CAD 数字焊盘映射未作布局审查；PGND 与控制地单点连接另列候选。"
+    },
+    {
+      "id": "U6_PASSIVE_TOPOLOGY",
+      "refs": [
+        "U6",
+        "L5",
+        "C29",
+        "C30",
+        "C31",
+        "C32"
+      ],
+      "assertion": "L5=2.2uH 接 VIN 所在 VBAT 与 L(3)；C30=10uF 接 VBAT/PGND，C29/C31 各10uF 接 VOUT/PGND，C32=0.1uF 接 VAUX/PGND。",
+      "status": "topology_observed",
+      "limits": "未检查电感饱和电流、损耗、陶瓷电容偏压有效值、布局距离或环路稳定性，不能从名义值宣布通过。"
+    },
+    {
+      "id": "U6_UVLO_REQUIRED_CONNECTION",
+      "refs": [
+        "U6"
+      ],
+      "assertion": "UVLO 没有 VAUX、分压或驱动端点。",
+      "status": "candidate",
+      "candidate_id": "CLAY-U6-UVLO-001"
+    },
+    {
+      "id": "U6_GROUND_SINGLE_POINT",
+      "refs": [
+        "U6"
+      ],
+      "assertion": "DAT 的 PGND/GND 分属两网，PGND 侧完整端点未见地连接器件。",
+      "status": "pending_pcb_confirmation",
+      "candidate_id": "CLAY-U6-GROUND-002"
+    },
+    {
+      "id": "DS1_CURRENT_LIMIT",
+      "refs": [
+        "R1",
+        "DS1"
+      ],
+      "assertion": "30Ω 和真实输入之间的电流限制需要按具体输入与 LED 特性核实。",
+      "status": "pending_operating_conditions",
+      "candidate_id": "CLAY-DS1-LIMIT-003"
+    }
+  ],
+  "calculations": [
+    {
+      "id": "LM3658_R6_nominal_full_rate",
+      "inputs": {
+        "K_ISET": {
+          "value": 2500,
+          "unit": "A*ohm",
+          "source": "LM3658.pdf PDF p4 K_ISET typical coefficient and p8 CHG_IN full-rate equation"
+        },
+        "R_ISET": {
+          "value": 3000,
+          "unit": "ohm",
+          "source": "R6 VALUE='3.0k', component and net N00337; pstxprt.dat 960-968; R6.2=U1.8, R6.1=GND"
+        }
+      },
+      "expression": "K_ISET / R_ISET",
+      "result_unit": "A",
+      "assumptions": [
+        "R6 is assembled at its nominal value; no resistor tolerance is present in the DAT",
+        "Coefficient is a typical datasheet value, not a guaranteed exact current",
+        "CHG_IN is the selected source, charging is in full-rate mode and neither dropout nor thermal regulation limits current",
+        "No battery charge-rate suitability is inferred"
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "The resistor setting is known, but input/battery voltage, enable state, thermal conditions and battery model are not established; this is a nominal setpoint trial only."
+      },
+      "tool_call": 43,
+      "tool_result": {
+        "result": null,
+        "usable": false,
+        "status": "conditional",
+        "trial_result": 0.8333333333333334
+      },
+      "independent_reference": {
+        "method": "Python decimal.Decimal, precision 40; independent arithmetic executed in shell",
+        "value": "0.8333333333333333333333333333333333333333",
+        "unit": "A",
+        "agreement": "Matches calculate trial result within binary floating-point rounding."
+      }
+    },
+    {
+      "id": "IS31FL3236_R15_nominal_channel_current",
+      "inputs": {
+        "x": {
+          "value": 58.5,
+          "unit": "",
+          "source": "IS31FL3236-board-copy.pdf PDF p11 Formula (2), visually verified"
+        },
+        "V_EXT": {
+          "value": 1.3,
+          "unit": "V",
+          "source": "IS31FL3236-board-copy.pdf PDF p11, typical V_EXT=1.3V"
+        },
+        "R_EXT": {
+          "value": 7680,
+          "unit": "ohm",
+          "source": "R15 VALUE='7.68k'; pstxprt.dat 810-818; N00975 has only U4.40 and R15.2, R15.1=GND"
+        }
+      },
+      "expression": "x * V_EXT / R_EXT",
+      "result_unit": "A",
+      "assumptions": [
+        "R15 is assembled at its nominal value; resistor tolerance is unknown",
+        "Equation is stated with V_OUT=0.8V and typical coefficients",
+        "Channel scaling SL='00' and the current sink has sufficient voltage headroom",
+        "This is on-state nominal current, not the PWM-average LED current"
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "Output headroom, software current scale/PWM/enable and device/tolerance variation are not established; the trial is not an observed channel current."
+      },
+      "tool_call": 44,
+      "tool_result": {
+        "result": null,
+        "usable": false,
+        "status": "conditional",
+        "trial_result": 0.009902343749999999
+      },
+      "independent_reference": {
+        "method": "Python decimal.Decimal, precision 40; independent arithmetic executed in shell",
+        "value": "0.00990234375",
+        "unit": "A",
+        "agreement": "Matches calculate trial result within binary floating-point rounding."
+      }
+    },
+    {
+      "id": "DS1_R1_forward_voltage_needed_at_limit_chgin_4p5",
+      "inputs": {
+        "V_CHGIN_case": {
+          "value": 4.5,
+          "unit": "V",
+          "source": "LM3658.pdf PDF p3 lower end of the specified CHG_IN operating range; chosen scenario, NOT measured board voltage"
+        },
+        "I_F_limit": {
+          "value": 0.015,
+          "unit": "A",
+          "source": "LB-QH9G.pdf PDF p3 DC forward-current maximum at TA=25C, visually verified"
+        },
+        "R_series": {
+          "value": 30,
+          "unit": "ohm",
+          "source": "R1 VALUE='30'; pstxprt.dat 750-758; N08855 -> R1 -> N33179 -> DS1 -> GND"
+        }
+      },
+      "expression": "V_CHGIN_case - I_F_limit * R_series",
+      "result_unit": "V",
+      "assumptions": [
+        "This evaluates the LED forward voltage required for exactly 15mA at an assumed CHG_IN=4.5V",
+        "D1 drop is already outside the selected post-diode CHG_IN node; do not subtract it a second time",
+        "No constant-voltage LED model is used and no operating current is predicted",
+        "LB-QH9G family binding has an unresolved N100/N1OO suffix ambiguity"
+      ],
+      "validity": {
+        "status": "conditional",
+        "reason": "J1/CHG_IN actual operating voltage and DS1 V-I behavior at the limiting current are not established; this is a load-line threshold scenario only."
+      },
+      "tool_call": 45,
+      "tool_result": {
+        "result": null,
+        "usable": false,
+        "status": "conditional",
+        "trial_result": 4.05
+      },
+      "independent_reference": {
+        "method": "Python decimal.Decimal, precision 40; independent arithmetic executed in shell",
+        "value": "4.050",
+        "unit": "V",
+        "agreement": "Matches calculate trial result within binary floating-point rounding."
+      }
+    }
+  ],
+  "needs_information": [
+    {
+      "refs": [
+        "U6"
+      ],
+      "item": "检查原理图/PCB 是否确有未使用 UVLO 的 VAUX 连接或输入网络；本导出中没有。",
+      "affects": [
+        "CLAY-U6-UVLO-001"
+      ]
+    },
+    {
+      "refs": [
+        "U6"
+      ],
+      "item": "PCB 地铜或网桥的可追溯连接证据。",
+      "affects": [
+        "CLAY-U6-GROUND-002"
+      ]
+    },
+    {
+      "refs": [
+        "J1",
+        "D1",
+        "R1",
+        "DS1"
+      ],
+      "item": "外部供电范围、D1 后 CHG_IN 实际电压、DS1 精确型号及温度/亮度电流目标。",
+      "affects": [
+        "CLAY-DS1-LIMIT-003"
+      ]
+    },
+    {
+      "refs": [
+        "U1",
+        "R6"
+      ],
+      "item": "电池型号和允许充电电流、源选择/EN 状态、输入和电池电压及热条件。",
+      "affects": [
+        "U1_ISET_CURRENT"
+      ]
+    },
+    {
+      "refs": [
+        "U4",
+        "R15",
+        "DS4"
+      ],
+      "item": "RGB 驱动寄存器、最大同时点亮条件、实际电流余量和温度/容差。",
+      "affects": [
+        "U4_RGB_CURRENT"
+      ]
+    },
+    {
+      "refs": [
+        "U5",
+        "U1"
+      ],
+      "item": "控制引脚的固件 GPIO 映射；单凭 net 名不能认定互换错误。",
+      "affects": [
+        "U1_CONTROL_NET_NAMES"
+      ]
+    }
+  ],
+  "evidence_renderings": [
+    {
+      "file": "IS31FL3236-board-copy.pdf",
+      "page_number": 11,
+      "path": "pdf_renders/issi-current-setting-p11.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "IS31FL3236-board-copy.pdf",
+      "page_number": 3,
+      "path": "pdf_renders/issi-qfn-pin-table-p3.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "LTST-C19FD1WT-board-copy.pdf",
+      "page_number": 1,
+      "path": "pdf_renders/liteon-pin-diagram-p1.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "LTST-C19FD1WT-board-copy.pdf",
+      "page_number": 2,
+      "path": "pdf_renders/liteon-ratings-p2.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "LB-QH9G.pdf",
+      "page_number": 3,
+      "path": "pdf_renders/osram-ratings-p3.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "LB-QH9G.pdf",
+      "page_number": 8,
+      "path": "pdf_renders/osram-forward-curve-p8.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "LM3658.pdf",
+      "page_number": 4,
+      "path": "pdf_renders/ti-iset-table-p4.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "SE20AFJ.pdf",
+      "page_number": 1,
+      "path": "pdf_renders/vishay-polarity-p1.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "TPS61201.pdf",
+      "page_number": 4,
+      "path": "pdf_renders/ti-tps61201-pin-table-p4.png",
+      "visually_inspected": true
+    },
+    {
+      "file": "TPS61201.pdf",
+      "page_number": 12,
+      "path": "pdf_renders/ti-tps61201-ground-rule-p12.png",
+      "visually_inspected": true
+    }
+  ],
+  "tool_trace": {
+    "path": "investigator_tool_calls.jsonl",
+    "source": "Actual persistent pureagent serve process; each request logged by the implementation.",
+    "implementation_modified_by_investigator": false,
+    "actual_calls": 91,
+    "all_calls_ok": true,
+    "tool_counts": {
+      "overview": 1,
+      "inventory": 3,
+      "datasheets": 1,
+      "component": 21,
+      "net": 14,
+      "pdf_page": 19,
+      "pdf_search": 4,
+      "pdf_render": 10,
+      "boundary": 3,
+      "calculate": 3,
+      "source": 12
+    }
+  },
+  "investigation_notes": [
+    "未读取任何变体真值文件。",
+    "工具提供 graph/source/PDF/calculation，检查项目和适用条件由调查者依据现场内容选择。",
+    "厂家资料的来源身份和精确型号绑定等级遵循 datasheets.json；缺型号信息没有转换成电气错误。"
+  ]
+}

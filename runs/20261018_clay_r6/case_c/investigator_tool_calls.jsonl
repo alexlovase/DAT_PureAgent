@@ -1,0 +1,41 @@
+{"call": 1, "tool": "component", "args": {"ref": "U6"}, "ok": true, "elapsed_ms": 0.075}
+{"call": 2, "tool": "component", "args": {"ref": "U1"}, "ok": true, "elapsed_ms": 0.058}
+{"call": 3, "tool": "boundary", "args": {"refs": ["U6"]}, "ok": true, "elapsed_ms": 0.112}
+{"call": 4, "tool": "pin", "args": {"ref": "U6", "number": "10"}, "ok": true, "elapsed_ms": 0.009}
+{"call": 5, "tool": "pin", "args": {"ref": "U6", "number": "7"}, "ok": true, "elapsed_ms": 0.006}
+{"call": 6, "tool": "net", "args": {"query": "UVLO"}, "ok": true, "elapsed_ms": 0.011}
+{"call": 7, "tool": "component", "args": {"ref": "L5"}, "ok": true, "elapsed_ms": 0.182}
+{"call": 8, "tool": "component", "args": {"ref": "C29"}, "ok": true, "elapsed_ms": 0.016}
+{"call": 9, "tool": "component", "args": {"ref": "C30"}, "ok": true, "elapsed_ms": 0.02}
+{"call": 10, "tool": "component", "args": {"ref": "C31"}, "ok": true, "elapsed_ms": 0.006}
+{"call": 11, "tool": "component", "args": {"ref": "C32"}, "ok": true, "elapsed_ms": 0.018}
+{"call": 12, "tool": "component", "args": {"ref": "R6"}, "ok": true, "elapsed_ms": 0.023}
+{"call": 13, "tool": "component", "args": {"ref": "R5"}, "ok": true, "elapsed_ms": 0.042}
+{"call": 14, "tool": "net", "args": {"query": "N00337"}, "ok": true, "elapsed_ms": 0.01}
+{"call": 15, "tool": "net", "args": {"query": "EN_B"}, "ok": true, "elapsed_ms": 0.006}
+{"call": 16, "tool": "net", "args": {"query": "USB_SEL"}, "ok": true, "elapsed_ms": 0.005}
+{"call": 17, "tool": "pdf_search", "args": {"file": "TPS61201.pdf", "query": "fixed", "limit": 5}, "ok": true, "elapsed_ms": 647.46}
+{"call": 18, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 0.121}
+{"call": 19, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 16}, "ok": true, "elapsed_ms": 0.08}
+{"call": 20, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/case_c/pdf/TPS61201-page-4.png"}, "ok": true, "elapsed_ms": 28.352}
+{"call": 21, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 16, "output_path": "runs/20261018_clay_r6/case_c/pdf/TPS61201-page-16.png"}, "ok": true, "elapsed_ms": 32.323}
+{"call": 22, "tool": "source", "args": {"filename": "pstxprt.dat", "start_line": 1240, "end_line": 1248}, "ok": true, "elapsed_ms": 0.611}
+{"call": 23, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 1442, "end_line": 1484}, "ok": true, "elapsed_ms": 0.306}
+{"call": 24, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2267, "end_line": 2301}, "ok": true, "elapsed_ms": 0.295}
+{"call": 25, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1403, "end_line": 1412}, "ok": true, "elapsed_ms": 0.127}
+{"call": 26, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2017, "end_line": 2024}, "ok": true, "elapsed_ms": 0.105}
+{"call": 27, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1816, "end_line": 1845}, "ok": true, "elapsed_ms": 0.134}
+{"call": 28, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1912, "end_line": 1937}, "ok": true, "elapsed_ms": 0.102}
+{"call": 29, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 12}, "ok": true, "elapsed_ms": 1.027}
+{"call": 30, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 13}, "ok": true, "elapsed_ms": 0.075}
+{"call": 31, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 21}, "ok": true, "elapsed_ms": 0.073}
+{"call": 32, "tool": "pdf_search", "args": {"file": "LM3658.pdf", "query": "ISET", "limit": 4}, "ok": true, "elapsed_ms": 77.963}
+{"call": 33, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 0.146}
+{"call": 34, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 0.059}
+{"call": 35, "tool": "pdf_render", "args": {"file": "LM3658.pdf", "page_number": 2, "output_path": "runs/20261018_clay_r6/case_c/pdf/LM3658-page-2.png"}, "ok": true, "elapsed_ms": 39.159}
+{"call": 36, "tool": "pdf_render", "args": {"file": "LM3658.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/case_c/pdf/LM3658-page-4.png"}, "ok": true, "elapsed_ms": 33.124}
+{"call": 37, "tool": "component", "args": {"ref": "DS16"}, "ok": true, "elapsed_ms": 0.219}
+{"call": 38, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 226, "end_line": 239}, "ok": true, "elapsed_ms": 0.186}
+{"call": 39, "tool": "calculate", "args": {"record": {"id": "case_c_u6_nominal_cout_margin", "inputs": {"cout_a": {"value": 10, "unit": "uF", "source": "component C29:10uF, VCC–GND_EARTH"}, "cout_b": {"value": 10, "unit": "uF", "source": "component C31:10uF, VCC–GND_EARTH"}, "l_uh": {"value": 2.2, "unit": "uH", "source": "component L5:2.2uH"}, "factor": {"value": 5, "unit": "uF/uH", "source": "TPS61201.pdf page 16, equation (5)"}}, "expression": "cout_a + cout_b - factor * l_uh", "result_unit": "uF", "assumptions": ["C29 与 C31 的所给标称值在相同两网络上并联；此处仅比较名义值。", "未把未知偏压降容、容差或 PCB 条件视作已满足。"], "validity": {"status": "conditional", "reason": "用于名义输出电容与手册估算值比较；当前 FB 连接不满足固定版本要求，且有效电容未知，不能据此证明闭环稳定或实际 VCC。"}}}, "ok": true, "elapsed_ms": 1.32}
+{"call": 40, "tool": "calculate", "args": {"record": {"id": "case_c_u1_full_rate_current", "inputs": {"k_iset": {"value": 2500, "unit": "A*ohm", "source": "LM3658.pdf page 4, KISET typical coefficient"}, "r_iset": {"value": 3000, "unit": "ohm", "source": "component R6=3.0k; N00337 endpoints U1.8 and R6.2; R6.1=GND"}}, "expression": "k_iset / r_iset", "result_unit": "A", "assumptions": ["只针对 CHG_IN 输入的全速充电阶段。", "需要 4.5–6 V 输入、足够压差和规定的电池电压范围；没有假定实际电池状态、输入源或温升。"], "validity": {"status": "conditional", "reason": "阻值和公式明确，但输入电压、充电阶段及热调节状态未给出；结果是名义设定值，不能当作实际充电电流。"}}}, "ok": true, "elapsed_ms": 0.055}
+{"call": 41, "tool": "calculate", "args": {"record": {"id": "case_c_u6_regulated_vcc_claim", "inputs": {"fixed_setpoint": {"value": 3.3, "unit": "V", "source": "TPS61201.pdf page 4, TPS61201DRC fixed output option"}}, "expression": "fixed_setpoint", "result_unit": "V", "assumptions": ["若器件满足反馈与使能/UVLO等运行条件，3.3 V 为固定版本标称设定值。"], "validity": {"status": "invalid", "reason": "当前 U6.10 FB 在原始 NC 段且 UVLO 无外部偏置；不能把固定版本的标称设定值传播为已成立的 VCC 工作电压。"}}}, "ok": true, "elapsed_ms": 0.019}

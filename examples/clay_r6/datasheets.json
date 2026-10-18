@@ -1,0 +1,272 @@
+{
+  "board": "Clay R6",
+  "board_commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+  "observed_at": "2026-10-18",
+  "documents": [
+    {
+      "refdes": [
+        "D1"
+      ],
+      "netlist_value": "SE20AFJ-M3/6A",
+      "manufacturer": "Vishay",
+      "document_model": "SE20AFB/AFD/AFG/AFJ",
+      "binding_level": "exact_orderable_part",
+      "match_basis": "The netlist VALUE SE20AFJ-M3/6A appears verbatim in the manufacturer ordering table on PDF page 2.",
+      "source_kind": "manufacturer_host",
+      "url": "https://www.vishay.com/docs/89954/se20afb.pdf",
+      "cache_path": "datasheets/SE20AFJ.pdf",
+      "pdf_pages": 5,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "1: polarity/rating; 2: exact ordering code; 4: package",
+      "download_status": "valid_pdf",
+      "notes": "Exact orderable part number appears in datasheet page 2. Netlist pin A=2,C=1 is from pstchip, not a numeric datasheet pin table.",
+      "content_sha256": "25494acbe398e97976b9d466ce2d3e74692545110ec6b5fe4252f9eda5df90b8"
+    },
+    {
+      "refdes": [
+        "DS1",
+        "DS2",
+        "DS3",
+        "DS16"
+      ],
+      "netlist_value": "LB_QH9G_N100_35_1",
+      "manufacturer": "ams OSRAM",
+      "document_model": "LB QH9G",
+      "binding_level": "family_with_suffix_ambiguity",
+      "match_basis": "LB_QH9G matches LB QH9G family; raw N100 suffix differs from manufacturer N1OO. Preserve raw value.",
+      "source_kind": "manufacturer_host",
+      "url": "https://look.ams-osram.com/m/3184c82bafe7f3ef/original/LB-QH9G.pdf",
+      "cache_path": "datasheets/LB-QH9G.pdf",
+      "pdf_pages": 22,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "2: ordering; 3: max ratings; 4: characteristics; 11: package drawing",
+      "download_status": "valid_pdf",
+      "notes": "Family match only: netlist suffix uses N100 while manufacturer ordering table uses N1OO. Preserve raw value; do not silently normalize 0/O.",
+      "content_sha256": "584e2b72c62b3374ffd6707aca1357336a43372d10a38dd5a29e2d69f48d7085"
+    },
+    {
+      "refdes": [
+        "U1"
+      ],
+      "netlist_value": "LM3658",
+      "manufacturer": "Texas Instruments",
+      "document_model": "LM3658",
+      "binding_level": "device_family",
+      "match_basis": "VALUE LM3658 and WSON10 package identify the family; the export does not carry a specific SD/SDX/A/B ordering suffix.",
+      "source_kind": "manufacturer_host",
+      "url": "https://www.ti.com/lit/ds/symlink/lm3658.pdf",
+      "cache_path": "datasheets/LM3658.pdf",
+      "pdf_pages": 22,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "1: pin diagram; 2: pin descriptions/absolute max; 3: operating ratings",
+      "download_status": "valid_pdf",
+      "notes": "Family-level value; no exact LM3658 orderable suffix in three DAT.",
+      "content_sha256": "04d58cfc39370f247b9df9fca9f886189b613386d06c6027d4f2197de75e44b6"
+    },
+    {
+      "refdes": [
+        "U6"
+      ],
+      "netlist_value": "TPS61201DRCT",
+      "manufacturer": "Texas Instruments",
+      "document_model": "TPS61200/TPS61201/TPS61202",
+      "binding_level": "exact_orderable_part",
+      "match_basis": "VALUE TPS61201DRCT identifies TPS61201 in DRC; matched against TI TPS6120x datasheet and TI part-details/TPS61201DRCT.",
+      "source_kind": "manufacturer_host",
+      "url": "https://www.ti.com/lit/ds/symlink/tps61201.pdf",
+      "cache_path": "datasheets/TPS61201.pdf",
+      "pdf_pages": 35,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "4: pin functions; 5: ratings; 14-19: application design",
+      "download_status": "valid_pdf",
+      "notes": "Use TPS61201 fixed-output variant, not TPS61200 adjustable variant.",
+      "content_sha256": "92eacd5f57fe309608243fa6748145080002592771edec46ca47f2eea2a51514"
+    },
+    {
+      "refdes": [
+        "U5"
+      ],
+      "netlist_value": "MK64FN1M0VLL12",
+      "manufacturer": "NXP",
+      "document_model": "K64P144M120SF5",
+      "binding_level": "exact_orderable_part",
+      "match_basis": "MK64FN1M0VLL12 appears in the datasheet ordering table; use 100-LQFP pin column.",
+      "source_kind": "manufacturer_host",
+      "url": "https://www.nxp.com/docs/en/data-sheet/K64P144M120SF5.pdf",
+      "cache_path": "datasheets/K64P144M120SF5.pdf",
+      "pdf_pages": 85,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "2: orderable part; 68-74: signal/pin tables; 79: 100-LQFP diagram",
+      "download_status": "valid_pdf",
+      "notes": "Select 100-LQFP column for VLL12; document also covers other packages.",
+      "content_sha256": "1a21d68ba3be1104cc53600110e87dbf38566df959b81ef52bcc3db8504e7b77"
+    },
+    {
+      "refdes": [
+        "U7"
+      ],
+      "netlist_value": "ESP8266EX",
+      "manufacturer": "Espressif",
+      "document_model": "ESP8266EX",
+      "binding_level": "device_family",
+      "match_basis": "The full base device name ESP8266EX matches the datasheet and QFN32 in pstchip.",
+      "source_kind": "manufacturer_host",
+      "url": "https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf",
+      "cache_path": "datasheets/ESP8266EX.pdf",
+      "pdf_pages": 31,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "9-11: pin definitions; 24: electrical characteristics",
+      "download_status": "valid_pdf",
+      "notes": "PDF page numbers, not printed page numbers; downloaded version 7.1.",
+      "content_sha256": "3a038e2fd3040ad06d95d41b16afc8292090339e9f8e728ce46a83db439cecf1"
+    },
+    {
+      "refdes": [
+        "U4"
+      ],
+      "netlist_value": "IS31FL3236",
+      "manufacturer": "ISSI",
+      "document_model": "IS31FL3236",
+      "binding_level": "device_family",
+      "match_basis": "VALUE IS31FL3236 matches original non-A datasheet; QFN44 in pstchip selects the QFN column.",
+      "source_kind": "board_repository_mirror",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_DRIVER_31FL3236.pdf",
+      "cache_path": "datasheets/IS31FL3236-board-copy.pdf",
+      "pdf_pages": 15,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "2: pin configuration; 3: pin description; 5: absolute max/electrical",
+      "download_status": "valid_pdf",
+      "notes": "Manufacturer-authored PDF archived with board, September 2014; do not substitute IS31FL3236A.",
+      "repository": "https://github.com/ah-cog/Clay",
+      "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+      "repository_path": "Documentation/R6_Datasheets/LED_DRIVER_31FL3236.pdf",
+      "git_blob_sha": "6f5276c4020ce03ba62fe001521e395fc7d746e2"
+    },
+    {
+      "refdes": [
+        "DS4",
+        "DS5",
+        "DS6",
+        "DS7",
+        "DS8",
+        "DS9",
+        "DS10",
+        "DS11",
+        "DS12",
+        "DS13",
+        "DS14",
+        "DS15"
+      ],
+      "netlist_value": "LTST_C19FD1WT",
+      "manufacturer": "Lite-On",
+      "document_model": "LTST-C19FD1WT",
+      "binding_level": "device_family",
+      "match_basis": "DAT VALUE LTST_C19FD1WT becomes manufacturer device LTST-C19FD1WT by replacing separators; both name the four-pin device.",
+      "source_kind": "board_repository_mirror",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/LED_RGB_Lite-On-LTST-C19FD1WT.pdf",
+      "cache_path": "datasheets/LTST-C19FD1WT-board-copy.pdf",
+      "pdf_pages": 11,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "1: package/pin assignment; 2: absolute max; 3: electrical/optical",
+      "download_status": "valid_pdf",
+      "notes": "Manufacturer-authored PDF archived with board. The DAT contains a four-pin common-anode RGB-style device, not a generic two-pin LED.",
+      "repository": "https://github.com/ah-cog/Clay",
+      "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+      "repository_path": "Documentation/R6_Datasheets/LED_RGB_Lite-On-LTST-C19FD1WT.pdf",
+      "git_blob_sha": "32f5915768a1c47583875e6fa3fe4ad60b097c94"
+    },
+    {
+      "refdes": [
+        "U2"
+      ],
+      "netlist_value": "MPU9250",
+      "manufacturer": "InvenSense",
+      "document_model": "MPU-9250",
+      "binding_level": "device_family",
+      "match_basis": "DAT VALUE MPU9250 matches manufacturer MPU-9250 base device; QFN24 agrees.",
+      "source_kind": "board_repository_mirror",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/IMU_MPU9250REV1.0.pdf",
+      "cache_path": "datasheets/MPU9250-board-copy.pdf",
+      "pdf_pages": 42,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "18: absolute max; 19: pin out/signal description; 20: application circuit",
+      "download_status": "valid_pdf",
+      "notes": "Manufacturer-authored Product Specification revision 1.0 archived with board; official revision 1.1 URL returned HTML.",
+      "repository": "https://github.com/ah-cog/Clay",
+      "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+      "repository_path": "Documentation/R6_Datasheets/IMU_MPU9250REV1.0.pdf",
+      "git_blob_sha": "f9e77376747584137bf36eaf222923093a22df32"
+    },
+    {
+      "refdes": [
+        "U3"
+      ],
+      "netlist_value": "NRF24L01P",
+      "manufacturer": "Nordic Semiconductor",
+      "document_model": "nRF24L01+",
+      "binding_level": "device_family",
+      "match_basis": "DAT VALUE NRF24L01P corresponds to nRF24L01+ family and QFN20, not the older nRF24L01 without plus.",
+      "source_kind": "board_repository_mirror",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/C6R2_Datasheets/mesh_nRF24L01P_Product_Specification_1_0.pdf",
+      "cache_path": "datasheets/nRF24L01P-board-copy.pdf",
+      "pdf_pages": 78,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "10: QFN20 pin assignment; 11: pin functions; 12: absolute max; 13: operating conditions",
+      "download_status": "valid_pdf",
+      "notes": "Manufacturer-authored final Product Specification v1.0 from C6R2_Datasheets in same pinned repository, not the R6 preliminary document. Official current download returned 530/HTML.",
+      "repository": "https://github.com/ah-cog/Clay",
+      "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+      "repository_path": "Documentation/C6R2_Datasheets/mesh_nRF24L01P_Product_Specification_1_0.pdf",
+      "git_blob_sha": "f584f77bdd3653a8e39b0f9c8e03eabe833c5b59"
+    },
+    {
+      "refdes": [
+        "U8"
+      ],
+      "netlist_value": "W25Q80DVSNIG",
+      "manufacturer": "Winbond",
+      "document_model": "W25Q80DV",
+      "binding_level": "device_family",
+      "match_basis": "DAT VALUE W25Q80DVSNIG has base W25Q80DV; datasheet page 6 maps SN to 8-pin 150-mil SOIC.",
+      "source_kind": "board_repository_mirror",
+      "url": "https://raw.githubusercontent.com/ah-cog/Clay/31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6/Documentation/R6_Datasheets/flash_w25q80dv_revf_02112015.pdf",
+      "cache_path": "datasheets/W25Q80DV-board-copy.pdf",
+      "pdf_pages": 71,
+      "page_numbering": "PDF file page number (1-based)",
+      "relevant_pages": "6: SOIC-SN pin assignment; 9: pin descriptions; 55: absolute max",
+      "download_status": "valid_pdf",
+      "notes": "Manufacturer-authored revision F, 2015-02-11 archived with board; official product download landing page retrieved no PDF.",
+      "repository": "https://github.com/ah-cog/Clay",
+      "commit": "31a84237d09eb93affb9b2587ff1d5b9a2b8c6a6",
+      "repository_path": "Documentation/R6_Datasheets/flash_w25q80dv_revf_02112015.pdf",
+      "git_blob_sha": "fbb198990c11feec23e0f996ea40e02a8fbcb19e"
+    }
+  ],
+  "source_notes": "Six documents were downloaded from manufacturer hosts. Five are manufacturer-authored PDFs mirrored by the board author at the pinned commit; these are explicitly distinguished. No manufacturer PDF should be committed to DAT_PureAgent. Manufacturer-hosted PDF content digests are only acquisition/cache checks, excluded from Agent views and electrical reports.",
+  "unavailable_manufacturer_downloads": [
+    {
+      "device": "IS31FL3236",
+      "url": "https://www.issi.com/WW/pdf/IS31FL3236.pdf",
+      "result": "403 via browser fetch; curl received HTML, not PDF"
+    },
+    {
+      "device": "MPU-9250",
+      "url": "https://invensense.tdk.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf",
+      "result": "redirect/HTML, not PDF"
+    },
+    {
+      "device": "nRF24L01+",
+      "url": "https://docs-be.nordicsemi.com/bundle/nRF24L01P_PS_v1.0/raw/resource/enus/nRF24L01P_PS_v1.0.pdf",
+      "result": "HTTP 530; alternate docs.nordicsemi.com resource returned HTML"
+    },
+    {
+      "device": "W25Q80DV",
+      "url": "https://www.winbond.com/hq/support/documentation/downloadV2022.jsp?__locale=en&xmlPath=/support/resources/.content/item/DA00-W25Q80DV.html&level=1",
+      "result": "landing page returned no PDF"
+    },
+    {
+      "device": "LTST-C19FD1WT",
+      "result": "No verified current manufacturer-hosted URL found; use board-archived manufacturer document"
+    }
+  ]
+}

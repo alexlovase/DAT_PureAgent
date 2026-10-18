@@ -1,0 +1,49 @@
+{"call": 1, "tool": "component", "args": {"ref": "U6", "detail": true}, "ok": true, "elapsed_ms": 0.085}
+{"call": 2, "tool": "datasheets", "args": {"ref": "U6"}, "ok": true, "elapsed_ms": 0.036}
+{"call": 3, "tool": "net", "args": {"query": "UVLO", "detail": true}, "ok": true, "elapsed_ms": 0.014}
+{"call": 4, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2020, "end_line": 2026}, "ok": true, "elapsed_ms": 0.258}
+{"call": 5, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 1487, "end_line": 1529}, "ok": true, "elapsed_ms": 0.098}
+{"call": 6, "tool": "source", "args": {"filename": "pstxprt.dat", "start_line": 1240, "end_line": 1248}, "ok": true, "elapsed_ms": 0.068}
+{"call": 7, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 475.118}
+{"call": 8, "tool": "pdf_search", "args": {"file": "TPS61201.pdf", "query": "UVLO", "limit": 15}, "ok": true, "elapsed_ms": 109.463}
+{"call": 9, "tool": "pdf_search", "args": {"file": "TPS61201.pdf", "query": "only one", "limit": 5}, "ok": true, "elapsed_ms": 0.677}
+{"call": 10, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 12}, "ok": true, "elapsed_ms": 0.235}
+{"call": 11, "tool": "pdf_page", "args": {"file": "TPS61201.pdf", "page_number": 13}, "ok": true, "elapsed_ms": 0.069}
+{"call": 12, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/tps61201-p4.png", "dpi": 145}, "ok": true, "elapsed_ms": 39.036}
+{"call": 13, "tool": "pdf_render", "args": {"file": "TPS61201.pdf", "page_number": 12, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/tps61201-p12.png", "dpi": 120}, "ok": true, "elapsed_ms": 42.823}
+{"call": 14, "tool": "net", "args": {"query": "N00478", "detail": true}, "ok": true, "elapsed_ms": 0.021}
+{"call": 15, "tool": "net", "args": {"query": "GND_EARTH", "detail": true}, "ok": true, "elapsed_ms": 0.012}
+{"call": 16, "tool": "net", "args": {"query": "GND", "detail": true}, "ok": true, "elapsed_ms": 0.049}
+{"call": 17, "tool": "component", "args": {"ref": "R1", "detail": true}, "ok": true, "elapsed_ms": 0.063}
+{"call": 18, "tool": "component", "args": {"ref": "DS1", "detail": true}, "ok": true, "elapsed_ms": 0.022}
+{"call": 19, "tool": "component", "args": {"ref": "D1", "detail": true}, "ok": true, "elapsed_ms": 0.082}
+{"call": 20, "tool": "component", "args": {"ref": "R6", "detail": true}, "ok": true, "elapsed_ms": 0.013}
+{"call": 21, "tool": "component", "args": {"ref": "R15", "detail": true}, "ok": true, "elapsed_ms": 0.026}
+{"call": 22, "tool": "net", "args": {"query": "N08855", "detail": true}, "ok": true, "elapsed_ms": 0.022}
+{"call": 23, "tool": "net", "args": {"query": "N33179", "detail": true}, "ok": true, "elapsed_ms": 0.007}
+{"call": 24, "tool": "net", "args": {"query": "N00337", "detail": true}, "ok": true, "elapsed_ms": 0.005}
+{"call": 25, "tool": "net", "args": {"query": "N00975", "detail": true}, "ok": true, "elapsed_ms": 0.004}
+{"call": 26, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 7.083}
+{"call": 27, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 4}, "ok": true, "elapsed_ms": 1.956}
+{"call": 28, "tool": "pdf_page", "args": {"file": "LM3658.pdf", "page_number": 8}, "ok": true, "elapsed_ms": 2.715}
+{"call": 29, "tool": "pdf_page", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 11}, "ok": true, "elapsed_ms": 10.692}
+{"call": 30, "tool": "net", "args": {"query": "N08912", "detail": true}, "ok": true, "elapsed_ms": 0.029}
+{"call": 31, "tool": "component", "args": {"ref": "J1", "detail": true}, "ok": true, "elapsed_ms": 0.045}
+{"call": 32, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 2137, "end_line": 2152}, "ok": true, "elapsed_ms": 0.365}
+{"call": 33, "tool": "source", "args": {"filename": "pstxnet.dat", "start_line": 1197, "end_line": 1206}, "ok": true, "elapsed_ms": 0.118}
+{"call": 34, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 475, "end_line": 489}, "ok": true, "elapsed_ms": 0.074}
+{"call": 35, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 550, "end_line": 563}, "ok": true, "elapsed_ms": 0.058}
+{"call": 36, "tool": "source", "args": {"filename": "pstchip.dat", "start_line": 595, "end_line": 609}, "ok": true, "elapsed_ms": 0.088}
+{"call": 37, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 9.45}
+{"call": 38, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 3}, "ok": true, "elapsed_ms": 4.407}
+{"call": 39, "tool": "pdf_page", "args": {"file": "LB-QH9G.pdf", "page_number": 20}, "ok": true, "elapsed_ms": 6.48}
+{"call": 40, "tool": "pdf_page", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 2}, "ok": true, "elapsed_ms": 5.247}
+{"call": 41, "tool": "pdf_render", "args": {"file": "LM3658.pdf", "page_number": 4, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/lm3658-p4.png", "dpi": 135}, "ok": true, "elapsed_ms": 52.293}
+{"call": 42, "tool": "pdf_render", "args": {"file": "IS31FL3236-board-copy.pdf", "page_number": 11, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/is31fl3236-p11.png", "dpi": 135}, "ok": true, "elapsed_ms": 56.132}
+{"call": 43, "tool": "pdf_render", "args": {"file": "LB-QH9G.pdf", "page_number": 3, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/lb-qh9g-p3.png", "dpi": 135}, "ok": true, "elapsed_ms": 65.424}
+{"call": 44, "tool": "pdf_render", "args": {"file": "LB-QH9G.pdf", "page_number": 8, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/lb-qh9g-p8.png", "dpi": 135}, "ok": true, "elapsed_ms": 47.698}
+{"call": 45, "tool": "pdf_render", "args": {"file": "LTST-C19FD1WT-board-copy.pdf", "page_number": 2, "output_path": "runs/20261018_clay_r6/original/reviewer_renders/ltst-c19fd1wt-p2.png", "dpi": 135}, "ok": true, "elapsed_ms": 39.427}
+{"call": 46, "tool": "calculate", "args": {"record": {"id": "reviewer-u1-charge-setpoint", "inputs": {"K": {"value": 2500, "unit": "A*ohm", "source": "LM3658.pdf p4 KISET typical column; p8 full-rate charge equation"}, "R": {"value": 3000, "unit": "ohm", "source": "pstchip.dat lines 595-609; pstxprt.dat R6 lines 960-968; N00337 joins R6.2 to U1.8 ISET"}}, "expression": "K / R", "result_unit": "A", "assumptions": ["RISET is nominal 3.0 kOhm and KISET typical is 2500 A*Ohm", "Full-rate charger mode with appropriate source and battery conditions; thermal and prequalification limits not solved"], "validity": {"status": "conditional", "reason": "Computes nominal programmed setpoint; actual source, mode, battery and temperature are not established"}}}, "ok": true, "elapsed_ms": 1.953}
+{"call": 47, "tool": "calculate", "args": {"record": {"id": "reviewer-u4-led-fullscale", "inputs": {"x": {"value": 58.5, "unit": "1", "source": "IS31FL3236-board-copy.pdf p11 maximum-current formula at VOUT=0.8V"}, "V": {"value": 1.3, "unit": "V", "source": "IS31FL3236-board-copy.pdf p11 VEXT"}, "R": {"value": 7680, "unit": "ohm", "source": "pstchip.dat lines 550-563; pstxprt.dat R15 lines 810-818; N00975 joins R15.2 to U4.40 R_EXT"}}, "expression": "x * V / R", "result_unit": "A", "assumptions": ["Nominal R_EXT is 7.68 kOhm", "Formula uses specified x and V_EXT with VOUT=0.8V", "Channel current-selection and PWM registers and actual output headroom are not known"], "validity": {"status": "conditional", "reason": "Nominal full-scale setting only; actual channel or average current and tolerances are not established"}}}, "ok": true, "elapsed_ms": 0.086}
+{"call": 48, "tool": "calculate", "args": {"record": {"id": "reviewer-ds1-threshold-scenario", "inputs": {"Vs": {"value": 4.5, "unit": "V", "source": "Assumed post-diode CHG_IN scenario, motivated by LM3658.pdf p3 operating range; not a measured board voltage"}, "I": {"value": 0.015, "unit": "A", "source": "LB-QH9G.pdf p3 continuous forward-current maximum at TA=25C, family-level applicability"}, "R": {"value": 30, "unit": "ohm", "source": "pstchip.dat lines 475-489; R1 nominal VALUE 30; N08855 -> R1 -> N33179 -> DS1 -> GND"}}, "expression": "Vs - I * R", "result_unit": "V", "assumptions": ["Post-diode CHG_IN is hypothetically 4.5V", "LED current is hypothetically at the 15mA continuous threshold", "Typical LED I-V curve is not a guaranteed per-part voltage model"], "validity": {"status": "conditional", "reason": "Actual source voltage and applicable guaranteed LED I-V behavior are unknown; this does not compute actual operating current"}}}, "ok": true, "elapsed_ms": 0.156}
+{"call": 49, "tool": "stats", "args": {}, "ok": true, "elapsed_ms": 0.003}
