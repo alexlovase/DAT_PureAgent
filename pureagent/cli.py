@@ -43,11 +43,22 @@ class ToolSession:
             return getattr(self.graph, tool)(**args)
         if tool == "datasheets":
             ref = args.get("ref")
-            return [{"file": Path(d["cache_path"]).name, "refdes": d["refdes"],
-                     "model": d["document_model"], "binding_level": d["binding_level"],
-                     "match_basis": d["match_basis"], "url": d["url"],
-                     "pages": d["pdf_pages"]}
-                    for d in self.documents if ref is None or ref in d["refdes"]]
+            rows = []
+            for document in self.documents:
+                refs = document.get("refdes") or []
+                if ref is not None and ref not in refs:
+                    continue
+                row = {"file": Path(document["cache_path"]).name, "refdes": refs}
+                # Local PDFs remain discoverable without a manufacturer URL,
+                # exact model binding, precomputed page count, or made-up text.
+                for key, source in (("model", "document_model"),
+                                    ("binding_level", "binding_level"),
+                                    ("match_basis", "match_basis"),
+                                    ("url", "url"), ("pages", "pdf_pages")):
+                    if document.get(source) is not None:
+                        row[key] = document[source]
+                rows.append(row)
+            return rows
         if tool in ("pdf_search", "pdf_page", "pdf_render"):
             args = dict(args)
             pdf = self._pdf(args.pop("file"))

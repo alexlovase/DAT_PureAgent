@@ -98,14 +98,18 @@ class NativeDatContract(unittest.TestCase):
             file.write_text(text)
             self.assertEqual(DatGraph(tmp).pin("U1", "8")["state"], "connection_unspecified")
 
-    def test_unsupported_physical_mapping_and_truncated_file_fail(self):
+    def test_unresolved_library_mapping_is_local_but_truncation_stops(self):
         with TemporaryDirectory() as tmp:
             self.copy_fixture(tmp)
             file = Path(tmp) / "pstchip.dat"
             text = file.read_text()
-            file.write_text(text.replace("PIN_NUMBER='(1)'", "PIN_NUMBER='(1,3)'", 1))
-            with self.assertRaises(DatError):
-                DatGraph(tmp)
+            file.write_text(text.replace("PIN_NUMBER='(1)'", "PIN_NUMBER='(1:3)'", 1))
+            graph = DatGraph(tmp)
+            self.assertFalse(graph.overview()["pin_inventory_complete"])
+            self.assertEqual(graph.pin("AE1", "1")["declaration"], "absent")
+            self.assertEqual(graph.pin("AE1", "1")["nets"], self.graph.pin("AE1", "1")["nets"])
+            self.assertEqual(graph.net("UVLO"), self.graph.net("UVLO"))
+            self.assertEqual(graph.overview()["connected_endpoints"], 537)
             file.write_text(text.removesuffix("END."))
             with self.assertRaises(DatError):
                 DatGraph(tmp)
@@ -118,24 +122,118 @@ class NativeDatContract(unittest.TestCase):
         self.assertEqual(self.graph.component("L6")["assembly"], "unspecified")
         self.assertEqual(self.graph.overview()["physical_pins"], 548)
 
-    def test_conflicting_declarations_duplicate_members_and_mixed_occurrences(self):
+    def test_conflicts_are_visible_locally_and_identical_nodes_are_deduplicated(self):
         with TemporaryDirectory() as tmp:
             self.copy_fixture(tmp)
             chip = Path(tmp) / "pstchip.dat"
             text = chip.read_text()
             chip.write_text(text.replace("PIN_NUMBER='(1)';", "PIN_NUMBER='(1)';\nPIN_NUMBER='(2)';", 1))
-            with self.assertRaisesRegex(DatError, "conflicting property PIN_NUMBER"):
-                DatGraph(tmp)
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.pin("AE1", "1")["state"], "conflicting_records")
+            self.assertEqual(graph.net("UVLO"), self.graph.net("UVLO"))
             chip.write_text(text)
             nets = Path(tmp) / "pstxnet.dat"
             original = nets.read_text()
             node = re.search(r"^NODE_NAME\s+U1 8\s*\n[^\n]*\n[^\n]*\n", original, re.M).group()
             nets.write_text(original.replace(node, node + node, 1))
-            with self.assertRaisesRegex(DatError, "duplicate endpoint"):
-                DatGraph(tmp)
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.overview()["connected_endpoints"], 537)
+            self.assertEqual(graph.net("N00337"), self.graph.net("N00337"))
+            self.assertTrue(any(d["kind"] == "duplicate_endpoint_record" for d in graph.diagnostics))
             nets.write_text(original.replace("INS541", "INS999999", 1))
-            with self.assertRaisesRegex(DatError, "occurrence path"):
-                DatGraph(tmp)
+            graph = DatGraph(tmp)
+            disputed = [(c["ref"], p["number"]) for c in graph.components.values()
+                        for p in c["pins"].values() if p["mapping_issues"]]
+            self.assertTrue(disputed)
+            for ref, number in disputed:
+                pin = graph.pin(ref, number)
+                self.assertEqual(pin["state"], "conflicting_records")
+                for name in pin["nets"]:
+                    row = next(m for m in graph.net(name)["members"]["items"]
+                               if (m["ref"], m["pin"]) == (ref, number))
+                    self.assertEqual(row["state"], "conflicting_records")
+
+    def test_two_net_conflict_reaches_net_and_boundary_queries(self):
+        with TemporaryDirectory() as tmp:
+            self.copy_fixture(tmp)
+            file = Path(tmp) / "pstxnet.dat"
+            original = file.read_text()
+            node = re.search(r"^NODE_NAME\s+U1 8\s*\n[^\n]*\n[^\n]*\n", original, re.M).group()
+            marker = re.search(r"^NODE_NAME\s+U6 7\s*\n", original, re.M).start()
+            file.write_text(original[:marker] + node + original[marker:])
+            graph = DatGraph(tmp)
+            row = next(m for m in graph.net("UVLO")["members"]["items"] if m["ref"] == "U1")
+            self.assertEqual(row["state"], "conflicting_records")
+            external = next(n for n in graph.boundary(["U6"]) if n["net"] == "UVLO")
+            self.assertEqual(external["outside"][0]["state"], "conflicting_records")
+            self.assertEqual(graph.overview()["electrical_nets"], 164)
+
+    def test_ambiguous_nc_group_never_becomes_a_conductive_net(self):
+        with TemporaryDirectory() as tmp:
+            self.copy_fixture(tmp)
+            file = Path(tmp) / "pstxnet.dat"
+            file.write_text(file.read_text().replace("C_SIGNAL='NC';", "C_SIGNAL='NC', C_SIGNAL='OTHER';"))
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.overview()["electrical_nets"], 164)
+            self.assertEqual(graph.overview()["connected_endpoints"], 537)
+            self.assertEqual(graph.pin("U7", "9")["state"], "conflicting_records")
+            self.assertEqual(graph.pin("U7", "9")["nets"], [])
+            self.assertIn("ambiguous_nc_group", graph.pin("U7", "9")["mapping_issues"])
+
+    def test_optional_attribute_disagreement_does_not_change_connections(self):
+        with TemporaryDirectory() as tmp:
+            self.copy_fixture(tmp)
+            file = Path(tmp) / "pstchip.dat"
+            file.write_text(file.read_text().replace("JEDEC_TYPE='ANT_1206';", "JEDEC_TYPE='ANT_1206'; JEDEC_TYPE='OTHER';"))
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.pin("AE1", "1"), self.graph.pin("AE1", "1"))
+            self.assertEqual(graph.component("AE1", detail=True)["raw_attributes"]["JEDEC_TYPE"], ["ANT_1206", "OTHER"])
+
+    def test_multisection_alphanumeric_pins_and_zero_placeholders(self):
+        # Reduced form of the actual multi-section connector exports. A bad
+        # section path stays disputed, while unrelated endpoints remain usable.
+        chips = """FILE_TYPE=LIBRARY_PARTS;
+primitive 'CONNECTOR'; pin
+'TX_P': PIN_NUMBER='(A1,0)';
+'TX_N': PIN_NUMBER='(A2,0)';
+'CTRL': PIN_NUMBER='(0,B1)';
+end_pin; body VALUE='CONN'; end_body; end_primitive; END."""
+        parts = """FILE_TYPE=EXPANDEDPARTLIST;
+PART_NAME J1 'CONNECTOR':;
+SECTION_NUMBER 1 '@BOARD:J1A': SECTION='A';
+SECTION_NUMBER 2 '@BOARD:J1B': SECTION='B';
+END."""
+        nets = """FILE_TYPE=EXPANDEDNETLIST;
+NET_NAME 'TX_P' '@BOARD:TX_P': C_SIGNAL='TX_P';
+NODE_NAME J1 A1 '@BOARD:J1A': 'TX_P':;
+NET_NAME 'TX_N' '@BOARD:TX_N': C_SIGNAL='TX_N';
+NODE_NAME J1 A2 '@BOARD:J1A': 'TX_N':;
+NET_NAME 'CTRL' '@BOARD:CTRL': C_SIGNAL='CTRL';
+NODE_NAME J1 B1 '@BOARD:J1B': 'CTRL':;
+END."""
+        with TemporaryDirectory() as tmp:
+            for filename, text in [("pstchip.dat", chips), ("pstxprt.dat", parts), ("pstxnet.dat", nets)]:
+                (Path(tmp) / filename).write_text(text)
+            graph = DatGraph(tmp)
+            self.assertEqual(set(graph.components["J1"]["pins"]), {"A1", "A2", "B1"})
+            self.assertEqual(graph.pin("J1", "B1", detail=True)["sections"], ["2"])
+            self.assertEqual(graph.pin("J1", "B1")["singleton_nets"], ["CTRL"])
+            self.assertEqual(graph.diagnostics, [])
+            (Path(tmp) / "pstxnet.dat").write_text(nets.replace("J1 B1 '@BOARD:J1B'", "J1 B1 '@BOARD:J1A'"))
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.pin("J1", "B1")["state"], "conflicting_records")
+            self.assertEqual(graph.pin("J1", "A1")["state"], "connected")
+
+    def test_power_pin_declarations_preserve_physical_pins_without_guessing_nets(self):
+        with TemporaryDirectory() as tmp:
+            self.copy_fixture(tmp)
+            file = Path(tmp) / "pstchip.dat"
+            file.write_text(file.read_text().replace("PART_NAME='ANTENNA';", "PART_NAME='ANTENNA'; POWER_PINS='(VCC:3)'; POWER_PINS='(GND:4)';", 1))
+            graph = DatGraph(tmp)
+            self.assertEqual(graph.pin("AE1", "3")["state"], "connection_unspecified")
+            self.assertEqual(graph.pin("AE1", "3", detail=True)["power_declarations"], ["VCC"])
+            self.assertEqual(graph.pin("AE1", "4", detail=True)["power_declarations"], ["GND"])
+            self.assertEqual(graph.overview()["connected_endpoints"], 537)
 
 
 if __name__ == "__main__":

@@ -37,8 +37,12 @@ def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], cove
 
     Candidate: id, investigator, why, recommendation; optional title/refdes/refs/
     severity are retained for confirmed errors. Review: candidate_id, reviewer,
-    verdict, raw_connection_evidence, datasheet_evidence. Evidence belongs to the
-    review and may refer to existing materials rather than repeating them.
+    verdict, raw_connection_evidence, and at least one applicable requirement
+    reference: datasheet_evidence or requirement_evidence. The latter can refer
+    to supplied interface requirements or another verified source when a
+    datasheet is not the applicable authority. No placeholder datasheet field
+    is needed. Evidence belongs to the review and may refer to existing
+    materials rather than repeating them.
     Review IDs and source claims are checked structurally, not authenticated.
 
     Review order is chronological: the last record for a candidate is current,
@@ -87,7 +91,9 @@ def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], cove
             continue
         if not _evidence(review.get("raw_connection_evidence")):
             continue
-        if not _evidence(review.get("datasheet_evidence")):
+        requirement_fields = [key for key in ("datasheet_evidence", "requirement_evidence")
+                              if _evidence(review.get(key))]
+        if not requirement_fields:
             continue
         error = {"id": candidate_id}
         for key in ("title", "refdes", "refs", "severity"):
@@ -96,9 +102,10 @@ def build_report(candidates: Iterable[Mapping], reviews: Iterable[Mapping], cove
         error.update(
             why=candidate["why"],
             raw_connection_evidence=deepcopy(review["raw_connection_evidence"]),
-            datasheet_evidence=deepcopy(review["datasheet_evidence"]),
             recommendation=candidate["recommendation"],
         )
+        for key in requirement_fields:
+            error[key] = deepcopy(review[key])
         confirmed.append(error)
     return {
         "run_status": run_status,

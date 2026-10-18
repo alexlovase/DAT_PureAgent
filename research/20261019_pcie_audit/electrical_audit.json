@@ -1,0 +1,784 @@
+{
+  "kind": "independent_raw_record_replay",
+  "electrical_check_scope": "partial",
+  "confirmed_electrical_errors": [],
+  "net_expectations_checked": 28,
+  "series_paths_checked": 4,
+  "samples": {
+    "j401-fixture": {
+      "provenance": {
+        "repository": "IntelligentElectron/test-fixtures",
+        "commit": "1a46586c4323e3071804923b4be1ed56e21cf8e1",
+        "provenance": "fixture-provided Cadence PST; matching original DSN/PDF exists upstream, but upstream original DAT path not found in HEAD/history; not claimed as original upstream DAT",
+        "files": [
+          {
+            "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstchip.dat",
+            "local_name": "pstchip.dat",
+            "git_blob": "496fa6e62e25881b1dc04391649e247578b93690",
+            "bytes": 97092,
+            "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstchip.dat"
+          },
+          {
+            "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstxnet.dat",
+            "local_name": "pstxnet.dat",
+            "git_blob": "18c9687a4c8d1d6dbdee9b0f577541298548911d",
+            "bytes": 388560,
+            "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstxnet.dat"
+          },
+          {
+            "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstxprt.dat",
+            "local_name": "pstxprt.dat",
+            "git_blob": "2f7cecaf12ee33f84b037347ce372a65cf5b65a5",
+            "bytes": 304430,
+            "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstxprt.dat"
+          }
+        ]
+      },
+      "selected_nets": {
+        "PCIE1_TX0_P": {
+          "raw_name": "PCIE1_TX0_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_TX0_P",
+          "source_line": 14,
+          "complete_raw_members": [
+            {
+              "endpoint": "C66.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867754@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 19
+            },
+            {
+              "endpoint": "J11.174",
+              "raw_pin_label": "(PCIE1_TX0) RSVD_P",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 22
+            }
+          ]
+        },
+        "PCIE1_M2_TX0_P": {
+          "raw_name": "PCIE1_M2_TX0_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_M2_TX0_P",
+          "source_line": 41,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.35",
+              "raw_pin_label": "PETP0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 46
+            },
+            {
+              "endpoint": "C66.1",
+              "raw_pin_label": "1",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867754@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 49
+            }
+          ]
+        },
+        "PCIE1_TX0_N": {
+          "raw_name": "PCIE1_TX0_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_TX0_N",
+          "source_line": 9531,
+          "complete_raw_members": [
+            {
+              "endpoint": "C65.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867735@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 9536
+            },
+            {
+              "endpoint": "J11.172",
+              "raw_pin_label": "(PCIE1_TX0) RSVD_N",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9539
+            }
+          ]
+        },
+        "PCIE1_M2_TX0_N": {
+          "raw_name": "PCIE1_M2_TX0_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_M2_TX0_N",
+          "source_line": 3,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.37",
+              "raw_pin_label": "PETN0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 8
+            },
+            {
+              "endpoint": "C65.1",
+              "raw_pin_label": "1",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867735@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 11
+            }
+          ]
+        },
+        "PCIE1_RX0_P": {
+          "raw_name": "PCIE1_RX0_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_RX0_P",
+          "source_line": 9510,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.41",
+              "raw_pin_label": "PERP0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 9515
+            },
+            {
+              "endpoint": "J11.169",
+              "raw_pin_label": "(PCIE1_RX0) RSVD_P",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9518
+            }
+          ]
+        },
+        "PCIE1_RX0_N": {
+          "raw_name": "PCIE1_RX0_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_RX0_N",
+          "source_line": 9479,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.43",
+              "raw_pin_label": "PERN0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 9484
+            },
+            {
+              "endpoint": "J11.167",
+              "raw_pin_label": "(PCIE1_RX0) RSVD_N",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9487
+            }
+          ]
+        },
+        "PCIE1_CLK_P": {
+          "raw_name": "PCIE1_CLK_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_CLK_P",
+          "source_line": 9468,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.47",
+              "raw_pin_label": "REFCLKP0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 9473
+            },
+            {
+              "endpoint": "J11.175",
+              "raw_pin_label": "(PCIE1_CLK) RSVD_P",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9476
+            }
+          ]
+        },
+        "PCIE1_CLK_N": {
+          "raw_name": "PCIE1_CLK_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_CLK_N",
+          "source_line": 9447,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.49",
+              "raw_pin_label": "REFCLKN0",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 9452
+            },
+            {
+              "endpoint": "J11.173",
+              "raw_pin_label": "(PCIE1_CLK) RSVD_N",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9455
+            }
+          ]
+        },
+        "PCIE1_CLKREQ": {
+          "raw_name": "PCIE1_CLKREQ",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_CLKREQ",
+          "source_line": 9434,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.53",
+              "raw_pin_label": "CLKREQ0#(I/O)(0/3.3V)",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 9438
+            },
+            {
+              "endpoint": "R99.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867564@RESISTOR.R.NORMAL(CHIPS)",
+              "source_line": 9441
+            },
+            {
+              "endpoint": "J11.182",
+              "raw_pin_label": "(PCIE1_CLKREQ) RSVD",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9444
+            }
+          ]
+        },
+        "PCIE1_RST": {
+          "raw_name": "PCIE1_RST",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE1_RST",
+          "source_line": 66,
+          "complete_raw_members": [
+            {
+              "endpoint": "R153.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25873896@RESISTOR.R.NORMAL(CHIPS)",
+              "source_line": 70
+            },
+            {
+              "endpoint": "J20.52",
+              "raw_pin_label": "PERST0#(O)(0/3.3V)",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 73
+            },
+            {
+              "endpoint": "J11.183",
+              "raw_pin_label": "(PCIE1_RST) RSVD",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 76
+            }
+          ]
+        },
+        "PCIE_WAKE": {
+          "raw_name": "PCIE_WAKE",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE_WAKE",
+          "source_line": 7244,
+          "complete_raw_members": [
+            {
+              "endpoint": "J20.55",
+              "raw_pin_label": "PEWAKE0#(I/O)(0/3.3V)",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25866378@CONNECTOR.PCIE_M.2_KEY E_75PIN.NORMAL(CHIPS)",
+              "source_line": 7248
+            },
+            {
+              "endpoint": "R100.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867585@RESISTOR.R.NORMAL(CHIPS)",
+              "source_line": 7251
+            },
+            {
+              "endpoint": "J11.179",
+              "raw_pin_label": "PCIE_WAKE",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 7254
+            },
+            {
+              "endpoint": "J18.54",
+              "raw_pin_label": "PEWAKE# (I/O)(0/3.3V) OR N/C",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 7257
+            }
+          ]
+        },
+        "PCIE0_TX0_P": {
+          "raw_name": "PCIE0_TX0_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_TX0_P",
+          "source_line": 1644,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.136",
+              "raw_pin_label": "PCIE0_TX0_P",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 1649
+            },
+            {
+              "endpoint": "C172.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27000576@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 1652
+            }
+          ]
+        },
+        "PCIE0_TX0_M2_P": {
+          "raw_name": "PCIE0_TX0_M2_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_TX0_M2_P",
+          "source_line": 914,
+          "complete_raw_members": [
+            {
+              "endpoint": "C172.1",
+              "raw_pin_label": "1",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27000576@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 919
+            },
+            {
+              "endpoint": "J18.49",
+              "raw_pin_label": "PETP0/SATA-A+",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 922
+            }
+          ]
+        },
+        "PCIE0_TX0_N": {
+          "raw_name": "PCIE0_TX0_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_TX0_N",
+          "source_line": 1683,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.134",
+              "raw_pin_label": "PCIE0_TX0_N",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 1688
+            },
+            {
+              "endpoint": "C170.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27000594@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 1691
+            }
+          ]
+        },
+        "PCIE0_TX0_M2_N": {
+          "raw_name": "PCIE0_TX0_M2_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_TX0_M2_N",
+          "source_line": 988,
+          "complete_raw_members": [
+            {
+              "endpoint": "C170.1",
+              "raw_pin_label": "1",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27000594@CAPACITOR.CC.NORMAL(CHIPS)",
+              "source_line": 993
+            },
+            {
+              "endpoint": "J18.47",
+              "raw_pin_label": "PETN0/SATA-A-",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 996
+            }
+          ]
+        },
+        "PCIE0_RX0_P": {
+          "raw_name": "PCIE0_RX0_P",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_RX0_P",
+          "source_line": 1716,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.133",
+              "raw_pin_label": "PCIE0_RX0_P",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 1721
+            },
+            {
+              "endpoint": "J18.43",
+              "raw_pin_label": "PERP0/SATA-B-",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 1724
+            }
+          ]
+        },
+        "PCIE0_RX0_N": {
+          "raw_name": "PCIE0_RX0_N",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_RX0_N",
+          "source_line": 1758,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.131",
+              "raw_pin_label": "PCIE0_RX0_N",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 1763
+            },
+            {
+              "endpoint": "J18.41",
+              "raw_pin_label": "PERN0/SATA-B+",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 1766
+            }
+          ]
+        },
+        "PCIE0_CLKREQ": {
+          "raw_name": "PCIE0_CLKREQ",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_CLKREQ",
+          "source_line": 7270,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.180",
+              "raw_pin_label": "PCIE0_CLKREQ",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 7274
+            },
+            {
+              "endpoint": "J18.52",
+              "raw_pin_label": "CLKREQ# (I/O)(0/3.3V) OR N/C",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 7277
+            }
+          ]
+        },
+        "PCIE0_RST": {
+          "raw_name": "PCIE0_RST",
+          "raw_path": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):PCIE0_RST",
+          "source_line": 9371,
+          "complete_raw_members": [
+            {
+              "endpoint": "J11.181",
+              "raw_pin_label": "PCIE0_RST",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS26702488@CONNECTOR.CON_SODIMM260_JETSON_ORIN NXC.NORMAL(CHIPS)",
+              "source_line": 9375
+            },
+            {
+              "endpoint": "R72.2",
+              "raw_pin_label": "2",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27004862@RESISTOR.R.NORMAL(CHIPS)",
+              "source_line": 9378
+            },
+            {
+              "endpoint": "J18.50",
+              "raw_pin_label": "PERST# (O)(0/3.3V) OR N/C",
+              "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS28705512@CONNECTOR.PCIE_M.2_KEY M_75PIN.NORMAL(CHIPS)",
+              "source_line": 9381
+            }
+          ]
+        }
+      },
+      "series_paths": [
+        {
+          "interface": "J401 PCIe1 P",
+          "nets": [
+            "PCIE1_TX0_P",
+            "PCIE1_M2_TX0_P"
+          ],
+          "capacitor": "C66",
+          "endpoints": [
+            "J11.174",
+            "C66.2",
+            "C66.1",
+            "J20.35"
+          ],
+          "raw_value": "100nF",
+          "primitive": "CC_C0402_100NF",
+          "part_source_line": 1858,
+          "primitive_source_line": 18,
+          "interpretation": "capacitor separates copper nets; no DC net merge or proven SI pass"
+        },
+        {
+          "interface": "J401 PCIe1 N",
+          "nets": [
+            "PCIE1_TX0_N",
+            "PCIE1_M2_TX0_N"
+          ],
+          "capacitor": "C65",
+          "endpoints": [
+            "J11.172",
+            "C65.2",
+            "C65.1",
+            "J20.37"
+          ],
+          "raw_value": "100nF",
+          "primitive": "CC_C0402_100NF",
+          "part_source_line": 1847,
+          "primitive_source_line": 18,
+          "interpretation": "capacitor separates copper nets; no DC net merge or proven SI pass"
+        },
+        {
+          "interface": "J401 PCIe0 lane0 P",
+          "nets": [
+            "PCIE0_TX0_P",
+            "PCIE0_TX0_M2_P"
+          ],
+          "capacitor": "C172",
+          "endpoints": [
+            "J11.136",
+            "C172.2",
+            "C172.1",
+            "J18.49"
+          ],
+          "raw_value": "220nF",
+          "primitive": "CC_C0402_220NF",
+          "part_source_line": 901,
+          "primitive_source_line": 258,
+          "interpretation": "capacitor separates copper nets; no DC net merge or proven SI pass"
+        },
+        {
+          "interface": "J401 PCIe0 lane0 N",
+          "nets": [
+            "PCIE0_TX0_N",
+            "PCIE0_TX0_M2_N"
+          ],
+          "capacitor": "C170",
+          "endpoints": [
+            "J11.134",
+            "C170.2",
+            "C170.1",
+            "J18.47"
+          ],
+          "raw_value": "220nF",
+          "primitive": "CC_C0402_220NF",
+          "part_source_line": 879,
+          "primitive_source_line": 258,
+          "interpretation": "capacitor separates copper nets; no DC net merge or proven SI pass"
+        }
+      ],
+      "dnp_token_counts": {
+        "pstchip.dat": 0,
+        "pstxprt.dat": 0,
+        "pstxnet.dat": 0
+      },
+      "schematic_dnp_refs_reviewed": [
+        "R99",
+        "R100",
+        "R153",
+        "R72"
+      ],
+      "assembly_limitation": "DNP seen on official schematic p16/p17; absent from reviewed raw instance/primitive records. No assembled-board population inferred.",
+      "upstream_pullup_endpoints": {
+        "net": "VDD_3V3_SYS",
+        "total_raw_endpoints": 107,
+        "selected": [
+          {
+            "endpoint": "R100.1",
+            "raw_pin_label": "1",
+            "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867585@RESISTOR.R.NORMAL(CHIPS)",
+            "source_line": 9038
+          },
+          {
+            "endpoint": "R99.1",
+            "raw_pin_label": "1",
+            "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25867564@RESISTOR.R.NORMAL(CHIPS)",
+            "source_line": 9041
+          },
+          {
+            "endpoint": "R153.1",
+            "raw_pin_label": "1",
+            "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS25873896@RESISTOR.R.NORMAL(CHIPS)",
+            "source_line": 9074
+          },
+          {
+            "endpoint": "R72.1",
+            "raw_pin_label": "1",
+            "occurrence": "@RECOMPUTER J401_V1.0.RECOMPUTER J401(SCH_1):INS27004862@RESISTOR.R.NORMAL(CHIPS)",
+            "source_line": 9218
+          }
+        ],
+        "complete_net_shown": false
+      }
+    },
+    "opencellular-breakout": {
+      "provenance": {
+        "repository": "Telecominfraproject/OpenCellular",
+        "commit": "0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6",
+        "license": "CC-BY-4.0",
+        "provenance": "native original upstream DAT triad; downloaded exact fixed Git blobs without conversion",
+        "files": [
+          {
+            "path": "electronics/breakout/schematic/Netlist/pstchip.dat",
+            "local_name": "pstchip.dat",
+            "git_blob": "47d56dceb8d6e3d2ab17b4ea828f7e8fcbf7aed6",
+            "bytes": 22456,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstchip.dat"
+          },
+          {
+            "path": "electronics/breakout/schematic/Netlist/pstxnet.dat",
+            "local_name": "pstxnet.dat",
+            "git_blob": "d0e8e1994d4ef5f4dca2fc71db36a5e3fbf50e9f",
+            "bytes": 55624,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstxnet.dat"
+          },
+          {
+            "path": "electronics/breakout/schematic/Netlist/pstxprt.dat",
+            "local_name": "pstxprt.dat",
+            "git_blob": "c90427c0a503ae2a6585949f0d4691b6bc6cacdf",
+            "bytes": 36402,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstxprt.dat"
+          },
+          {
+            "path": "electronics/breakout/schematic/OC_CONNECT_1_BRKOUT_BRD.pdf",
+            "local_name": "OC_CONNECT_1_BRKOUT_BRD.pdf",
+            "git_blob": "5826bc7bb975288b082e694a7c47a02e4896f4c1",
+            "bytes": 132229,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/OC_CONNECT_1_BRKOUT_BRD.pdf"
+          },
+          {
+            "path": "LICENSE-HARDWARE",
+            "local_name": "LICENSE-HARDWARE",
+            "git_blob": "a6d7fd364bcc113164fb923e4eb53ae6fd75cae4",
+            "bytes": 18104,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/LICENSE-HARDWARE"
+          },
+          {
+            "path": "README.md",
+            "local_name": "README.md",
+            "git_blob": "4e76e4e069bf9efb9035bc68f5c391233b650d4a",
+            "bytes": 2223,
+            "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/README.md"
+          }
+        ]
+      },
+      "selected_nets": {
+        "PCIE0_TXP": {
+          "raw_name": "PCIE0_TXP",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_TXP",
+          "source_line": 627,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3313.2",
+              "raw_pin_label": "2",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16554625@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 631
+            },
+            {
+              "endpoint": "J113.L4",
+              "raw_pin_label": "L4",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS370627@CONNECT1.HDAF-11-18-S-13-2L.NORMAL(CHIPS)",
+              "source_line": 634
+            }
+          ]
+        },
+        "PCIE0_TXN": {
+          "raw_name": "PCIE0_TXN",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_TXN",
+          "source_line": 647,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3313.3",
+              "raw_pin_label": "3",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16554625@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 651
+            },
+            {
+              "endpoint": "J113.M4",
+              "raw_pin_label": "M4",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS371345@CONNECT1.HDAF-11-18-S-13-2M.NORMAL(CHIPS)",
+              "source_line": 654
+            }
+          ]
+        },
+        "PCIE0_RXP": {
+          "raw_name": "PCIE0_RXP",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_RXP",
+          "source_line": 607,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3314.3",
+              "raw_pin_label": "3",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16555118@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 611
+            },
+            {
+              "endpoint": "J113.L6",
+              "raw_pin_label": "L6",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS370627@CONNECT1.HDAF-11-18-S-13-2L.NORMAL(CHIPS)",
+              "source_line": 614
+            }
+          ]
+        },
+        "PCIE0_RXN": {
+          "raw_name": "PCIE0_RXN",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_RXN",
+          "source_line": 667,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3314.2",
+              "raw_pin_label": "2",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16555118@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 671
+            },
+            {
+              "endpoint": "J113.M6",
+              "raw_pin_label": "M6",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS371345@CONNECT1.HDAF-11-18-S-13-2M.NORMAL(CHIPS)",
+              "source_line": 674
+            }
+          ]
+        },
+        "PCIE0_GBE_CLKP": {
+          "raw_name": "PCIE0_GBE_CLKP",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_GBE_CLKP",
+          "source_line": 617,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3313.6",
+              "raw_pin_label": "6",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16554625@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 621
+            },
+            {
+              "endpoint": "J113.L8",
+              "raw_pin_label": "L8",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS370627@CONNECT1.HDAF-11-18-S-13-2L.NORMAL(CHIPS)",
+              "source_line": 624
+            }
+          ]
+        },
+        "PCIE0_GBE_CLKN": {
+          "raw_name": "PCIE0_GBE_CLKN",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):PCIE0_GBE_CLKN",
+          "source_line": 637,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3313.5",
+              "raw_pin_label": "5",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16554625@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 641
+            },
+            {
+              "endpoint": "J113.M8",
+              "raw_pin_label": "M8",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS371345@CONNECT1.HDAF-11-18-S-13-2M.NORMAL(CHIPS)",
+              "source_line": 644
+            }
+          ]
+        },
+        "UART_RX": {
+          "raw_name": "UART_RX",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):UART_RX",
+          "source_line": 467,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3314.7",
+              "raw_pin_label": "7",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16555118@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 471
+            },
+            {
+              "endpoint": "J113.K3",
+              "raw_pin_label": "K3",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS371267@CONNECT1.HDAF-11-18-S-13-2K.NORMAL(CHIPS)",
+              "source_line": 474
+            }
+          ]
+        },
+        "SYNC_INT#": {
+          "raw_name": "SYNC_INT#",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):SYNC_INT#",
+          "source_line": 597,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3314.6",
+              "raw_pin_label": "6",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16555118@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 601
+            },
+            {
+              "endpoint": "J113.E11",
+              "raw_pin_label": "E11",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS371411@CONNECT1.HDAF-11-18-S-13-2E.NORMAL(CHIPS)",
+              "source_line": 604
+            }
+          ]
+        },
+        "IRQ_INT": {
+          "raw_name": "IRQ_INT",
+          "raw_path": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):IRQ_INT",
+          "source_line": 785,
+          "complete_raw_members": [
+            {
+              "endpoint": "J3314.5",
+              "raw_pin_label": "5",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS16555118@KANDINSKY.CON8.NORMAL(CHIPS)",
+              "source_line": 789
+            },
+            {
+              "endpoint": "J113.J4",
+              "raw_pin_label": "J4",
+              "occurrence": "@OC_CONNECT_1_BRKOUT_BRD.TEST_BRD(SCH_1):INS370735@CONNECT1.HDAF-11-18-S-13-2J.NORMAL(CHIPS)",
+              "source_line": 792
+            }
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Zero confirmed errors applies only to this local interpretation audit; no board or link pass is claimed.",
+    "Endpoint tests replay manually reviewed raw facts; they do not rerun datasheet reasoning or a language model.",
+    "No board-specific link generation, module population, power sequence, firmware configuration, PCB SI, or attached-device behavior was established.",
+    "The two samples are intentionally different provenance classes; fixture export is not relabeled native upstream DAT."
+  ]
+}

@@ -3,6 +3,8 @@
 The caller supplies units, assumptions, and the operating-mode validity. This
 module checks neither dimensions nor datasheet truth and does not prove a mode.
 Only a caller-declared ``valid`` calculation can return a usable result.
+``usable`` describes the arithmetic under that declaration, not independent
+verification of physical parameters, numeric literals, or a real working point.
 ``conditional`` results are labeled trial_result; invalid/unknown modes and
 missing or non-finite inputs produce no numeric value.
 """
@@ -91,11 +93,15 @@ def evaluate(record: Mapping) -> dict:
 
     Expected record fields are ``id``, ``inputs`` (name -> value/unit/source),
     ``expression``, ``result_unit``, ``assumptions``, and ``validity``
-    (status/reason). All declared inputs must be known finite numbers with a
-    non-empty source reference. Expressions use input names and numeric
+    (status/reason). Inputs actually referenced by the expression must be known
+    finite numbers with a non-empty source reference. Unused context entries
+    are preserved without becoming calculation prerequisites. Expressions use input names and numeric
     literals, arithmetic, parentheses, and min/max/abs/sqrt only.
 
     A source reference is checked for presence, not verified against the source.
+    Numeric literals remain allowed; neither their truth nor their physical
+    applicability is established by this tool. The investigation and review
+    must establish the provenance and meaning of a physical calculation.
     Supplied input/formula/assumption/validity fields are not rewritten. Generated
     result fields from an earlier evaluation are cleared before reevaluation.
     """
@@ -117,20 +123,6 @@ def evaluate(record: Mapping) -> dict:
         if mode in {"invalid", "unknown"}:
             output["reason"] = f"Operating-mode validity is {mode}; no numeric result computed"
             return output
-        inputs = record.get("inputs")
-        if not isinstance(inputs, Mapping):
-            raise ValueError("inputs must map each variable to value, unit, and source")
-        numbers = {}
-        for name, entry in inputs.items():
-            if not isinstance(name, str) or not name.isidentifier():
-                raise ValueError(f"Invalid input name: {name!r}")
-            if not isinstance(entry, Mapping):
-                raise ValueError(f"Input {name} must contain value, unit, and source")
-            if not _has_source(entry.get("source")):
-                raise ValueError(f"Missing source for input: {name}")
-            if not isinstance(entry.get("unit"), str):
-                raise ValueError(f"Input {name} needs a unit string; use empty string if dimensionless")
-            numbers[name] = _number(entry.get("value"), f"Input {name}")
         expression = record.get("expression")
         if not isinstance(expression, str) or not expression.strip():
             raise ValueError("expression must be a non-empty string")
@@ -141,6 +133,27 @@ def evaluate(record: Mapping) -> dict:
         tree = ast.parse(expression.strip(), mode="eval")
         if sum(1 for _ in ast.walk(tree)) > 256:
             raise ValueError("Expression exceeds the 256-node limit")
+        inputs = record.get("inputs")
+        if not isinstance(inputs, Mapping):
+            raise ValueError("inputs must map each variable to value, unit, and source")
+        # A function name in min(x, y) is not an input. A separate bare variable
+        # named min is still an input, so distinguish the individual AST nodes.
+        call_names = {id(node.func) for node in ast.walk(tree)
+                      if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)}
+        used_names = {node.id for node in ast.walk(tree)
+                      if isinstance(node, ast.Name) and id(node) not in call_names}
+        numbers = {}
+        for name in sorted(used_names):
+            if name not in inputs:
+                raise ValueError(f"Missing sourced input: {name}")
+            entry = inputs[name]
+            if not isinstance(entry, Mapping):
+                raise ValueError(f"Input {name} must contain value, unit, and source")
+            if not _has_source(entry.get("source")):
+                raise ValueError(f"Missing source for input: {name}")
+            if not isinstance(entry.get("unit"), str):
+                raise ValueError(f"Input {name} needs a unit string; use empty string if dimensionless")
+            numbers[name] = _number(entry.get("value"), f"Input {name}")
         value = _calculate(tree, numbers)
     except (ValueError, SyntaxError, ArithmeticError) as exc:
         output["reason"] = str(exc)

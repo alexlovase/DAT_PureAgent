@@ -108,6 +108,34 @@ class CalculationTests(unittest.TestCase):
                     self.assertIsNone(output["result"])
             self.assertFalse(marker.exists())
 
+    def test_unused_context_does_not_block_but_used_unknown_still_does(self):
+        record = divider_record()
+        record["inputs"]["unrelated_current"] = {"value": None, "unit": "A", "source": None}
+        record["inputs"]["unrelated_note"] = "Unstructured context is not part of this expression."
+        before = deepcopy(record)
+        output = evaluate(record)
+        self.assertEqual(output["result"], 2.5)
+        self.assertTrue(output["usable"])
+        self.assertEqual(output["inputs"], before["inputs"])
+        self.assertEqual(record, before)
+
+        record["expression"] = "vin * rbot / (rtop + rbot) + unrelated_current"
+        failed = evaluate(record)
+        self.assertFalse(failed["usable"])
+        self.assertIsNone(failed["result"])
+        self.assertIn("unrelated_current", failed["reason"])
+
+    def test_function_names_are_not_inputs_but_bare_same_named_variable_is(self):
+        record = divider_record()
+        record["expression"] = "min(vin, 4)"
+        self.assertEqual(evaluate(record)["result"], 4)
+
+        record["expression"] = "min(vin, 4) + min"
+        missing = evaluate(record)
+        self.assertFalse(missing["usable"])
+        record["inputs"]["min"] = {"value": 1, "unit": "V", "source": "synthetic independent input"}
+        self.assertEqual(evaluate(record)["result"], 5)
+
     def test_allowed_functions_and_arithmetic_domain_errors(self):
         record = divider_record()
         record["expression"] = "min(max(sqrt(vin ** 2), abs(-vin)), 10)"
@@ -154,6 +182,30 @@ class ReportTests(unittest.TestCase):
                 report = build_report([candidate], [review], coverage)
                 self.assertEqual(report["confirmed_errors"], [])
                 self.assertEqual(report["run_status"], "partial_review")
+
+    def test_applicable_requirement_can_replace_datasheet_without_weakening_review(self):
+        candidate, review, coverage = report_records()
+        del review["datasheet_evidence"]
+        review["requirement_evidence"] = {
+            "source": "Synthetic user-supplied interface contract",
+            "requirement": "The two specified physical contacts must remain on separate nets.",
+        }
+        report = build_report([candidate], [review], coverage)
+        self.assertEqual(len(report["confirmed_errors"]), 1)
+        error = report["confirmed_errors"][0]
+        self.assertEqual(error["requirement_evidence"], review["requirement_evidence"])
+        self.assertNotIn("datasheet_evidence", error)
+
+        for change in ("empty_requirement", "self_review", "missing_connection"):
+            with self.subTest(change=change):
+                changed = deepcopy(review)
+                if change == "empty_requirement":
+                    changed["requirement_evidence"] = [None, {}, " "]
+                elif change == "self_review":
+                    changed["reviewer"] = candidate["investigator"]
+                else:
+                    changed["raw_connection_evidence"] = None
+                self.assertEqual(build_report([candidate], [changed], coverage)["confirmed_errors"], [])
 
     def test_undetermined_refuted_and_later_reopened_candidates_stay_internal(self):
         for verdict in ("undetermined", "refuted", "unknown"):

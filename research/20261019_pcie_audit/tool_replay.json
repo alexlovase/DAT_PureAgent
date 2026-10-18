@@ -1,0 +1,378 @@
+{
+  "execution": "deterministic public ToolSession queries against independently reviewed raw expectations",
+  "new_llm_calls": 0,
+  "net_expectations_checked": 28,
+  "series_paths_checked": 4,
+  "samples": {
+    "j401-fixture": {
+      "overview": {
+        "components": 728,
+        "physical_pins": 2490,
+        "electrical_nets": 534,
+        "connected_endpoints": 2401,
+        "pin_states": {
+          "connected": 2401,
+          "unconnected": 89
+        },
+        "nc_exported_endpoints": 89,
+        "nc_declared_pins": 0,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "net_checks": [
+        {
+          "net": "PCIE1_TX0_P",
+          "complete_endpoints": [
+            "C66.2",
+            "J11.174"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_M2_TX0_P",
+          "complete_endpoints": [
+            "C66.1",
+            "J20.35"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_TX0_N",
+          "complete_endpoints": [
+            "C65.2",
+            "J11.172"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_M2_TX0_N",
+          "complete_endpoints": [
+            "C65.1",
+            "J20.37"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_RX0_P",
+          "complete_endpoints": [
+            "J11.169",
+            "J20.41"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_RX0_N",
+          "complete_endpoints": [
+            "J11.167",
+            "J20.43"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_CLK_P",
+          "complete_endpoints": [
+            "J11.175",
+            "J20.47"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_CLK_N",
+          "complete_endpoints": [
+            "J11.173",
+            "J20.49"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_CLKREQ",
+          "complete_endpoints": [
+            "J11.182",
+            "J20.53",
+            "R99.2"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE1_RST",
+          "complete_endpoints": [
+            "J11.183",
+            "J20.52",
+            "R153.2"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE_WAKE",
+          "complete_endpoints": [
+            "J11.179",
+            "J18.54",
+            "J20.55",
+            "R100.2"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_TX0_P",
+          "complete_endpoints": [
+            "C172.2",
+            "J11.136"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_TX0_M2_P",
+          "complete_endpoints": [
+            "C172.1",
+            "J18.49"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_TX0_N",
+          "complete_endpoints": [
+            "C170.2",
+            "J11.134"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_TX0_M2_N",
+          "complete_endpoints": [
+            "C170.1",
+            "J18.47"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_RX0_P",
+          "complete_endpoints": [
+            "J11.133",
+            "J18.43"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_RX0_N",
+          "complete_endpoints": [
+            "J11.131",
+            "J18.41"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_CLKREQ",
+          "complete_endpoints": [
+            "J11.180",
+            "J18.52"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_RST",
+          "complete_endpoints": [
+            "J11.181",
+            "J18.50",
+            "R72.2"
+          ],
+          "equal": true
+        }
+      ],
+      "series_paths": [
+        {
+          "interface": "J401 PCIe1 P",
+          "nets": [
+            "PCIE1_TX0_P",
+            "PCIE1_M2_TX0_P"
+          ],
+          "capacitor": "C66",
+          "endpoints": [
+            "J11.174",
+            "C66.2",
+            "C66.1",
+            "J20.35"
+          ],
+          "raw_value": "100nF",
+          "distinct_copper_nets": true,
+          "value_and_capacitor_pins_equal": true
+        },
+        {
+          "interface": "J401 PCIe1 N",
+          "nets": [
+            "PCIE1_TX0_N",
+            "PCIE1_M2_TX0_N"
+          ],
+          "capacitor": "C65",
+          "endpoints": [
+            "J11.172",
+            "C65.2",
+            "C65.1",
+            "J20.37"
+          ],
+          "raw_value": "100nF",
+          "distinct_copper_nets": true,
+          "value_and_capacitor_pins_equal": true
+        },
+        {
+          "interface": "J401 PCIe0 lane0 P",
+          "nets": [
+            "PCIE0_TX0_P",
+            "PCIE0_TX0_M2_P"
+          ],
+          "capacitor": "C172",
+          "endpoints": [
+            "J11.136",
+            "C172.2",
+            "C172.1",
+            "J18.49"
+          ],
+          "raw_value": "220nF",
+          "distinct_copper_nets": true,
+          "value_and_capacitor_pins_equal": true
+        },
+        {
+          "interface": "J401 PCIe0 lane0 N",
+          "nets": [
+            "PCIE0_TX0_N",
+            "PCIE0_TX0_M2_N"
+          ],
+          "capacitor": "C170",
+          "endpoints": [
+            "J11.134",
+            "C170.2",
+            "C170.1",
+            "J18.47"
+          ],
+          "raw_value": "220nF",
+          "distinct_copper_nets": true,
+          "value_and_capacitor_pins_equal": true
+        }
+      ],
+      "assembly_queries": {
+        "R99": {
+          "value": "47K",
+          "assembly": "unspecified"
+        },
+        "R100": {
+          "value": "47K",
+          "assembly": "unspecified"
+        },
+        "R153": {
+          "value": "47K",
+          "assembly": "unspecified"
+        },
+        "R72": {
+          "value": "47K",
+          "assembly": "unspecified"
+        }
+      },
+      "assembly_interpretation": "DAT does not establish population. Schematic DNP was reviewed separately; this replay does not convert schematic intent into actual assembled-board state.",
+      "session_stats": {
+        "graph_loads": 1,
+        "open_pdfs": 0,
+        "tool_calls": 37
+      }
+    },
+    "opencellular-breakout": {
+      "overview": {
+        "components": 68,
+        "physical_pins": 348,
+        "electrical_nets": 75,
+        "connected_endpoints": 324,
+        "pin_states": {
+          "connected": 324,
+          "unconnected": 24
+        },
+        "nc_exported_endpoints": 24,
+        "nc_declared_pins": 0,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "net_checks": [
+        {
+          "net": "PCIE0_TXP",
+          "complete_endpoints": [
+            "J113.L4",
+            "J3313.2"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_TXN",
+          "complete_endpoints": [
+            "J113.M4",
+            "J3313.3"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_RXP",
+          "complete_endpoints": [
+            "J113.L6",
+            "J3314.3"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_RXN",
+          "complete_endpoints": [
+            "J113.M6",
+            "J3314.2"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_GBE_CLKP",
+          "complete_endpoints": [
+            "J113.L8",
+            "J3313.6"
+          ],
+          "equal": true
+        },
+        {
+          "net": "PCIE0_GBE_CLKN",
+          "complete_endpoints": [
+            "J113.M8",
+            "J3313.5"
+          ],
+          "equal": true
+        },
+        {
+          "net": "UART_RX",
+          "complete_endpoints": [
+            "J113.K3",
+            "J3314.7"
+          ],
+          "equal": true
+        },
+        {
+          "net": "SYNC_INT#",
+          "complete_endpoints": [
+            "J113.E11",
+            "J3314.6"
+          ],
+          "equal": true
+        },
+        {
+          "net": "IRQ_INT",
+          "complete_endpoints": [
+            "J113.J4",
+            "J3314.5"
+          ],
+          "equal": true
+        }
+      ],
+      "session_stats": {
+        "graph_loads": 1,
+        "open_pdfs": 0,
+        "tool_calls": 11
+      }
+    }
+  },
+  "limitations": [
+    "This script verifies query facts, not the physical correctness of an entire board or link.",
+    "Cross-capacitor paths are manually reviewed fixture expectations, not automatic path discovery.",
+    "The original electrical audit is partial; zero confirmed board errors is not a pass result.",
+    "No model cost, hallucination rate, timing benefit, PCIe SI, or configured link generation is measured."
+  ]
+}

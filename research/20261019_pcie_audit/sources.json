@@ -1,0 +1,161 @@
+{
+  "research_date": "2026-10-19",
+  "scope": "PCIe-related PCB schematic netlists, excluding HDL gate-level and toy SPICE netlists",
+  "fixtures": [
+    {
+      "id": "j401-fixture",
+      "cache_directory": "j401-fixture",
+      "repository": "IntelligentElectron/test-fixtures",
+      "commit": "1a46586c4323e3071804923b4be1ed56e21cf8e1",
+      "license": "Apache-2.0",
+      "source_type": "fixture-provided-native-PST-export",
+      "provenance": "fixture-provided Cadence PST; matching original DSN/PDF exists upstream, but upstream original DAT path not found in HEAD/history; not claimed as original upstream DAT",
+      "assets": [
+        {
+          "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstchip.dat",
+          "local_name": "pstchip.dat",
+          "git_blob": "496fa6e62e25881b1dc04391649e247578b93690",
+          "bytes": 97092,
+          "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstchip.dat",
+          "local_path": "j401-fixture/pstchip.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstxnet.dat",
+          "local_name": "pstxnet.dat",
+          "git_blob": "18c9687a4c8d1d6dbdee9b0f577541298548911d",
+          "bytes": 388560,
+          "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstxnet.dat",
+          "local_path": "j401-fixture/pstxnet.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "cadence/OSHW-Jetson-Series/reComputer Jetson carrier board/reComputer J401/Schematic/allegro/pstxprt.dat",
+          "local_name": "pstxprt.dat",
+          "git_blob": "2f7cecaf12ee33f84b037347ce372a65cf5b65a5",
+          "bytes": 304430,
+          "url": "https://raw.githubusercontent.com/IntelligentElectron/test-fixtures/1a46586c4323e3071804923b4be1ed56e21cf8e1/cadence/OSHW-Jetson-Series/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/allegro/pstxprt.dat",
+          "local_path": "j401-fixture/pstxprt.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "LICENSE",
+          "local_name": "LICENSE",
+          "git_blob": "2cb7e9a3553d32625495610c2379ec9dce29de8e",
+          "bytes": 11365,
+          "url": "https://raw.githubusercontent.com/Seeed-Studio/OSHW-Jetson-Series/0f0797e4bb6cc5787f800af63908b23544050072/LICENSE",
+          "local_path": "j401-fixture/LICENSE",
+          "purpose": "license"
+        },
+        {
+          "path": "reComputer Jetson carrier board/reComputer J401/README.md",
+          "local_name": "README.md",
+          "git_blob": "6d759a28deee2e179a1be1d38f619dc2e918fc49",
+          "bytes": 3849,
+          "url": "https://raw.githubusercontent.com/Seeed-Studio/OSHW-Jetson-Series/0f0797e4bb6cc5787f800af63908b23544050072/reComputer%20Jetson%20carrier%20board/reComputer%20J401/README.md",
+          "local_path": "j401-fixture/README.md",
+          "purpose": "upstream-documentation"
+        },
+        {
+          "path": "reComputer Jetson carrier board/reComputer J401/Schematic/reComputer J401_V1.0.pdf",
+          "local_name": "reComputer_J401_V1.0.pdf",
+          "git_blob": "a3c87b994fdabf218583394585af066c7d8d7c1f",
+          "bytes": 1217114,
+          "url": "https://raw.githubusercontent.com/Seeed-Studio/OSHW-Jetson-Series/0f0797e4bb6cc5787f800af63908b23544050072/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/reComputer%20J401_V1.0.pdf",
+          "local_path": "j401-fixture/reComputer_J401_V1.0.pdf",
+          "purpose": "upstream-documentation"
+        },
+        {
+          "path": "reComputer Jetson carrier board/reComputer J401/Schematic/reComputer J401_V1.0.DSN",
+          "local_name": "reComputer_J401_V1.0.DSN",
+          "git_blob": "0aa53f6f64496432dcda8afa488b1b7ba778a4a1",
+          "bytes": 2963456,
+          "url": "https://raw.githubusercontent.com/Seeed-Studio/OSHW-Jetson-Series/0f0797e4bb6cc5787f800af63908b23544050072/reComputer%20Jetson%20carrier%20board/reComputer%20J401/Schematic/reComputer%20J401_V1.0.DSN",
+          "local_path": "j401-fixture/reComputer_J401_V1.0.DSN",
+          "purpose": "upstream-design-source"
+        }
+      ],
+      "corroborating_original_upstream": {
+        "repository": "Seeed-Studio/OSHW-Jetson-Series",
+        "commit": "0f0797e4bb6cc5787f800af63908b23544050072",
+        "license": "Apache-2.0",
+        "provenance": "Original upstream design and schematic, corroborates matching fixture DSN (identical Git blob); tri-DAT provenance remains fixture export, not upstream original file.",
+        "matching_fixture_and_upstream_blobs": {
+          "DSN": "0aa53f6f64496432dcda8afa488b1b7ba778a4a1",
+          "PDF": "a3c87b994fdabf218583394585af066c7d8d7c1f"
+        }
+      },
+      "provenance_notes": [
+        "No original pst*.dat files were present at the expected J401 path in original upstream HEAD or its queried per-path history; do not describe these DAT files as originally committed by Seeed.",
+        "Fixture DAT first appears at IntelligentElectron/test-fixtures@fa7283cafe12e5524765bb1d94cdc9103f1d0fa9 (2026-03-19), commit message: consolidate test fixture data from individual forks.",
+        "DAT header identifies PSTWRITER 23.1.0 on Mar-04-2026; POST_TIME is Jun 18 2025.",
+        "The original DSN and PDF Git blob identities match the fixture copies exactly; this establishes design-source correspondence, not independent reproduction of the DAT export."
+      ]
+    },
+    {
+      "id": "opencellular-breakout",
+      "cache_directory": "opencellular-breakout",
+      "repository": "Telecominfraproject/OpenCellular",
+      "commit": "0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6",
+      "license": "CC-BY-4.0",
+      "source_type": "original-upstream-native-PST",
+      "provenance": "native original upstream DAT triad; downloaded exact fixed Git blobs without conversion",
+      "assets": [
+        {
+          "path": "electronics/breakout/schematic/Netlist/pstchip.dat",
+          "local_name": "pstchip.dat",
+          "git_blob": "47d56dceb8d6e3d2ab17b4ea828f7e8fcbf7aed6",
+          "bytes": 22456,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstchip.dat",
+          "local_path": "opencellular-breakout/pstchip.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "electronics/breakout/schematic/Netlist/pstxnet.dat",
+          "local_name": "pstxnet.dat",
+          "git_blob": "d0e8e1994d4ef5f4dca2fc71db36a5e3fbf50e9f",
+          "bytes": 55624,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstxnet.dat",
+          "local_path": "opencellular-breakout/pstxnet.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "electronics/breakout/schematic/Netlist/pstxprt.dat",
+          "local_name": "pstxprt.dat",
+          "git_blob": "c90427c0a503ae2a6585949f0d4691b6bc6cacdf",
+          "bytes": 36402,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/Netlist/pstxprt.dat",
+          "local_path": "opencellular-breakout/pstxprt.dat",
+          "purpose": "parser-input"
+        },
+        {
+          "path": "electronics/breakout/schematic/OC_CONNECT_1_BRKOUT_BRD.pdf",
+          "local_name": "OC_CONNECT_1_BRKOUT_BRD.pdf",
+          "git_blob": "5826bc7bb975288b082e694a7c47a02e4896f4c1",
+          "bytes": 132229,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/OC_CONNECT_1_BRKOUT_BRD.pdf",
+          "local_path": "opencellular-breakout/OC_CONNECT_1_BRKOUT_BRD.pdf",
+          "purpose": "upstream-documentation"
+        },
+        {
+          "path": "LICENSE-HARDWARE",
+          "local_name": "LICENSE-HARDWARE",
+          "git_blob": "a6d7fd364bcc113164fb923e4eb53ae6fd75cae4",
+          "bytes": 18104,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/LICENSE-HARDWARE",
+          "local_path": "opencellular-breakout/LICENSE-HARDWARE",
+          "purpose": "license"
+        },
+        {
+          "path": "README.md",
+          "local_name": "README.md",
+          "git_blob": "4e76e4e069bf9efb9035bc68f5c391233b650d4a",
+          "bytes": 2223,
+          "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/README.md",
+          "local_path": "opencellular-breakout/README.md",
+          "purpose": "upstream-documentation"
+        }
+      ]
+    }
+  ]
+}

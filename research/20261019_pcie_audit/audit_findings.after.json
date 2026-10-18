@@ -1,0 +1,514 @@
+{
+  "scope": "Independent implementation flexibility audit; all fixture mutations are synthetic; this probe script does not edit production source.",
+  "reference_baseline_commit": "3f1a7dcdce7a88cfbdb214eb8a7de48340f4425e",
+  "measurement_phase": "after audit fixes",
+  "source_sha256": {
+    "pureagent/dat.py": "dfc3f4577d868f202f3909a9fd08bf654e1313de00609cf4e3975e1b8873ab5c",
+    "pureagent/calculations.py": "3bb9d795cd25b2d38e96b756b490f0d0cc98342a89acfc59c298a23443f97ab0",
+    "pureagent/report.py": "87ee105a30d66f35153fb6286a4ad8b10c610a52f0647bb4f0bd7b551ed9afc6",
+    "pureagent/cli.py": "669960b696b91efd999b8b96154723327e505c2443bdb5530251a5fb043c4026"
+  },
+  "probe_count": 17,
+  "results": [
+    {
+      "probe": "identical_same_net_endpoint_repetition",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 1,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "same_endpoint_second_logical_name",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 1,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "optional_package_conflict",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 0,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "missing_one_library_pin_number_explicit_nodes_survive_in_raw",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "unconnected": 11,
+            "connected": 537
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 4,
+          "next": "inventory enumerates every instance; component/net expand all members",
+          "pin_inventory_complete": false,
+          "unresolved_library_declarations": 2
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "unused_library_primitive_with_unsupported_power_attribute",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 0,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "identical_primitive_repetition",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "Duplicate primitive ANTENNA_ANT_1206_2450AT18A100E"
+      }
+    },
+    {
+      "probe": "same_physical_pin_on_two_distinct_nets",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 538,
+          "pin_states": {
+            "connected": 536,
+            "unconnected": 11,
+            "conflicting_records": 1
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 1,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": false,
+        "inspection": {
+          "pin": {
+            "ref": "U1",
+            "pin": "8",
+            "names": [
+              "ISET"
+            ],
+            "state": "conflicting_records",
+            "nets": [
+              "N00337",
+              "UVLO"
+            ]
+          },
+          "uvlo_net": {
+            "name": "UVLO",
+            "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+            "members": {
+              "total": 2,
+              "offset": 0,
+              "items": [
+                {
+                  "ref": "U1",
+                  "pin": "8",
+                  "name": "ISET",
+                  "state": "conflicting_records"
+                },
+                {
+                  "ref": "U6",
+                  "pin": "7",
+                  "name": "UVLO"
+                }
+              ],
+              "next_offset": null
+            }
+          },
+          "uvlo_boundary": [
+            {
+              "net": "UVLO",
+              "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+              "outside": [
+                {
+                  "ref": "U1",
+                  "pin": "8",
+                  "name": "ISET",
+                  "state": "conflicting_records"
+                }
+              ]
+            }
+          ],
+          "diagnostics": [
+            {
+              "kind": "conflicting_pin_records",
+              "ref": "U1",
+              "pin": "8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "probe": "optional_identity_missing_control",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 0,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "missing_library_definition_control",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 3,
+          "next": "inventory enumerates every instance; component/net expand all members",
+          "pin_inventory_complete": false,
+          "unresolved_library_declarations": 0
+        },
+        "same_ordinary_endpoint_multiset_as_original": true,
+        "inspection": {
+          "r1": {
+            "ref": "R1",
+            "type_hint": null,
+            "value": null,
+            "assembly": "unspecified",
+            "pins": {
+              "total": 2,
+              "offset": 0,
+              "items": [
+                {
+                  "pin": "1",
+                  "names": [
+                    "1"
+                  ],
+                  "state": "connected",
+                  "nets": [
+                    "N33179"
+                  ],
+                  "declaration": "absent"
+                },
+                {
+                  "pin": "2",
+                  "names": [
+                    "2"
+                  ],
+                  "state": "connected",
+                  "nets": [
+                    "N08855"
+                  ],
+                  "declaration": "absent"
+                }
+              ],
+              "next_offset": null
+            }
+          },
+          "boundary_n33179": [
+            {
+              "net": "N33179",
+              "path": "@CLAYR6.SCHEMATIC1(SCH_1):N33179",
+              "outside": [
+                {
+                  "ref": "R1",
+                  "pin": "1",
+                  "name": "1",
+                  "declaration": "absent"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "probe": "calculation_baseline",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": "synthetic R1 fixed value"
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": 3000.0,
+        "usable": true,
+        "status": "evaluated"
+      }
+    },
+    {
+      "probe": "unused_unknown_input_in_payload",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": "synthetic R1 fixed value"
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          },
+          "unrelated_external_current": {
+            "value": null,
+            "unit": "A",
+            "source": "Not provided; this variable is absent from the expression."
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": 3000.0,
+        "usable": true,
+        "status": "evaluated"
+      }
+    },
+    {
+      "probe": "referenced_unsourced_input_control",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": null
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": null,
+        "usable": false,
+        "status": "not_computed",
+        "reason": "Missing source for input: r1"
+      }
+    },
+    {
+      "probe": "numeric_literals_with_no_declared_inputs",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {},
+        "expression": "1000 + 2000",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": 3000.0,
+        "usable": true,
+        "status": "evaluated"
+      }
+    },
+    {
+      "probe": "requirement_evidence_without_datasheet",
+      "observed": {
+        "run_status": "partial_review",
+        "scope": "Synthetic report-schema probe only.",
+        "confirmed_errors": [
+          {
+            "id": "synthetic_supplied_rail_short",
+            "why": "Synthetic supplied interface contract assigns J1.1 to +12 V and J1.2 to return; both physical contacts are on one net.",
+            "raw_connection_evidence": "Synthetic net N1 has J1.1 and J1.2.",
+            "recommendation": "Separate the supply and return contacts according to the supplied interface contract.",
+            "requirement_evidence": "Synthetic user-supplied interface contract: J1.1 is +12 V, J1.2 is return."
+          }
+        ]
+      }
+    },
+    {
+      "probe": "nonempty_datasheet_placeholder",
+      "observed": {
+        "run_status": "partial_review",
+        "scope": "Synthetic report-schema probe only.",
+        "confirmed_errors": [
+          {
+            "id": "synthetic_supplied_rail_short",
+            "why": "Synthetic supplied interface contract assigns J1.1 to +12 V and J1.2 to return; both physical contacts are on one net.",
+            "raw_connection_evidence": "Synthetic net N1 has J1.1 and J1.2.",
+            "recommendation": "Separate the supply and return contacts according to the supplied interface contract.",
+            "datasheet_evidence": "Not applicable: no datasheet was used.",
+            "requirement_evidence": "Synthetic user-supplied interface contract: J1.1 is +12 V, J1.2 is return."
+          }
+        ]
+      }
+    },
+    {
+      "probe": "actual_u6_complete_boundary_size",
+      "observed": {
+        "nets": 7,
+        "outside_endpoints": 197,
+        "by_net": [
+          {
+            "net": "N00478",
+            "outside_endpoints": 1
+          },
+          {
+            "net": "N00355",
+            "outside_endpoints": 1
+          },
+          {
+            "net": "VCC",
+            "outside_endpoints": 83
+          },
+          {
+            "net": "GND",
+            "outside_endpoints": 102
+          },
+          {
+            "net": "VBAT",
+            "outside_endpoints": 5
+          },
+          {
+            "net": "GND_EARTH",
+            "outside_endpoints": 5
+          },
+          {
+            "net": "UVLO",
+            "outside_endpoints": 0
+          }
+        ],
+        "uvlo_complete_net": {
+          "name": "UVLO",
+          "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+          "members": {
+            "total": 1,
+            "offset": 0,
+            "items": [
+              {
+                "ref": "U6",
+                "pin": "7",
+                "name": "UVLO"
+              }
+            ],
+            "next_offset": null
+          }
+        }
+      }
+    },
+    {
+      "probe": "sparse_document_index",
+      "observed": {
+        "datasheets_reply": {
+          "ok": true,
+          "result": [
+            {
+              "file": "local.pdf",
+              "refdes": [
+                "U6"
+              ],
+              "model": "TPS61201"
+            }
+          ]
+        },
+        "graph_query_still_works": true
+      }
+    }
+  ]
+}

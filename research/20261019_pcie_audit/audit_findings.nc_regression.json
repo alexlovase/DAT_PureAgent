@@ -1,0 +1,42 @@
+{
+  "scope": "Synthetic conflicting NC alias regression, independently reproduced during audit and reread after the fix. Not an original board defect.",
+  "mutation": "Replace the original NC-group C_SIGNAL='NC'; with C_SIGNAL='NC', C_SIGNAL='UNRESOLVED_ALIAS';",
+  "intermediate_regression_observed": {
+    "electrical_nets": 165,
+    "connected_endpoints": 546,
+    "nc_exported_endpoints": 0,
+    "U7.9_state": "connected",
+    "input_diagnostic_count": 0
+  },
+  "fixed_observation": {
+    "overview": {
+      "components": 133,
+      "physical_pins": 548,
+      "electrical_nets": 164,
+      "connected_endpoints": 537,
+      "pin_states": {
+        "connected": 537,
+        "unconnected": 2,
+        "conflicting_records": 9
+      },
+      "nc_exported_endpoints": 9,
+      "nc_declared_pins": 2,
+      "input_diagnostic_count": 9,
+      "next": "inventory enumerates every instance; component/net expand all members"
+    },
+    "U7.9": {
+      "ref": "U7",
+      "pin": "9",
+      "names": [
+        "MTMS"
+      ],
+      "state": "conflicting_records",
+      "nets": [],
+      "mapping_issues": [
+        "ambiguous_nc_group"
+      ]
+    },
+    "NC_is_not_an_ordinary_net": true
+  },
+  "verified_parser_sha256": "dfc3f4577d868f202f3909a9fd08bf654e1313de00609cf4e3975e1b8873ab5c"
+}

@@ -1,0 +1,427 @@
+{
+  "scope": "Independent implementation flexibility audit; all fixture mutations are synthetic; this probe script does not edit production source.",
+  "source_sha256": {
+    "pureagent/dat.py": "58307bd8ef39088a06911e183508a54c7b0b92dc5995bb1783b85f1f5894fcd6",
+    "pureagent/calculations.py": "1b095d0fa8f7229c595ef22a89418a5e32e588550d36ca270bdeac3aae080e9e",
+    "pureagent/report.py": "aa7ca51a5455487011e5a7f61656e7e7f9521182a878cbe45cfe8bdbf7a0ca32",
+    "pureagent/cli.py": "2744f210d361e346a4d467d77dd1f75a403334a290e51020129dbde229ec8934"
+  },
+  "probe_count": 17,
+  "results": [
+    {
+      "probe": "identical_same_net_endpoint_repetition",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "pstxnet.dat:233: duplicate endpoint U1.8 on N00337"
+      }
+    },
+    {
+      "probe": "same_endpoint_second_logical_name",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "pstxnet.dat:233: duplicate endpoint U1.8 on N00337"
+      }
+    },
+    {
+      "probe": "optional_package_conflict",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "pstchip.dat: conflicting property JEDEC_TYPE"
+      }
+    },
+    {
+      "probe": "missing_one_library_pin_number_explicit_nodes_survive_in_raw",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "pstchip.dat:5: pin has no physical PIN_NUMBER"
+      }
+    },
+    {
+      "probe": "unused_library_primitive_with_unsupported_power_attribute",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "POWER_PINS dialect is not yet supported; cannot certify physical-pin coverage"
+      }
+    },
+    {
+      "probe": "identical_primitive_repetition",
+      "observed": {
+        "loaded": false,
+        "error_type": "DatError",
+        "error": "Duplicate primitive ANTENNA_ANT_1206_2450AT18A100E"
+      }
+    },
+    {
+      "probe": "same_physical_pin_on_two_distinct_nets",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 538,
+          "pin_states": {
+            "connected": 536,
+            "unconnected": 11,
+            "conflicting_records": 1
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 1,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": false,
+        "inspection": {
+          "pin": {
+            "ref": "U1",
+            "pin": "8",
+            "names": [
+              "ISET"
+            ],
+            "state": "conflicting_records",
+            "nets": [
+              "N00337",
+              "UVLO"
+            ]
+          },
+          "uvlo_net": {
+            "name": "UVLO",
+            "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+            "members": {
+              "total": 2,
+              "offset": 0,
+              "items": [
+                {
+                  "ref": "U1",
+                  "pin": "8",
+                  "name": "ISET"
+                },
+                {
+                  "ref": "U6",
+                  "pin": "7",
+                  "name": "UVLO"
+                }
+              ],
+              "next_offset": null
+            }
+          },
+          "uvlo_boundary": [
+            {
+              "net": "UVLO",
+              "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+              "outside": [
+                {
+                  "ref": "U1",
+                  "pin": "8",
+                  "name": "ISET"
+                }
+              ]
+            }
+          ],
+          "diagnostics": [
+            {
+              "kind": "conflicting_pin_records",
+              "ref": "U1",
+              "pin": "8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "probe": "optional_identity_missing_control",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 0,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true
+      }
+    },
+    {
+      "probe": "missing_library_definition_control",
+      "observed": {
+        "loaded": true,
+        "overview": {
+          "components": 133,
+          "physical_pins": 548,
+          "electrical_nets": 164,
+          "connected_endpoints": 537,
+          "pin_states": {
+            "connected": 537,
+            "unconnected": 11
+          },
+          "nc_exported_endpoints": 9,
+          "nc_declared_pins": 2,
+          "input_diagnostic_count": 3,
+          "next": "inventory enumerates every instance; component/net expand all members"
+        },
+        "same_ordinary_endpoint_multiset_as_original": true,
+        "inspection": {
+          "r1": {
+            "ref": "R1",
+            "type_hint": null,
+            "value": null,
+            "assembly": "unspecified",
+            "pins": {
+              "total": 2,
+              "offset": 0,
+              "items": [
+                {
+                  "pin": "1",
+                  "names": [
+                    "1"
+                  ],
+                  "state": "connected",
+                  "nets": [
+                    "N33179"
+                  ],
+                  "declaration": "absent"
+                },
+                {
+                  "pin": "2",
+                  "names": [
+                    "2"
+                  ],
+                  "state": "connected",
+                  "nets": [
+                    "N08855"
+                  ],
+                  "declaration": "absent"
+                }
+              ],
+              "next_offset": null
+            }
+          },
+          "boundary_n33179": [
+            {
+              "net": "N33179",
+              "path": "@CLAYR6.SCHEMATIC1(SCH_1):N33179",
+              "outside": [
+                {
+                  "ref": "R1",
+                  "pin": "1",
+                  "name": "1"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "probe": "calculation_baseline",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": "synthetic R1 fixed value"
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": 3000.0,
+        "usable": true,
+        "status": "evaluated"
+      }
+    },
+    {
+      "probe": "unused_unknown_input_in_payload",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": "synthetic R1 fixed value"
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          },
+          "unrelated_external_current": {
+            "value": null,
+            "unit": "A",
+            "source": "Not provided; this variable is absent from the expression."
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": null,
+        "usable": false,
+        "status": "not_computed",
+        "reason": "Input unrelated_external_current must be a known finite number"
+      }
+    },
+    {
+      "probe": "referenced_unsourced_input_control",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {
+          "r1": {
+            "value": 1000,
+            "unit": "ohm",
+            "source": null
+          },
+          "r2": {
+            "value": 2000,
+            "unit": "ohm",
+            "source": "synthetic R2 fixed value"
+          }
+        },
+        "expression": "r1 + r2",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": null,
+        "usable": false,
+        "status": "not_computed",
+        "reason": "Missing source for input: r1"
+      }
+    },
+    {
+      "probe": "numeric_literals_with_no_declared_inputs",
+      "observed": {
+        "id": "explicit_ideal_series_resistors",
+        "inputs": {},
+        "expression": "1000 + 2000",
+        "result_unit": "ohm",
+        "assumptions": [],
+        "validity": {
+          "status": "valid",
+          "reason": "Both ideal resistance values are defined by the synthetic fixture."
+        },
+        "result": 3000.0,
+        "usable": true,
+        "status": "evaluated"
+      }
+    },
+    {
+      "probe": "requirement_evidence_without_datasheet",
+      "observed": {
+        "run_status": "partial_review",
+        "scope": "Synthetic report-schema probe only.",
+        "confirmed_errors": []
+      }
+    },
+    {
+      "probe": "nonempty_datasheet_placeholder",
+      "observed": {
+        "run_status": "partial_review",
+        "scope": "Synthetic report-schema probe only.",
+        "confirmed_errors": [
+          {
+            "id": "synthetic_supplied_rail_short",
+            "why": "Synthetic supplied interface contract assigns J1.1 to +12 V and J1.2 to return; both physical contacts are on one net.",
+            "raw_connection_evidence": "Synthetic net N1 has J1.1 and J1.2.",
+            "datasheet_evidence": "Not applicable: no datasheet was used.",
+            "recommendation": "Separate the supply and return contacts according to the supplied interface contract."
+          }
+        ]
+      }
+    },
+    {
+      "probe": "actual_u6_complete_boundary_size",
+      "observed": {
+        "nets": 7,
+        "outside_endpoints": 197,
+        "by_net": [
+          {
+            "net": "N00478",
+            "outside_endpoints": 1
+          },
+          {
+            "net": "N00355",
+            "outside_endpoints": 1
+          },
+          {
+            "net": "VCC",
+            "outside_endpoints": 83
+          },
+          {
+            "net": "GND",
+            "outside_endpoints": 102
+          },
+          {
+            "net": "VBAT",
+            "outside_endpoints": 5
+          },
+          {
+            "net": "GND_EARTH",
+            "outside_endpoints": 5
+          },
+          {
+            "net": "UVLO",
+            "outside_endpoints": 0
+          }
+        ],
+        "uvlo_complete_net": {
+          "name": "UVLO",
+          "path": "@CLAYR6.SCHEMATIC1(SCH_1):UVLO",
+          "members": {
+            "total": 1,
+            "offset": 0,
+            "items": [
+              {
+                "ref": "U6",
+                "pin": "7",
+                "name": "UVLO"
+              }
+            ],
+            "next_offset": null
+          }
+        }
+      }
+    },
+    {
+      "probe": "sparse_document_index",
+      "observed": {
+        "datasheets_reply": {
+          "ok": false,
+          "error": "'binding_level'",
+          "error_type": "KeyError"
+        },
+        "graph_query_still_works": true
+      }
+    }
+  ],
+  "reference_baseline_commit": "3f1a7dcdce7a88cfbdb214eb8a7de48340f4425e",
+  "measurement_phase": "before audit fixes"
+}

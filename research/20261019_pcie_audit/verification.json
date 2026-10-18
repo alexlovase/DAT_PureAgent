@@ -1,0 +1,139 @@
+{
+  "date_local": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "reference_baseline_commit": "3f1a7dcdce7a88cfbdb214eb8a7de48340f4425e",
+  "execution": "Actual independent session audits and raw/PDF investigation, followed by deterministic final tool validation",
+  "production_source_sha256": {
+    "pureagent/dat.py": "dfc3f4577d868f202f3909a9fd08bf654e1313de00609cf4e3975e1b8873ab5c",
+    "pureagent/calculations.py": "3bb9d795cd25b2d38e96b756b490f0d0cc98342a89acfc59c298a23443f97ab0",
+    "pureagent/report.py": "87ee105a30d66f35153fb6286a4ad8b10c610a52f0647bb4f0bd7b551ed9afc6",
+    "pureagent/cli.py": "669960b696b91efd999b8b96154723327e505c2443bdb5530251a5fb043c4026"
+  },
+  "regressions": {
+    "command": "python -m unittest discover -s tests -v",
+    "python": "3.12.14",
+    "tests_run": 26,
+    "failures": 0,
+    "errors": 0,
+    "observed_result": "OK"
+  },
+  "source_acquisition": {
+    "sample_assets": 13,
+    "reference_assets": 2,
+    "verified_assets": 15,
+    "errors": []
+  },
+  "baseline_sample_loading": {
+    "j401-fixture": {
+      "loaded": false,
+      "error_type": "DatError",
+      "error": "Unsupported PIN_NUMBER '(251,0,0)'; physical mapping requires a supported dialect"
+    },
+    "opencellular-breakout": {
+      "loaded": false,
+      "error_type": "DatError",
+      "error": "Unsupported PIN_NUMBER '(A1,0,0,0,0,0,0,0,0,0,0,0,0)'; physical mapping requires a supported dialect"
+    }
+  },
+  "final_parser_comparison": {
+    "j401-fixture": {
+      "overview": {
+        "components": 728,
+        "physical_pins": 2490,
+        "electrical_nets": 534,
+        "connected_endpoints": 2401,
+        "pin_states": {
+          "connected": 2401,
+          "unconnected": 89
+        },
+        "nc_exported_endpoints": 89,
+        "nc_declared_pins": 0,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "complete_comparisons": 22,
+      "all_complete_sets_equal": true,
+      "all_public_pages_checked": {
+        "inventory": 19,
+        "component": 738,
+        "net": 552
+      }
+    },
+    "opencellular-breakout": {
+      "overview": {
+        "components": 68,
+        "physical_pins": 348,
+        "electrical_nets": 75,
+        "connected_endpoints": 324,
+        "pin_states": {
+          "connected": 324,
+          "unconnected": 24
+        },
+        "nc_exported_endpoints": 24,
+        "nc_declared_pins": 0,
+        "input_diagnostic_count": 0,
+        "next": "inventory enumerates every instance; component/net expand all members"
+      },
+      "complete_comparisons": 22,
+      "all_complete_sets_equal": true,
+      "all_public_pages_checked": {
+        "inventory": 2,
+        "component": 71,
+        "net": 78
+      }
+    }
+  },
+  "flexibility_audit": {
+    "before_after_probes": 17,
+    "after_source_matches_final_code": true,
+    "nc_regression": "audit_findings.nc_regression.json",
+    "scope": "Synthetic record changes are software probes, not defects attributed to the original boards."
+  },
+  "selected_electrical_facts": {
+    "independent_raw_net_sets": 28,
+    "public_tool_net_sets": 28,
+    "independent_and_tool_series_paths": 4,
+    "assembly_left_unspecified": [
+      "R99",
+      "R100",
+      "R153",
+      "R72"
+    ],
+    "session_graph_loads": {
+      "j401-fixture": 1,
+      "opencellular-breakout": 1
+    },
+    "confirmed_original_board_errors": 0,
+    "electrical_scope": "partial PCIe and related sideband interpretation audit, no board or link pass"
+  },
+  "clay_regression": {
+    "calculations_replayed": 9,
+    "all_values_match": true,
+    "reports_exactly_equal": {
+      "original": true,
+      "case_b": true,
+      "case_c": true
+    },
+    "confirmed_counts": {
+      "original": 1,
+      "case_b": 2,
+      "case_c": 2
+    },
+    "new_llm_calls": 0
+  },
+  "reference_reading": {
+    "documents_read": 4,
+    "pages_rendered_and_visually_reviewed": 11,
+    "source_record": "electrical_audit.sources.json",
+    "replay_does_not_repeat_pdf_reasoning": true
+  },
+  "limits": [
+    "Two pinned export forms and targeted mutations do not establish full Cadence dialect support.",
+    "Complete pin and net inventory is not full electrical investigation coverage.",
+    "Public tool replay is deterministic and does not start an LLM or re-prove datasheet applicability.",
+    "No standalone Deep Agents/model API harness, automatic signal-path discovery, nonlinear operating-point solver or PCIe SI analysis was introduced.",
+    "No link generation, exact assembled variant, firmware state, power sequence or attached device was established for the entire boards.",
+    "No measured end-to-end speedup, model token savings, hallucination reduction or full-board recall is claimed.",
+    "Unknown population and external conditions are not silently filled; some structural and duplicate-identity dialect failures still stop import."
+  ]
+}

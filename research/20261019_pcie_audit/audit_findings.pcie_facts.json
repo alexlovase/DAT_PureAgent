@@ -1,0 +1,48 @@
+[
+  {
+    "case": "j401-fixture",
+    "overview": {
+      "components": 728,
+      "physical_pins": 2490,
+      "electrical_nets": 534,
+      "connected_endpoints": 2401,
+      "pin_states": {
+        "connected": 2401,
+        "unconnected": 89
+      },
+      "nc_exported_endpoints": 89,
+      "nc_declared_pins": 0,
+      "input_diagnostic_count": 0,
+      "next": "inventory enumerates every instance; component/net expand all members"
+    },
+    "raw_node_records": 2490,
+    "all_ordinary_raw_physical_endpoints_identical": true,
+    "all_explicit_nc_endpoints_identical": true,
+    "diagnostic_kinds": {},
+    "diagnostic_examples": [],
+    "multi_section_instances": 3
+  },
+  {
+    "case": "opencellular-breakout",
+    "overview": {
+      "components": 68,
+      "physical_pins": 348,
+      "electrical_nets": 75,
+      "connected_endpoints": 324,
+      "pin_states": {
+        "connected": 324,
+        "unconnected": 24
+      },
+      "nc_exported_endpoints": 24,
+      "nc_declared_pins": 0,
+      "input_diagnostic_count": 0,
+      "next": "inventory enumerates every instance; component/net expand all members"
+    },
+    "raw_node_records": 348,
+    "all_ordinary_raw_physical_endpoints_identical": true,
+    "all_explicit_nc_endpoints_identical": true,
+    "diagnostic_kinds": {},
+    "diagnostic_examples": [],
+    "multi_section_instances": 1
+  }
+]

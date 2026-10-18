@@ -1,0 +1,118 @@
+{
+  "acquired_date_local": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "documents": [
+    {
+      "id": "j401_schematic",
+      "url": "https://files.seeedstudio.com/wiki/J401/reComputer_J401_SCH_V1.0.pdf",
+      "author": "Seeed Studio",
+      "source_kind": "official manufacturer URL; byte-identical to pinned Seeed GitHub schematic supplied with sample",
+      "bytes": 1217114,
+      "sha256": "3a61f26ef8d064fe8ea413700de420dcb6ac53320644cbfad5066558576e18c6",
+      "pdf_pages": 19,
+      "text_pages_read_1based": [
+        6,
+        16,
+        17
+      ],
+      "rendered_pages_visually_reviewed_1based": [
+        6,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "opencellular_schematic",
+      "url": "https://raw.githubusercontent.com/Telecominfraproject/OpenCellular/0d5d7b005327e4378bd5c7fd44d7b8dc5ab796f6/electronics/breakout/schematic/OC_CONNECT_1_BRKOUT_BRD.pdf",
+      "author": "OpenCellular / Facebook",
+      "source_kind": "pinned original project schematic",
+      "bytes": 132229,
+      "sha256": "619cd58be4d9b1225df68e6b9d23b8375737dc87daeb2630280d4c3cf994f6e6",
+      "pdf_pages": 3,
+      "text_pages_read_1based": [
+        1,
+        2
+      ],
+      "rendered_pages_visually_reviewed_1based": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "orin_design_guide_v11",
+      "url": "https://www.mouser.com/pdfDocs/Jetson_Orin_NX_Series_and_Orin_Nano_Series_Design_Guide_DG-10931-001_v11.pdf",
+      "author": "NVIDIA",
+      "source_kind": "manufacturer-authored PDF hosted by distributor; historical preliminary v1.1, April 2023",
+      "bytes": 2747425,
+      "sha256": "a38ec2d4269887f08f7c50f8d9fcd47d832ade2567dbb652ef4b2e2400bd7609",
+      "pdf_pages": 99,
+      "text_pages_read_1based": [
+        1,
+        2,
+        38,
+        39,
+        40,
+        47,
+        48,
+        49,
+        50,
+        52
+      ],
+      "rendered_pages_visually_reviewed_1based": [
+        38,
+        48,
+        49,
+        50,
+        52
+      ]
+    },
+    {
+      "id": "orin_carrier_spec",
+      "url": "https://developer.nvidia.com/downloads/assets/embedded/secure/jetson/orin_nano/docs/jetson_orin_nano_devkit_carrier_board_specification_sp.pdf",
+      "author": "NVIDIA",
+      "source_kind": "official manufacturer URL; v1.3 actually downloaded; distinct NVIDIA reference board, not J401",
+      "bytes": 979573,
+      "sha256": "4a0f7ba948bce4881e176f0f8636ef3dbd40e3df9dd33134e6a7433359d18c02",
+      "pdf_pages": 38,
+      "text_pages_read_1based": [
+        1,
+        2,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "rendered_pages_visually_reviewed_1based": [
+        17
+      ]
+    }
+  ],
+  "web_primary_clarifications": [
+    {
+      "url": "https://forums.developer.nvidia.com/t/are-47k-pull-ups-needed-on-pcie-wake-clkreq-rst/240883",
+      "author_context": "NVIDIA developer forum technical reply by Trumany, 2023-02-07",
+      "used_for": "Corroboration that carrier pull-ups can be omitted when stronger pull-up is not needed; exact resistor values taken from visual PDF table."
+    },
+    {
+      "url": "https://forums.developer.nvidia.com/t/pcie-ac-coupling-capacitor-size/269319",
+      "author_context": "NVIDIA developer forum technical reply by Trumany, 2023-10-13",
+      "used_for": "Capacitance advice depends on PCIe generation; not proof of this sample configured generation."
+    }
+  ],
+  "rejected_downloads": [
+    {
+      "url": "https://developer.nvidia.com/downloads/assets/embedded/secure/jetson/orin_nx/docs/Jetson-Orin-NX-Nano-Design-Guide_DG-10931-001_v1.4.pdf",
+      "reason": "HTTP 404"
+    },
+    {
+      "url": "https://developer.download.nvidia.com/assets/embedded/secure/jetson/orin_nx/docs/Jetson-Orin-NX-Nano-Design-Guide_DG-10931-001_v1.4.pdf",
+      "reason": "HTTP download completed but 3168-byte HTML, not PDF; rejected"
+    },
+    {
+      "url": "https://developer.download.nvidia.com/assets/embedded/secure/jetson/orin_nx/docs/Jetson-Orin-NX-Nano-Design-Guide_DG-10931-001_v1.5.pdf",
+      "reason": "HTTP download completed but 3168-byte HTML, not PDF; rejected"
+    }
+  ],
+  "scope_note": "PDFs/page images remain acquisition cache; document hashes are acquisition identifiers, not required Agent context fields. No current/latest NVIDIA normative-compliance claim."
+}
