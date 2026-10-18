@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "audited_on": "2026-10-18",
+  "purpose": "固定本地探针读取的上游版本；第三方源码只下载到 _vendor/，不随此研究包提交。",
+  "projects": [
+    {
+      "id": "dsh",
+      "repository": "lishuo4096/dsh-enet-review",
+      "commit": "8668406fd8a91635778561607a5367be77e58b6b",
+      "license": {
+        "status": "未确认",
+        "spdx": null,
+        "source_url": "https://github.com/lishuo4096/dsh-enet-review/tree/8668406fd8a91635778561607a5367be77e58b6b",
+        "note": "该固定提交的完整文件树未发现 LICENSE/COPYING/NOTICE；package.json 未声明 license。此研究包不重新分发其源码。"
+      },
+      "files": [
+        "package.json",
+        "lib/netlist.js",
+        "lib/designator.js",
+        "lib/rules.js",
+        "lib/pininfer.js",
+        "lib/tools.js",
+        "lib/define-tool.js",
+        "lib/datasheet.js",
+        "lib/datasheet-online.js"
+      ],
+      "entry_points": [
+        "lib/netlist.js:parseEnet",
+        "lib/rules.js:audit",
+        "lib/tools.js:TOOLS"
+      ]
+    },
+    {
+      "id": "unet",
+      "repository": "IntelligentElectron/universal-netlist",
+      "commit": "8c2c851fa81685fb43be4edfa8645765f4ca4628",
+      "license": {
+        "status": "上游声明",
+        "spdx": "Apache-2.0",
+        "source_url": "https://github.com/IntelligentElectron/universal-netlist/blob/8c2c851fa81685fb43be4edfa8645765f4ca4628/LICENSE",
+        "notice_url": "https://github.com/IntelligentElectron/universal-netlist/blob/8c2c851fa81685fb43be4edfa8645765f4ca4628/NOTICE",
+        "note": "NOTICE 另列 OpenOrCadParser 的 MIT 来源；下载保留 LICENSE 与 NOTICE。本包不包含上游代码或生成的 JS。"
+      },
+      "files": [
+        "package.json",
+        "LICENSE",
+        "NOTICE",
+        "src/universal-format.ts",
+        "src/service/component-grouping.ts",
+        "src/circuit-traversal.ts",
+        "src/types.ts",
+        "src/parsers/cadence/dsn/component-builder.ts",
+        "src/parsers/cadence/dsn/pin-resolver.ts",
+        "src/parsers/kicad/netlist-parser.ts",
+        "src/parsers/kicad/sexpr.ts",
+        "src/parsers/universal/reader.ts"
+      ],
+      "entry_points": [
+        "src/parsers/universal/reader.ts:parseUniversalNetlist",
+        "src/parsers/kicad/netlist-parser.ts:parseKicadNetlist",
+        "src/circuit-traversal.ts:traverseCircuitFromNet",
+        "src/service/component-grouping.ts:groupComponentsByMpn/aggregateCircuitByMpn",
+        "src/parsers/cadence/dsn/component-builder.ts:buildComponents",
+        "src/parsers/cadence/dsn/pin-resolver.ts:resolvePinNumber/buildDeviceIndexMap"
+      ]
+    },
+    {
+      "id": "pinscope",
+      "repository": "Faradworks/Pinscope",
+      "commit": "b26ad3509f4a19878fb7050aad3da9eacba8d914",
+      "license": {
+        "status": "上游声明",
+        "spdx": "AGPL-3.0",
+        "source_url": "https://github.com/Faradworks/Pinscope/blob/b26ad3509f4a19878fb7050aad3da9eacba8d914/LICENSE",
+        "note": "根 LICENSE 为 GNU Affero General Public License version 3；此处保留上游版本名称，不推断 only/or-later。本包不包含上游源码。"
+      },
+      "files": [
+        "LICENSE",
+        "backend/pinscopex/models.py",
+        "backend/pinscopex/validation_tools.py",
+        "backend/pinscopex/utils.py",
+        "backend/pinscopex/pin_function_tokens.py",
+        "backend/pinscopex/validate.py"
+      ],
+      "entry_points": [
+        "backend/pinscopex/validate.py:build_component_context",
+        "backend/pinscopex/validation_tools.py:find_connected_components/get_pintable/get_net_for_pin"
+      ],
+      "dependency": "Pydantic；归档重跑使用 2.14.0。"
+    }
+  ]
+}

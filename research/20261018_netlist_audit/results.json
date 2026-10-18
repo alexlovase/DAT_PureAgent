@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "executed_at_utc": "2026-10-18T13:08:18.306464+00:00",
+  "scope": "固定上游函数与真实工具入口的合成案例探针；3 个 DSH、10 个 UN、4 个 Pinscope 案例组。通过表示符合探针预期，包括复现出的缺陷，并非产品检查通过。",
+  "runtime": {
+    "python": "3.12.14",
+    "node": "v24.19.0",
+    "pydantic": "2.14.0"
+  },
+  "sources": [
+    {
+      "id": "dsh",
+      "repository": "lishuo4096/dsh-enet-review",
+      "commit": "8668406fd8a91635778561607a5367be77e58b6b"
+    },
+    {
+      "id": "unet",
+      "repository": "IntelligentElectron/universal-netlist",
+      "commit": "8c2c851fa81685fb43be4edfa8645765f4ca4628"
+    },
+    {
+      "id": "pinscope",
+      "repository": "Faradworks/Pinscope",
+      "commit": "b26ad3509f4a19878fb7050aad3da9eacba8d914"
+    }
+  ],
+  "limitations": [
+    "没有付费或免费 LLM 调用，没有完整数据手册语义审查，没有真实整板端到端准确率、漏报率或性能测量。",
+    "DSH 的 EN 悬空输入仅产生待查手册候选，不能将 45 个候选算作 45 个真实电气错误；该项目未提供在本探针中可运行的最终 LLM 复核流程。",
+    "UN 测试直接调用生产模块，不运行完整 Vitest 套件、MCP 服务或完整 DSN 导入；跨单元合并案例从已解析的物理连接开始。",
+    "Pinscope 采用真实 Pydantic 模型及原查询模块；通过 AST 提取 build_component_context 与原摘要阈值，避免导入模型客户端。未测试主调度器如何选择缺 MPN 的器件，也未执行最终报告过滤。",
+    "输出只将运行目录替换为 <audit_root>、将 DSH 示例路径变为相对路径；未改写上游诊断或测量值。"
+  ],
+  "runs": [
+    {
+      "name": "dsh",
+      "command": [
+        "node",
+        "probes/dsh_probe.mjs"
+      ],
+      "exit_code": 0,
+      "records": [
+        {
+          "test": "T1_missing_nonessential_identity",
+          "components": 3,
+          "pins": 8,
+          "wiring_equal": true,
+          "fda_candidates_before": 2,
+          "fda_candidates_after": 2,
+          "missing_mpn": true,
+          "missing_footprint": true
+        },
+        {
+          "test": "T2_full_index_and_local_views",
+          "raw_endpoints": 86,
+          "index_endpoints": 86,
+          "net_tool_endpoints": 86,
+          "extra_branch_in_net_tool": true,
+          "extra_branch_other_end_in_part_tool": true,
+          "component_overview_discloses_truncation": true,
+          "net_tool_header": "[BUS] 共 86 个成员  [signal]"
+        },
+        {
+          "test": "T3_pending_candidate_visibility",
+          "synthetic_open_EN_pins": 45,
+          "source_candidate_title": "45 处「引脚名推断」与「实际所连网络」冲突，需查手册定论",
+          "source_candidate_severity": "P2",
+          "source_needs_datasheet": true,
+          "default_core_evidence_refs": 40,
+          "core_limit100_evidence_refs": 45,
+          "audit_tool_detail_true_refs": 40,
+          "audit_tool_detail_true_includes_U45": false,
+          "direct_part_query_recovers_U45": true,
+          "P1_filter_lists_any_P2": false,
+          "P1_filter_still_discloses_pending_count": true,
+          "P1_filter_says_no_findings_under_filter": true
+        }
+      ],
+      "stdout": "{\"test\":\"T1_missing_nonessential_identity\",\"components\":3,\"pins\":8,\"wiring_equal\":true,\"fda_candidates_before\":2,\"fda_candidates_after\":2,\"missing_mpn\":true,\"missing_footprint\":true}\n{\"test\":\"T2_full_index_and_local_views\",\"raw_endpoints\":86,\"index_endpoints\":86,\"net_tool_endpoints\":86,\"extra_branch_in_net_tool\":true,\"extra_branch_other_end_in_part_tool\":true,\"component_overview_discloses_truncation\":true,\"net_tool_header\":\"[BUS] 共 86 个成员  [signal]\"}\n{\"test\":\"T3_pending_candidate_visibility\",\"synthetic_open_EN_pins\":45,\"source_candidate_title\":\"45 处「引脚名推断」与「实际所连网络」冲突，需查手册定论\",\"source_candidate_severity\":\"P2\",\"source_needs_datasheet\":true,\"default_core_evidence_refs\":40,\"core_limit100_evidence_refs\":45,\"audit_tool_detail_true_refs\":40,\"audit_tool_detail_true_includes_U45\":false,\"direct_part_query_recovers_U45\":true,\"P1_filter_lists_any_P2\":false,\"P1_filter_still_discloses_pending_count\":true,\"P1_filter_says_no_findings_under_filter\":true}\nT3_P1_RAW_BEGIN\n网表: cases/t3-45-pending.enet\n元件 45 个 | 命名网络 0 条 | NC/未用脚 45 个\n\n机械检查：7 条规则跑完，发现 1 项（P0 0 / P1 0 / P2 1 / P3 0），其中 1 项需要手册定论。\n\n（该筛选条件下没有发现项）\n\n分级口径：P0 不改必砖 / P1 功能错 / P2 需确认（多为需查手册） / P3 优化建议。\n报告里每条都要带「网络与引脚证据 + 手册依据（页码或原文）+ 后果 + 改法」。\nT3_P1_RAW_END\nNo LLM calls, no datasheet semantic review, no end-to-end accuracy measurement.\n",
+      "stderr": ""
+    },
+    {
+      "name": "compile_unet",
+      "command": [
+        "node",
+        "probes/compile_unet.mjs"
+      ],
+      "exit_code": 0,
+      "records": [
+        {
+          "compiled_production_modules": 9,
+          "method": "Node built-in stripTypeScriptTypes; no runtime edits"
+        }
+      ],
+      "stdout": "{\"compiled_production_modules\":9,\"method\":\"Node built-in stripTypeScriptTypes; no runtime edits\"}\n",
+      "stderr": "(node:12) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+    },
+    {
+      "name": "unet",
+      "command": [
+        "node",
+        "probes/unet_probe.mjs"
+      ],
+      "exit_code": 0,
+      "records": [
+        {
+          "name": "official_reader_fixture_missing_MPN_round_trip",
+          "status": "PASS",
+          "components": 2,
+          "pins": 6,
+          "parsed_top_keys": [
+            "nets",
+            "components"
+          ],
+          "file_metadata_keys": [
+            "generatedAt",
+            "netlistHash",
+            "origin"
+          ]
+        },
+        {
+          "name": "footprint_dropped_only_by_file_projection",
+          "status": "PASS",
+          "footprint_preserved": false,
+          "connectivity_preserved": true
+        },
+        {
+          "name": "hash_required_in_file_and_graph_mismatch_rejected",
+          "status": "PASS",
+          "missing_hash": "rejected",
+          "net_membership_without_component": "rejected"
+        },
+        {
+          "name": "kicad_missing_component_metadata_creates_connection_stub",
+          "status": "PASS",
+          "refdes": [
+            "R1",
+            "U404"
+          ],
+          "unknown_pins": {
+            "7": {
+              "name": "SENSE",
+              "net": "SIGNAL_A"
+            },
+            "9": "SIGNAL_B"
+          },
+          "persisted_roundtrip": "equal"
+        },
+        {
+          "name": "unknown_MPN_component_remains_terminal_in_local_view",
+          "status": "PASS",
+          "local_components": [
+            "R1",
+            "U404"
+          ],
+          "unknown_local_pins": [
+            {
+              "net": "SIGNAL_A",
+              "pins": [
+                "7"
+              ]
+            }
+          ],
+          "unknown_full_pin_count": 2,
+          "full_graph_unchanged": true
+        },
+        {
+          "name": "official_active_pin_fixture_is_a_view_not_full_IC",
+          "status": "PASS",
+          "queried_IC_pins": [
+            "5"
+          ],
+          "stored_IC_pin_count": 7,
+          "full_graph_unchanged": true
+        },
+        {
+          "name": "official_41_pin_rail_fixture_bounds_expand_only_local_view",
+          "status": "PASS",
+          "stored_components": 45,
+          "default_components": 2,
+          "raised_threshold_components": 45,
+          "direct_rail_components": 45,
+          "full_graph_unchanged": true
+        },
+        {
+          "name": "missing_identity_survives_list_and_circuit_aggregation",
+          "status": "PASS",
+          "list_groups": 2,
+          "retained_refdes": [
+            "U1",
+            "U2"
+          ],
+          "unidentified_circuit_connections": [
+            {
+              "net": "NET1",
+              "pins": [
+                "1"
+              ]
+            },
+            {
+              "net": "NET2",
+              "pins": [
+                "2"
+              ]
+            }
+          ],
+          "adds_internal_MPN_note": true
+        },
+        {
+          "name": "multiunit_across_pages_merge_one_refdes_preserve_all_resolved_pins",
+          "status": "PASS",
+          "stored_refdes": [
+            "U1"
+          ],
+          "stored_pins": {
+            "1": "IN_A",
+            "2": "OUT_A",
+            "3": "IN_B",
+            "4": "OUT_B"
+          },
+          "section_indices": [
+            0,
+            1
+          ],
+          "test_boundary": "starts after physical pin connectivity is already resolved"
+        },
+        {
+          "name": "physical_mapping_fallback_is_symbol_order_not_proven_package_number",
+          "status": "PASS",
+          "with_physical_mapping": "9",
+          "without_mapping": "2",
+          "limitation": "fallback is logical symbol record order, physical correctness not established"
+        },
+        {
+          "passed": 10,
+          "failed": 0,
+          "scope": "production-module probes with official fixtures plus custom edge cases; no full Vitest suite or whole DSN import"
+        }
+      ],
+      "stdout": "{\"name\":\"official_reader_fixture_missing_MPN_round_trip\",\"status\":\"PASS\",\"components\":2,\"pins\":6,\"parsed_top_keys\":[\"nets\",\"components\"],\"file_metadata_keys\":[\"generatedAt\",\"netlistHash\",\"origin\"]}\n{\"name\":\"footprint_dropped_only_by_file_projection\",\"status\":\"PASS\",\"footprint_preserved\":false,\"connectivity_preserved\":true}\n{\"name\":\"hash_required_in_file_and_graph_mismatch_rejected\",\"status\":\"PASS\",\"missing_hash\":\"rejected\",\"net_membership_without_component\":\"rejected\"}\n{\"name\":\"kicad_missing_component_metadata_creates_connection_stub\",\"status\":\"PASS\",\"refdes\":[\"R1\",\"U404\"],\"unknown_pins\":{\"7\":{\"name\":\"SENSE\",\"net\":\"SIGNAL_A\"},\"9\":\"SIGNAL_B\"},\"persisted_roundtrip\":\"equal\"}\n{\"name\":\"unknown_MPN_component_remains_terminal_in_local_view\",\"status\":\"PASS\",\"local_components\":[\"R1\",\"U404\"],\"unknown_local_pins\":[{\"net\":\"SIGNAL_A\",\"pins\":[\"7\"]}],\"unknown_full_pin_count\":2,\"full_graph_unchanged\":true}\n{\"name\":\"official_active_pin_fixture_is_a_view_not_full_IC\",\"status\":\"PASS\",\"queried_IC_pins\":[\"5\"],\"stored_IC_pin_count\":7,\"full_graph_unchanged\":true}\n{\"name\":\"official_41_pin_rail_fixture_bounds_expand_only_local_view\",\"status\":\"PASS\",\"stored_components\":45,\"default_components\":2,\"raised_threshold_components\":45,\"direct_rail_components\":45,\"full_graph_unchanged\":true}\n{\"name\":\"missing_identity_survives_list_and_circuit_aggregation\",\"status\":\"PASS\",\"list_groups\":2,\"retained_refdes\":[\"U1\",\"U2\"],\"unidentified_circuit_connections\":[{\"net\":\"NET1\",\"pins\":[\"1\"]},{\"net\":\"NET2\",\"pins\":[\"2\"]}],\"adds_internal_MPN_note\":true}\n{\"name\":\"multiunit_across_pages_merge_one_refdes_preserve_all_resolved_pins\",\"status\":\"PASS\",\"stored_refdes\":[\"U1\"],\"stored_pins\":{\"1\":\"IN_A\",\"2\":\"OUT_A\",\"3\":\"IN_B\",\"4\":\"OUT_B\"},\"section_indices\":[0,1],\"test_boundary\":\"starts after physical pin connectivity is already resolved\"}\n{\"name\":\"physical_mapping_fallback_is_symbol_order_not_proven_package_number\",\"status\":\"PASS\",\"with_physical_mapping\":\"9\",\"without_mapping\":\"2\",\"limitation\":\"fallback is logical symbol record order, physical correctness not established\"}\n{\"passed\":10,\"failed\":0,\"scope\":\"production-module probes with official fixtures plus custom edge cases; no full Vitest suite or whole DSN import\"}\n",
+      "stderr": ""
+    },
+    {
+      "name": "pinscope",
+      "command": [
+        "python",
+        "probes/pinscope_probe.py"
+      ],
+      "exit_code": 0,
+      "records": [
+        {
+          "scope": "unchanged source pure functions, actual Pydantic models, synthetic inputs, no LLM",
+          "results": [
+            {
+              "probe": "optional_package",
+              "all_other_context_equal": true,
+              "unconnected_pin_retained": true
+            },
+            {
+              "probe": "missing_mpn_local_context",
+              "wiring_equal": true,
+              "fallback_keeps_unconnected_pin": true,
+              "unknown_neighbor_visible": true,
+              "does_not_test_main_reviewer_task_selection": true
+            },
+            {
+              "probe": "summary_and_expansion",
+              "capacitors_summarized": 8,
+              "capacitors_recovered": 8,
+              "both_ends_recovered": true,
+              "extra_load_and_other_endpoint_visible": true,
+              "feedback_bridge_visible": true
+            },
+            {
+              "probe": "physical_pin_status_counterexamples",
+              "declared_unconnected_pin_missing_from_partial_pintable_context": true,
+              "fallback_pintable_empty_net_line": "Pin 5: ->  [connected]",
+              "undeclared_pin_query": "Pin 99 on U1 is not connected in the netlist.",
+              "scope": "valid model input at function boundary; not exporter-to-report E2E"
+            }
+          ]
+        }
+      ],
+      "stdout": "{\n  \"scope\": \"unchanged source pure functions, actual Pydantic models, synthetic inputs, no LLM\",\n  \"results\": [\n    {\n      \"probe\": \"optional_package\",\n      \"all_other_context_equal\": true,\n      \"unconnected_pin_retained\": true\n    },\n    {\n      \"probe\": \"missing_mpn_local_context\",\n      \"wiring_equal\": true,\n      \"fallback_keeps_unconnected_pin\": true,\n      \"unknown_neighbor_visible\": true,\n      \"does_not_test_main_reviewer_task_selection\": true\n    },\n    {\n      \"probe\": \"summary_and_expansion\",\n      \"capacitors_summarized\": 8,\n      \"capacitors_recovered\": 8,\n      \"both_ends_recovered\": true,\n      \"extra_load_and_other_endpoint_visible\": true,\n      \"feedback_bridge_visible\": true\n    },\n    {\n      \"probe\": \"physical_pin_status_counterexamples\",\n      \"declared_unconnected_pin_missing_from_partial_pintable_context\": true,\n      \"fallback_pintable_empty_net_line\": \"Pin 5: ->  [connected]\",\n      \"undeclared_pin_query\": \"Pin 99 on U1 is not connected in the netlist.\",\n      \"scope\": \"valid model input at function boundary; not exporter-to-report E2E\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "all_probe_processes_exit_zero": true
+}

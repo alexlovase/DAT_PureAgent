@@ -1,0 +1,4 @@
+_vendor/
+_work/
+__pycache__/
+*.pyc
